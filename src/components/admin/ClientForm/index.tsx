@@ -33,6 +33,11 @@ export function ClientForm({ initialData, editId }: ClientFormProps) {
   const [formData, setFormData] = useState<Partial<ClientFormData>>(
     initialData || {
       showAmplopDigital: false,
+      showGiftAddress: false,
+      showQris: false,
+      lottieAutoSelect: true,
+      religion: "islam",
+      timeZone: "WIB",
       bankAccounts: [],
       isPasswordProtected: false,
     }

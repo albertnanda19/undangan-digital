@@ -14,6 +14,7 @@ import { RSVPSection } from "./sections/RSVPSection";
 import { WishesSection } from "./sections/WishesSection";
 import { AmplopSection } from "./sections/AmplopSection";
 import { FooterSection } from "./sections/FooterSection";
+import type { Tenant, ThemeConfig } from "@/types";
 
 interface Props {
   tenant: Record<string, unknown>;
@@ -32,13 +33,17 @@ export function InvitationWrapper({ tenant, photos, wishes, theme, guestName }: 
     }
   }, [isOpened]);
 
-  const themeConfig = (theme as { config?: Record<string, string> })?.config || {
+  const themeConfig: ThemeConfig = ((theme as { config?: ThemeConfig })?.config || {
     primaryColor: "#E8748A",
     secondaryColor: "#FDF2F8",
     accentColor: "#C9A96E",
     backgroundColor: "#FDF8F0",
     textColor: "#4A2C2A",
-  };
+    fontHeading: "Cormorant Garamond",
+    fontBody: "Lato",
+    fontScript: "Great Vibes",
+    ornamentStyle: "floral",
+  }) as ThemeConfig;
 
   if (!isOpened) {
     return (
@@ -58,47 +63,79 @@ export function InvitationWrapper({ tenant, photos, wishes, theme, guestName }: 
     <div style={{ backgroundColor: themeConfig.backgroundColor, color: themeConfig.textColor }}>
       <MusicPlayer musicUrl={tenant.music_url as string | undefined} />
 
+      {(() => {
+        const tenantData: Tenant = {
+          id: tenant.id as string,
+          slug: tenant.slug as string,
+          groomName: tenant.groom_name as string,
+          brideName: tenant.bride_name as string,
+          groomNickname: tenant.groom_nickname as string,
+          brideNickname: tenant.bride_nickname as string,
+          groomFather: tenant.groom_father as string,
+          groomMother: tenant.groom_mother as string,
+          brideFather: tenant.bride_father as string,
+          brideMother: tenant.bride_mother as string,
+          religion: (tenant.religion as Tenant["religion"]) || "islam",
+          groomBirthOrder: tenant.groom_birth_order as string | undefined,
+          brideBirthOrder: tenant.bride_birth_order as string | undefined,
+          groomPhotoUrl: tenant.groom_photo_url as string | undefined,
+          bridePhotoUrl: tenant.bride_photo_url as string | undefined,
+          akadDate: tenant.akad_date as string,
+          akadTimeStart: tenant.akad_time_start as string,
+          akadTimeEnd: tenant.akad_time_end as string,
+          akadVenueName: tenant.akad_venue_name as string,
+          akadVenueAddress: tenant.akad_venue_address as string,
+          akadMapsUrl: tenant.akad_maps_url as string | undefined,
+          receptionDate: tenant.reception_date as string,
+          receptionTimeStart: tenant.reception_time_start as string,
+          receptionTimeEnd: tenant.reception_time_end as string,
+          receptionVenueName: tenant.reception_venue_name as string,
+          receptionVenueAddress: tenant.reception_venue_address as string,
+          receptionMapsUrl: tenant.reception_maps_url as string | undefined,
+          timeZone: (tenant.time_zone as Tenant["timeZone"]) || "WIB",
+          themeId: tenant.theme_id as string,
+          coverPhotoUrl: tenant.cover_photo_url as string | undefined,
+          loveStory: tenant.love_story as string | undefined,
+          musicUrl: tenant.music_url as string | undefined,
+          isActive: tenant.is_active as boolean,
+          isPasswordProtected: tenant.is_password_protected as boolean,
+          showAmplopDigital: tenant.show_amplop_digital as boolean,
+          showGiftAddress: (tenant.show_gift_address as boolean) || false,
+          showQris: (tenant.show_qris as boolean) || false,
+          giftAddress: tenant.gift_address as string | undefined,
+          giftNotes: tenant.gift_notes as string | undefined,
+          qrisImageUrl: tenant.qris_image_url as string | undefined,
+          bankAccounts:
+            (tenant.bank_accounts as Tenant["bankAccounts"]) || [],
+          lottieAutoSelect: (tenant.lottie_auto_select as boolean) !== false,
+          lottieAnimationUrl: tenant.lottie_animation_url as string | undefined,
+          lottieAnimationPosition: tenant.lottie_animation_position as Tenant["lottieAnimationPosition"],
+          expiresAt: tenant.expires_at as string | undefined,
+          dresscode: tenant.dresscode as string | undefined,
+          additionalNotes: tenant.additional_notes as string | undefined,
+          closingMessage: tenant.closing_message as string | undefined,
+          createdAt: tenant.created_at as string,
+          updatedAt: tenant.updated_at as string,
+        };
+
+        return (
+          <>
       <HeroSection
-        groomNickname={tenant.groom_nickname as string}
-        brideNickname={tenant.bride_nickname as string}
-        akadDate={tenant.akad_date as string}
-        coverPhotoUrl={tenant.cover_photo_url as string | undefined}
+        tenant={tenantData}
         themeConfig={themeConfig}
-        lottieUrl={tenant.lottie_animation_position === "hero" || tenant.lottie_animation_position === "both" ? (tenant.lottie_animation_url as string) : undefined}
+        guestName={guestName}
       />
 
-      <OpeningSection themeConfig={themeConfig} />
-
-      <CoupleSection
-        groomName={tenant.groom_name as string}
-        brideName={tenant.bride_name as string}
-        groomNickname={tenant.groom_nickname as string}
-        brideNickname={tenant.bride_nickname as string}
-        groomFather={tenant.groom_father as string}
-        groomMother={tenant.groom_mother as string}
-        brideFather={tenant.bride_father as string}
-        brideMother={tenant.bride_mother as string}
-        groomPhotoUrl={tenant.groom_photo_url as string | undefined}
-        bridePhotoUrl={tenant.bride_photo_url as string | undefined}
-        themeConfig={themeConfig}
-        lottieUrl={tenant.lottie_animation_position === "couple_section" || tenant.lottie_animation_position === "both" ? (tenant.lottie_animation_url as string) : undefined}
-      />
-
-      <EventSection
-        akadDate={tenant.akad_date as string}
-        akadTimeStart={tenant.akad_time_start as string}
-        akadTimeEnd={tenant.akad_time_end as string}
-        akadVenueName={tenant.akad_venue_name as string}
-        akadVenueAddress={tenant.akad_venue_address as string}
-        akadMapsUrl={tenant.akad_maps_url as string | undefined}
-        receptionDate={tenant.reception_date as string}
-        receptionTimeStart={tenant.reception_time_start as string}
-        receptionTimeEnd={tenant.reception_time_end as string}
-        receptionVenueName={tenant.reception_venue_name as string}
-        receptionVenueAddress={tenant.reception_venue_address as string}
-        receptionMapsUrl={tenant.reception_maps_url as string | undefined}
+      <OpeningSection
+        religion={tenantData.religion}
+        groomName={tenantData.groomName}
+        brideName={tenantData.brideName}
         themeConfig={themeConfig}
       />
+
+      <CoupleSection tenant={tenantData} themeConfig={themeConfig} />
+
+      <EventSection tenant={tenantData} themeConfig={themeConfig} />
 
       <CountdownSection
         akadDate={tenant.akad_date as string}
@@ -126,13 +163,7 @@ export function InvitationWrapper({ tenant, photos, wishes, theme, guestName }: 
         themeConfig={themeConfig}
       />
 
-      {(tenant.show_amplop_digital as boolean) ? (
-        <AmplopSection
-          tenantId={tenant.id as string}
-          bankAccounts={(tenant.bank_accounts as Array<{ id: string; bankName: string; accountNumber: string; accountHolder: string; isActive: boolean }>) || []}
-          themeConfig={themeConfig}
-        />
-      ) : null}
+      <AmplopSection tenant={tenantData} themeConfig={themeConfig} />
 
       <FooterSection
         groomNickname={tenant.groom_nickname as string}
@@ -142,6 +173,9 @@ export function InvitationWrapper({ tenant, photos, wishes, theme, guestName }: 
         slug={tenant.slug as string}
         themeConfig={themeConfig}
       />
+          </>
+        );
+      })()}
     </div>
   );
 }

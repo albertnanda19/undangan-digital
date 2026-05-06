@@ -2,103 +2,107 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { LottieAnimation } from "../LottieAnimation";
+import { LottieAnimation } from "@/components/invitation/LottieAnimation";
+import type { Tenant, ThemeConfig } from "@/types";
 
-interface Props {
-  groomName: string;
-  brideName: string;
-  groomNickname: string;
-  brideNickname: string;
-  groomFather: string;
-  groomMother: string;
-  brideFather: string;
-  brideMother: string;
-  groomPhotoUrl?: string;
-  bridePhotoUrl?: string;
-  themeConfig: Record<string, string>;
-  lottieUrl?: string;
-}
+type Props = {
+  tenant: Tenant;
+  themeConfig: ThemeConfig;
+};
 
-export function CoupleSection({
-  groomName, brideName, groomFather, groomMother, brideFather, brideMother,
-  groomPhotoUrl, bridePhotoUrl, themeConfig, lottieUrl,
-}: Props) {
+export function CoupleSection({ tenant, themeConfig }: Props) {
+  const useAutoLottie = tenant.lottieAutoSelect !== false;
+  const useLottie = useAutoLottie || !!tenant.lottieAnimationUrl;
+  const showLottieInSection =
+    !tenant.lottieAnimationUrl ||
+    tenant.lottieAnimationPosition === "couple_section" ||
+    tenant.lottieAnimationPosition === "both";
+
   return (
-    <section id="couple" className="invitation-section" style={{ backgroundColor: themeConfig.secondaryColor }}>
-      <motion.div
-        className="max-w-4xl mx-auto text-center"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <h2 className="section-title" style={{ color: themeConfig.textColor }}>Mempelai</h2>
-        <p className="section-subtitle" style={{ color: themeConfig.primaryColor }}>Insya Allah</p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* Groom */}
+    <section id="couple" className="invitation-section relative overflow-hidden" style={{ backgroundColor: themeConfig.backgroundColor }}>
+      <div className="absolute top-0 left-0 w-64 h-64 rounded-full blur-3xl opacity-10 pointer-events-none" style={{ backgroundColor: themeConfig.primaryColor, transform: "translate(-50%, -50%)" }} />
+      <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-10 pointer-events-none" style={{ backgroundColor: themeConfig.accentColor, transform: "translate(50%, 50%)" }} />
+      <div className="max-w-5xl mx-auto">
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center mb-16">
+          <p className="font-script text-2xl mb-2" style={{ color: themeConfig.primaryColor }}>In The Name of Love</p>
+          <h2 className="section-title font-display" style={{ color: themeConfig.textColor }}>Mempelai</h2>
+        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center">
           <motion.div
-            className="flex flex-col items-center"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center text-center"
           >
-            <div className="w-40 h-40 rounded-full overflow-hidden border-4 mb-4" style={{ borderColor: themeConfig.primaryColor }}>
-              {groomPhotoUrl ? (
-                <Image src={groomPhotoUrl} alt={groomName} width={160} height={160} className="w-full h-full object-cover" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: themeConfig.primaryColor + "20" }}>
-                  <span className="font-script text-3xl" style={{ color: themeConfig.primaryColor }}>M</span>
-                </div>
-              )}
+            <div className="relative mb-6">
+              <div className="w-52 h-52 md:w-60 md:h-60 rounded-full overflow-hidden border-4 shadow-2xl" style={{ borderColor: themeConfig.primaryColor }}>
+                {tenant.groomPhotoUrl ? (
+                  <Image src={tenant.groomPhotoUrl} alt={tenant.groomName} fill className="object-cover" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-6xl" style={{ backgroundColor: themeConfig.secondaryColor }}>👤</div>
+                )}
+              </div>
             </div>
-            <h3 className="font-display text-2xl font-semibold" style={{ color: themeConfig.textColor }}>{groomName}</h3>
-            <p className="text-sm mt-2 opacity-70" style={{ color: themeConfig.textColor }}>
-              Putra dari {groomFather} & {groomMother}
-            </p>
+            <h3 className="font-script text-4xl md:text-5xl mb-2" style={{ color: themeConfig.primaryColor }}>{tenant.groomNickname}</h3>
+            <p className="font-display text-xl font-semibold mb-3" style={{ color: themeConfig.textColor }}>{tenant.groomName}</p>
+            {tenant.groomBirthOrder && <p className="text-sm mb-2 italic" style={{ color: themeConfig.textColor, opacity: 0.7 }}>{tenant.groomBirthOrder}</p>}
+            <div className="text-sm space-y-0.5 mt-1" style={{ color: themeConfig.textColor, opacity: 0.75 }}>
+              <p>Putra dari</p>
+              <p className="font-semibold">Bapak {tenant.groomFather}</p>
+              <p>& Ibu {tenant.groomMother}</p>
+            </div>
           </motion.div>
 
-          {/* Divider / Lottie */}
-          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center">
-            {lottieUrl ? (
-              <LottieAnimation url={lottieUrl} width={100} height={100} />
-            ) : (
-              <span className="font-script text-5xl" style={{ color: themeConfig.primaryColor }}>&amp;</span>
-            )}
-          </div>
-          <div className="md:hidden flex justify-center my-4">
-            {lottieUrl ? (
-              <LottieAnimation url={lottieUrl} width={80} height={80} />
-            ) : (
-              <span className="font-script text-4xl" style={{ color: themeConfig.primaryColor }}>&amp;</span>
-            )}
-          </div>
-
-          {/* Bride */}
           <motion.div
-            className="flex flex-col items-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="flex flex-col items-center justify-center py-8 md:py-0"
+          >
+            {useLottie && showLottieInSection ? (
+              <LottieAnimation
+                manualUrl={!useAutoLottie ? tenant.lottieAnimationUrl : undefined}
+                themeId={useAutoLottie ? tenant.themeId : undefined}
+                tenantSlug={useAutoLottie ? tenant.slug : undefined}
+                width={220}
+                height={220}
+                loop
+                fallback={<span className="font-script text-6xl" style={{ color: themeConfig.primaryColor }}>&amp;</span>}
+              />
+            ) : (
+              <span className="font-script text-6xl" style={{ color: themeConfig.primaryColor }}>&amp;</span>
+            )}
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center text-center"
           >
-            <div className="w-40 h-40 rounded-full overflow-hidden border-4 mb-4" style={{ borderColor: themeConfig.primaryColor }}>
-              {bridePhotoUrl ? (
-                <Image src={bridePhotoUrl} alt={brideName} width={160} height={160} className="w-full h-full object-cover" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: themeConfig.primaryColor + "20" }}>
-                  <span className="font-script text-3xl" style={{ color: themeConfig.primaryColor }}>W</span>
-                </div>
-              )}
+            <div className="relative mb-6">
+              <div className="w-52 h-52 md:w-60 md:h-60 rounded-full overflow-hidden border-4 shadow-2xl" style={{ borderColor: themeConfig.primaryColor }}>
+                {tenant.bridePhotoUrl ? (
+                  <Image src={tenant.bridePhotoUrl} alt={tenant.brideName} fill className="object-cover" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-6xl" style={{ backgroundColor: themeConfig.secondaryColor }}>👤</div>
+                )}
+              </div>
             </div>
-            <h3 className="font-display text-2xl font-semibold" style={{ color: themeConfig.textColor }}>{brideName}</h3>
-            <p className="text-sm mt-2 opacity-70" style={{ color: themeConfig.textColor }}>
-              Putri dari {brideFather} & {brideMother}
-            </p>
+            <h3 className="font-script text-4xl md:text-5xl mb-2" style={{ color: themeConfig.primaryColor }}>{tenant.brideNickname}</h3>
+            <p className="font-display text-xl font-semibold mb-3" style={{ color: themeConfig.textColor }}>{tenant.brideName}</p>
+            {tenant.brideBirthOrder && <p className="text-sm mb-2 italic" style={{ color: themeConfig.textColor, opacity: 0.7 }}>{tenant.brideBirthOrder}</p>}
+            <div className="text-sm space-y-0.5 mt-1" style={{ color: themeConfig.textColor, opacity: 0.75 }}>
+              <p>Putri dari</p>
+              <p className="font-semibold">Bapak {tenant.brideFather}</p>
+              <p>& Ibu {tenant.brideMother}</p>
+            </div>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

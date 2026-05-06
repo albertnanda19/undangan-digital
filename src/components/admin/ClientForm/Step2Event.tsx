@@ -10,6 +10,17 @@ interface Step2Props {
 }
 
 export function Step2Event({ data, onChange }: Step2Props) {
+  const religion = data.religion || "islam";
+  const mainEventLabel =
+    religion === "islam"
+      ? "Akad Nikah"
+      : religion === "kristen" || religion === "katolik"
+      ? "Pemberkatan"
+      : religion === "hindu"
+      ? "Upacara Nganten"
+      : "Upacara Pernikahan";
+  const receptionLabel = religion === "islam" ? "Resepsi/Walimatul Ursy" : "Resepsi";
+
   return (
     <div className="space-y-6">
       <div>
@@ -17,9 +28,29 @@ export function Step2Event({ data, onChange }: Step2Props) {
         <p className="text-sm text-[#94A3B8] mt-1">Informasi waktu dan tempat acara pernikahan</p>
       </div>
 
-      {/* Akad */}
+      <div className="rounded-lg border border-[#2A2D3E] p-4">
+        <p className="text-sm font-medium text-[#E2E8F0] mb-2">Zona Waktu</p>
+        <div className="flex gap-3">
+          {(["WIB", "WITA", "WIT"] as const).map((zone) => (
+            <button
+              key={zone}
+              type="button"
+              onClick={() => onChange({ timeZone: zone })}
+              className={`rounded-md border px-4 py-2 text-sm ${
+                (data.timeZone || "WIB") === zone
+                  ? "border-[#6C63FF] text-[#E2E8F0] bg-[#6C63FF]/20"
+                  : "border-[#2A2D3E] text-[#94A3B8]"
+              }`}
+            >
+              {zone}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Akad / Upacara Utama */}
       <div className="space-y-4">
-        <h3 className="text-sm font-medium text-[#6C63FF]">Akad Nikah</h3>
+        <h3 className="text-sm font-medium text-[#6C63FF]">{mainEventLabel}</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Input
             label="Tanggal"
@@ -62,7 +93,7 @@ export function Step2Event({ data, onChange }: Step2Props) {
 
       {/* Resepsi */}
       <div className="space-y-4 border-t border-[#2A2D3E] pt-6">
-        <h3 className="text-sm font-medium text-[#6C63FF]">Resepsi</h3>
+        <h3 className="text-sm font-medium text-[#6C63FF]">{receptionLabel}</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Input
             label="Tanggal"

@@ -2,6 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { slugify } from "@/lib/utils";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { ClientFormData } from "@/types";
 
 interface Step1Props {
@@ -59,6 +60,12 @@ export function Step1Identity({ data, onChange }: Step1Props) {
             value={data.groomMother || ""}
             onChange={(e) => onChange({ groomMother: e.target.value })}
           />
+          <Input
+            label="Urutan Anak"
+            placeholder="Putra pertama"
+            value={data.groomBirthOrder || ""}
+            onChange={(e) => onChange({ groomBirthOrder: e.target.value })}
+          />
         </div>
 
         {/* Mempelai Wanita */}
@@ -88,7 +95,36 @@ export function Step1Identity({ data, onChange }: Step1Props) {
             value={data.brideMother || ""}
             onChange={(e) => onChange({ brideMother: e.target.value })}
           />
+          <Input
+            label="Urutan Anak"
+            placeholder="Putri kedua dari 3 bersaudara"
+            value={data.brideBirthOrder || ""}
+            onChange={(e) => onChange({ brideBirthOrder: e.target.value })}
+          />
         </div>
+      </div>
+
+      <div className="rounded-lg border border-[#2A2D3E] p-4">
+        <p className="text-sm font-medium text-[#E2E8F0] mb-2">Agama Pasangan</p>
+        <Select
+          value={data.religion || "islam"}
+          onValueChange={(value) => onChange({ religion: value as ClientFormData["religion"] })}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Pilih agama" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="islam">Islam</SelectItem>
+            <SelectItem value="kristen">Kristen Protestan</SelectItem>
+            <SelectItem value="katolik">Katolik</SelectItem>
+            <SelectItem value="hindu">Hindu</SelectItem>
+            <SelectItem value="buddha">Buddha</SelectItem>
+            <SelectItem value="konghucu">Konghucu</SelectItem>
+          </SelectContent>
+        </Select>
+        <p className="text-xs text-[#94A3B8] mt-2">
+          Agama menentukan kutipan pembuka dan ornamen halaman undangan
+        </p>
       </div>
 
       {/* Slug */}

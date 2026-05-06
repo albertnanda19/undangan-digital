@@ -25,6 +25,8 @@ export type BankAccount = {
 };
 
 export type LottiePosition = "hero" | "couple_section" | "both";
+export type Religion = "islam" | "kristen" | "katolik" | "hindu" | "buddha" | "konghucu";
+export type TimeZone = "WIB" | "WITA" | "WIT";
 
 export type Tenant = {
   id: string;
@@ -37,6 +39,9 @@ export type Tenant = {
   groomMother: string;
   brideFather: string;
   brideMother: string;
+  religion: Religion;
+  groomBirthOrder?: string;
+  brideBirthOrder?: string;
   groomPhotoUrl?: string;
   bridePhotoUrl?: string;
   akadDate: string;
@@ -51,6 +56,7 @@ export type Tenant = {
   receptionVenueName: string;
   receptionVenueAddress: string;
   receptionMapsUrl?: string;
+  timeZone: TimeZone;
   themeId: string;
   coverPhotoUrl?: string;
   loveStory?: string;
@@ -59,7 +65,13 @@ export type Tenant = {
   isPasswordProtected: boolean;
   passwordHash?: string;
   showAmplopDigital: boolean;
+  showGiftAddress: boolean;
+  showQris: boolean;
+  giftAddress?: string;
+  giftNotes?: string;
+  qrisImageUrl?: string;
   bankAccounts: BankAccount[];
+  lottieAutoSelect: boolean;
   lottieAnimationUrl?: string;
   lottieAnimationPosition?: LottiePosition;
   expiresAt?: string;
@@ -170,6 +182,9 @@ export type ClientFormData = {
   groomMother: string;
   brideFather: string;
   brideMother: string;
+  religion: Religion;
+  groomBirthOrder?: string;
+  brideBirthOrder?: string;
   slug: string;
   akadDate: string;
   akadTimeStart: string;
@@ -183,6 +198,7 @@ export type ClientFormData = {
   receptionVenueName: string;
   receptionVenueAddress: string;
   receptionMapsUrl?: string;
+  timeZone: TimeZone;
   dresscode?: string;
   additionalNotes?: string;
   loveStory?: string;
@@ -190,7 +206,13 @@ export type ClientFormData = {
   closingMessage?: string;
   themeId: string;
   showAmplopDigital: boolean;
+  showGiftAddress: boolean;
+  showQris: boolean;
+  giftAddress?: string;
+  giftNotes?: string;
+  qrisImageUrl?: string;
   bankAccounts: BankAccount[];
+  lottieAutoSelect: boolean;
   isPasswordProtected: boolean;
   password?: string;
   expiresAt?: string;

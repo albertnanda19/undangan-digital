@@ -2,85 +2,118 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Copy, Check } from "lucide-react";
+import Image from "next/image";
+import { Copy, Check, Package, QrCode } from "lucide-react";
+import type { Tenant, ThemeConfig } from "@/types";
+import { copyToClipboard } from "@/lib/utils";
 
-interface BankAccount {
-  id: string;
-  bankName: string;
-  accountNumber: string;
-  accountHolder: string;
-  isActive: boolean;
-}
+type Props = { tenant: Tenant; themeConfig: ThemeConfig };
 
-interface Props {
-  tenantId: string;
-  bankAccounts: BankAccount[];
-  themeConfig: Record<string, string>;
-}
-
-export function AmplopSection({ bankAccounts, themeConfig }: Props) {
-  const [copiedId, setCopiedId] = useState<string | null>(null);
-
-  const handleCopy = async (accountNumber: string, id: string) => {
-    await navigator.clipboard.writeText(accountNumber);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
-  };
-
-  const activeAccounts = bankAccounts.filter((a) => a.isActive);
-
-  if (activeAccounts.length === 0) return null;
+export function AmplopSection({ tenant, themeConfig }: Props) {
+  const showAmplop = tenant.showAmplopDigital && tenant.bankAccounts?.length > 0;
+  const showQris = tenant.showQris && tenant.qrisImageUrl;
+  const showGift = tenant.showGiftAddress && tenant.giftAddress;
+  if (!showAmplop && !showQris && !showGift) return null;
 
   return (
-    <section id="amplop" className="invitation-section" style={{ backgroundColor: themeConfig.secondaryColor }}>
-      <motion.div
-        className="max-w-2xl mx-auto"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <h2 className="section-title" style={{ color: themeConfig.textColor }}>Amplop Digital</h2>
-        <p className="section-subtitle" style={{ color: themeConfig.primaryColor }}>Gift</p>
+    <section id="amplop" className="invitation-section relative overflow-hidden" style={{ backgroundColor: themeConfig.secondaryColor }}>
+      <div className="max-w-3xl mx-auto relative z-10">
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center mb-12">
+          <p className="font-script text-2xl mb-2" style={{ color: themeConfig.primaryColor }}>dengan segala kerendahan hati</p>
+          <h2 className="section-title font-display" style={{ color: themeConfig.textColor }}>Hadiah & Doa</h2>
+        </motion.div>
 
-        <p className="text-center text-sm opacity-70 mb-8 max-w-md mx-auto" style={{ color: themeConfig.textColor }}>
-          Bagi yang ingin memberikan hadiah atau doa melalui amplop digital, kami sangat berterima kasih atas kebaikan hati Anda.
-        </p>
+        {showAmplop && (
+          <div className="mb-8 space-y-4">
+            {tenant.bankAccounts.filter((b) => b.isActive).map((account, index) => (
+              <BankCard key={account.id} account={account} themeConfig={themeConfig} delay={index * 0.1} />
+            ))}
+          </div>
+        )}
 
-        <div className="space-y-4">
-          {activeAccounts.map((account) => (
-            <motion.div
-              key={account.id}
-              className="rounded-xl border p-5"
-              style={{ borderColor: themeConfig.primaryColor + "20", backgroundColor: themeConfig.backgroundColor }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-sm font-medium mb-1" style={{ color: themeConfig.primaryColor }}>
-                {account.bankName}
-              </p>
-              <p className="font-mono text-lg font-bold tracking-wide" style={{ color: themeConfig.textColor }}>
-                {account.accountNumber}
-              </p>
-              <p className="text-sm opacity-70 mt-1" style={{ color: themeConfig.textColor }}>
-                a.n. {account.accountHolder}
-              </p>
-              <button
-                onClick={() => handleCopy(account.accountNumber, account.id)}
-                className="mt-3 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-medium border transition-all"
-                style={{ borderColor: themeConfig.primaryColor, color: themeConfig.primaryColor }}
-              >
-                {copiedId === account.id ? (
-                  <><Check className="h-3 w-3" /> Tersalin!</>
-                ) : (
-                  <><Copy className="h-3 w-3" /> Salin Nomor</>
-                )}
-              </button>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+        {showQris && (
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="mb-8">
+            <div className="rounded-3xl p-8 text-center shadow-lg" style={{ backgroundColor: themeConfig.backgroundColor }}>
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <QrCode size={20} style={{ color: themeConfig.primaryColor }} />
+                <p className="text-sm font-semibold" style={{ color: themeConfig.primaryColor }}>Scan QRIS</p>
+              </div>
+              <div className="relative w-48 h-48 mx-auto rounded-2xl overflow-hidden border-4" style={{ borderColor: themeConfig.primaryColor }}>
+                <Image src={tenant.qrisImageUrl!} alt="QRIS Code" fill className="object-contain p-2" />
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {showGift && (
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}>
+            <div className="rounded-3xl p-8 shadow-lg" style={{ backgroundColor: themeConfig.backgroundColor }}>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${themeConfig.primaryColor}20` }}>
+                  <Package size={20} style={{ color: themeConfig.primaryColor }} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm uppercase tracking-wider font-semibold mb-2" style={{ color: themeConfig.primaryColor }}>Alamat Pengiriman</p>
+                  <p className="font-display text-base leading-relaxed mb-3" style={{ color: themeConfig.textColor }}>{tenant.giftAddress}</p>
+                  {tenant.giftNotes && <p className="text-sm italic" style={{ color: themeConfig.textColor, opacity: 0.7 }}>Catatan: {tenant.giftNotes}</p>}
+                  <button
+                    onClick={() => copyToClipboard(tenant.giftAddress!)}
+                    className="mt-4 flex items-center gap-2 text-sm px-4 py-2 rounded-lg"
+                    style={{ backgroundColor: `${themeConfig.primaryColor}15`, color: themeConfig.primaryColor }}
+                  >
+                    <Copy size={14} />
+                    Salin Alamat
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </div>
     </section>
+  );
+}
+
+function BankCard({
+  account,
+  themeConfig,
+  delay,
+}: {
+  account: { bankName: string; accountNumber: string; accountHolder: string; qrCodeUrl?: string };
+  themeConfig: ThemeConfig;
+  delay: number;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    await copyToClipboard(account.accountNumber);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay }}
+      className="rounded-2xl p-6 shadow-md flex items-center justify-between gap-4"
+      style={{ backgroundColor: themeConfig.backgroundColor }}
+    >
+      <div className="flex items-center gap-4">
+        <div className="w-14 h-14 rounded-xl flex items-center justify-center text-xs font-bold" style={{ backgroundColor: `${themeConfig.primaryColor}20`, color: themeConfig.primaryColor }}>
+          {account.bankName.substring(0, 3).toUpperCase()}
+        </div>
+        <div>
+          <p className="text-sm" style={{ color: themeConfig.textColor, opacity: 0.6 }}>{account.bankName}</p>
+          <p className="font-mono font-bold text-xl tracking-wider my-0.5" style={{ color: themeConfig.textColor }}>{account.accountNumber}</p>
+          <p className="text-sm" style={{ color: themeConfig.textColor, opacity: 0.7 }}>a.n. {account.accountHolder}</p>
+        </div>
+      </div>
+      <button onClick={handleCopy} className="flex-shrink-0 flex flex-col items-center gap-1 px-4 py-3 rounded-xl" style={{ backgroundColor: `${themeConfig.primaryColor}15`, color: themeConfig.primaryColor }}>
+        {copied ? <Check size={18} /> : <Copy size={18} />}
+        <span className="text-xs font-semibold">{copied ? "Tersalin!" : "Salin"}</span>
+      </button>
+    </motion.div>
   );
 }

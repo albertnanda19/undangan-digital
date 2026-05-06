@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
+import { Quote, SendHorizonal } from "lucide-react";
 import axios from "axios";
 import { timeAgo } from "@/lib/utils";
 
@@ -20,7 +20,7 @@ interface Props {
 }
 
 export function WishesSection({ tenantId, initialWishes, themeConfig }: Props) {
-  const [wishes, setWishes] = useState(initialWishes);
+  const [wishes] = useState(initialWishes);
   const [visibleCount, setVisibleCount] = useState(10);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
@@ -58,22 +58,21 @@ export function WishesSection({ tenantId, initialWishes, themeConfig }: Props) {
         <h2 className="section-title" style={{ color: themeConfig.textColor }}>Doa & Ucapan</h2>
         <p className="section-subtitle" style={{ color: themeConfig.primaryColor }}>Wishes</p>
 
-        {/* Form */}
-        <div className="rounded-2xl border p-5 mb-8" style={{ borderColor: themeConfig.primaryColor + "20", backgroundColor: themeConfig.secondaryColor }}>
+        <div className="rounded-3xl border p-6 mb-10" style={{ borderColor: themeConfig.primaryColor + "30", backgroundColor: themeConfig.secondaryColor }}>
           {submitted ? (
             <p className="text-center text-sm py-4" style={{ color: themeConfig.textColor }}>
               Terima kasih! Ucapan Anda sedang menunggu persetujuan. 💌
             </p>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
                 placeholder="Nama Anda"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none"
-                style={{ borderColor: themeConfig.primaryColor + "40", backgroundColor: themeConfig.backgroundColor, color: themeConfig.textColor }}
+                className="w-full border-b px-1 py-2.5 text-sm outline-none bg-transparent"
+                style={{ borderColor: themeConfig.primaryColor + "40", color: themeConfig.textColor }}
               />
               <div className="relative">
                 <textarea
@@ -82,8 +81,8 @@ export function WishesSection({ tenantId, initialWishes, themeConfig }: Props) {
                   onChange={(e) => setMessage(e.target.value.slice(0, 500))}
                   required
                   rows={3}
-                  className="w-full rounded-lg border px-4 py-2.5 text-sm outline-none resize-none"
-                  style={{ borderColor: themeConfig.primaryColor + "40", backgroundColor: themeConfig.backgroundColor, color: themeConfig.textColor }}
+                  className="w-full border-b px-1 py-2.5 text-sm outline-none resize-none bg-transparent"
+                  style={{ borderColor: themeConfig.primaryColor + "40", color: themeConfig.textColor }}
                 />
                 <span className="absolute bottom-2 right-3 text-xs opacity-50" style={{ color: themeConfig.textColor }}>
                   {message.length}/500
@@ -101,31 +100,36 @@ export function WishesSection({ tenantId, initialWishes, themeConfig }: Props) {
               <button
                 type="submit"
                 disabled={loading}
-                className="rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+                className="inline-flex items-center justify-center gap-2 rounded-full w-12 h-12 text-white transition-opacity hover:opacity-90 disabled:opacity-50"
                 style={{ backgroundColor: themeConfig.primaryColor }}
               >
-                {loading ? "Mengirim..." : "Kirim Ucapan"}
+                <SendHorizonal className="h-4 w-4" />
               </button>
             </form>
           )}
         </div>
 
-        {/* Wishes List */}
-        <div className="space-y-3">
+        <div className="space-y-4">
+          {visibleWishes.length === 0 && (
+            <div className="text-center py-10 rounded-2xl border" style={{ borderColor: themeConfig.primaryColor + "20" }}>
+              <p className="text-3xl mb-2">💌</p>
+              <p style={{ color: themeConfig.textColor, opacity: 0.7 }}>Jadilah yang pertama memberikan doa</p>
+            </div>
+          )}
           {visibleWishes.map((wish, i) => (
             <motion.div
               key={wish.id}
-              className="rounded-xl border p-4"
-              style={{ borderColor: themeConfig.primaryColor + "15", backgroundColor: themeConfig.secondaryColor }}
+              className="rounded-2xl border p-5 shadow-sm relative"
+              style={{ borderColor: themeConfig.primaryColor + "15", backgroundColor: themeConfig.secondaryColor, boxShadow: `0 10px 25px ${themeConfig.primaryColor}15` }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
+              transition={{ delay: i * 0.06 }}
             >
+              <Quote className="h-8 w-8 absolute -top-2 -left-2 opacity-20" style={{ color: themeConfig.primaryColor }} />
               <div className="flex gap-3">
-                <Quote className="h-4 w-4 shrink-0 mt-0.5 opacity-30" style={{ color: themeConfig.primaryColor }} />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm" style={{ color: themeConfig.textColor }}>{wish.message}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: themeConfig.textColor }}>{wish.message}</p>
                   <div className="flex items-center gap-2 mt-2">
                     <span className="text-xs font-medium" style={{ color: themeConfig.primaryColor }}>{wish.name}</span>
                     <span className="text-xs opacity-50" style={{ color: themeConfig.textColor }}>
