@@ -11,7 +11,7 @@ export type ThemeConfig = {
   fontHeading: string;
   fontBody: string;
   fontScript: string;
-  ornamentStyle: "floral" | "geometric" | "minimal" | "batik" | "celestial";
+  ornamentStyle: "floral" | "geometric" | "minimal" | "batik" | "celestial" | "minang";
 };
 
 export type BankAccount = {

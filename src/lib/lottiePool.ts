@@ -30,6 +30,11 @@ export const LOTTIE_POOL: Record<string, LottiePoolEntry[]> = {
     { url: "https://lottie.host/4125345d-fddd-4caf-a6f4-944cf4cbcfe4/uQJHg5UA4J.json", description: "Cultural pattern" },
     { url: "https://lottie.host/d9d402f5-f861-41e7-a7e8-5f3db9b7f3ca/uL9NhQxV5R.json", description: "Heritage decoration" },
   ],
+  minang: [
+    { url: "https://lottie.host/c5f60d56-f38e-4f62-8b52-f9e211cb89e8/kV8jLQxN84.json", description: "Heritage ornament motif" },
+    { url: "https://lottie.host/4125345d-fddd-4caf-a6f4-944cf4cbcfe4/uQJHg5UA4J.json", description: "Cultural Minang pattern" },
+    { url: "https://lottie.host/6f4464d0-06cb-4d6a-b9be-e579fca16f9a/Uh8GfIg17D.json", description: "Floral bloom for cultural ceremony" },
+  ],
 };
 
 export const LOTTIE_FALLBACK: LottiePoolEntry[] = [
@@ -43,6 +48,7 @@ const THEME_ALIAS: Record<string, string> = {
   "00000000-0000-0000-0000-000000000003": "botanical",
   "00000000-0000-0000-0000-000000000004": "celestial-dark",
   "00000000-0000-0000-0000-000000000005": "batik-heritage",
+  "00000000-0000-0000-0000-000000000006": "minang",
 };
 
 function resolveThemeKey(themeId: string): string {
