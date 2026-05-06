@@ -49,9 +49,17 @@ export async function getTenantBySlug(slug: string) {
 
 export async function createTenant(tenantData: Partial<Tenant>) {
   const supabase = await createAdminClient();
+  const snaked = toSnakeCase(tenantData);
+  // Remove null/undefined values so DB defaults apply
+  const cleaned: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(snaked)) {
+    if (value !== null && value !== undefined) {
+      cleaned[key] = value;
+    }
+  }
   const { data, error } = await supabase
     .from("tenants")
-    .insert(toSnakeCase(tenantData))
+    .insert(cleaned)
     .select()
     .single();
   if (error) throw error;

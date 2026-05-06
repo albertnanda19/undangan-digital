@@ -59,9 +59,14 @@ export async function POST(request: Request) {
 
     const tenant = await createTenant(tenantData);
     return NextResponse.json({ data: tenant, error: null }, { status: 201 });
-  } catch (err) {
-    const message = err instanceof Error ? err.message : "Failed to create client";
-    console.error("Create client error:", err);
+  } catch (err: unknown) {
+    let message = "Failed to create client";
+    const e = err as Record<string, unknown>;
+    if (e && typeof e === "object") {
+      if (e.message) message = String(e.message);
+      if (e.code === "23505") message = "Slug sudah digunakan. Pilih slug lain.";
+    }
+    console.error("Create client error:", JSON.stringify(err));
     return NextResponse.json(
       { data: null, error: message },
       { status: 500 }
