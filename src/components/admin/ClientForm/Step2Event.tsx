@@ -19,7 +19,7 @@ export function Step2Event({ data, onChange }: Step2Props) {
       : religion === "hindu"
       ? "Upacara Nganten"
       : "Upacara Pernikahan";
-  const receptionLabel = religion === "islam" ? "Resepsi/Walimatul Ursy" : "Resepsi";
+  const receptionLabel = "Resepsi";
 
   return (
     <div className="space-y-6">
