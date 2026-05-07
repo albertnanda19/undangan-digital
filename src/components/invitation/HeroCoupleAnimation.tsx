@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import {
-  MinangCoupleSilhouette,
   MinangCornerFlourish,
   MinangSaluakBadge,
   MinangSuntiangBadge,
@@ -97,7 +96,7 @@ export function HeroCoupleAnimation({ tenant, themeConfig }: Props) {
     );
   }
 
-  // Fallback: stylized SVG silhouette pasangan adat Minang
+  // Fallback: use curated real human Minang illustration
   return (
     <motion.div
       initial={{ opacity: 0, y: 20, scale: 0.92 }}
@@ -113,8 +112,19 @@ export function HeroCoupleAnimation({ tenant, themeConfig }: Props) {
           background: `radial-gradient(ellipse at center, ${themeConfig.accentColor}60 0%, transparent 72%)`,
         }}
       />
-      <motion.div animate={{ y: [0, -8, 0], scale: [1, 1.01, 1] }} transition={{ duration: 6.4, repeat: Infinity, ease: "easeInOut" }} className="drop-shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-        <MinangCoupleSilhouette color="#FFFFFF" accent={themeConfig.accentColor} />
+      <motion.div
+        animate={{ y: [0, -8, 0], scale: [1, 1.01, 1] }}
+        transition={{ duration: 6.4, repeat: Infinity, ease: "easeInOut" }}
+        className="relative mx-auto h-[20rem] w-[18rem] drop-shadow-[0_8px_30px_rgba(0,0,0,0.35)] md:h-[24rem] md:w-[22rem]"
+      >
+        <Image
+          src="/images/minang-couple-real.png"
+          alt="Ilustrasi pasangan adat Minang"
+          fill
+          priority
+          sizes="(max-width: 768px) 288px, 352px"
+          className="object-contain"
+        />
       </motion.div>
       <motion.div
         aria-hidden="true"
