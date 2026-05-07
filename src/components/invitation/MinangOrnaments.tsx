@@ -18,15 +18,23 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
           <stop offset="0%" stopColor={color} stopOpacity="0.95" />
           <stop offset="100%" stopColor={color} stopOpacity="0.7" />
         </linearGradient>
+        <linearGradient id="minangBodyDeepGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor={color} stopOpacity="0.9" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.45" />
+        </linearGradient>
         <linearGradient id="minangAccentGrad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={accent} stopOpacity="1" />
           <stop offset="100%" stopColor={accent} stopOpacity="0.75" />
         </linearGradient>
+        <radialGradient id="minangAuraGrad" cx="50%" cy="45%" r="62%">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.3" />
+          <stop offset="100%" stopColor={accent} stopOpacity="0" />
+        </radialGradient>
       </defs>
 
-      {/* Groom (left) — saluak headdress + baju teluak balango */}
+      <ellipse cx="180" cy="168" rx="154" ry="122" fill="url(#minangAuraGrad)" />
+
       <g transform="translate(70 30)">
-        {/* Saluak (twisted headdress) */}
         <path
           d="M30 38 C 30 18, 90 18, 90 38 C 96 28, 100 36, 96 44 C 92 50, 86 50, 84 46 C 80 50, 40 50, 36 46 C 34 50, 28 50, 24 44 C 20 36, 24 28, 30 38 Z"
           fill="url(#minangAccentGrad)"
@@ -45,16 +53,15 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
           strokeWidth="1.2"
           fill="none"
         />
-        {/* Head */}
         <ellipse cx="60" cy="68" rx="22" ry="26" fill="url(#minangBodyGrad)" />
-        {/* Neck */}
         <rect x="54" y="92" width="12" height="10" fill="url(#minangBodyGrad)" />
-        {/* Body / baju teluak balango */}
         <path
           d="M28 110 Q 60 100 92 110 L 100 200 Q 60 210 20 200 Z"
           fill="url(#minangBodyGrad)"
         />
-        {/* Sashing accent */}
+        <path d="M18 198 Q 60 188 102 198 L 100 208 Q 60 216 20 208 Z" fill="url(#minangBodyDeepGrad)" />
+        <path d="M20 146 Q 60 138 100 146" stroke={color} strokeOpacity="0.2" strokeWidth="1.4" fill="none" />
+        <path d="M20 170 Q 60 162 100 170" stroke={color} strokeOpacity="0.2" strokeWidth="1.4" fill="none" />
         <path
           d="M52 110 L 56 200"
           stroke={accent}
@@ -72,23 +79,21 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
         <circle cx="60" cy="130" r="2.4" fill={accent} />
         <circle cx="60" cy="148" r="2.4" fill={accent} />
         <circle cx="60" cy="166" r="2.4" fill={accent} />
+        <circle cx="60" cy="184" r="2.4" fill={accent} />
+        <path d="M34 106 Q 60 98 86 106" stroke={accent} strokeOpacity="0.65" strokeWidth="1" fill="none" />
       </g>
 
-      {/* Bride (right) — suntiang (bridal crown) + baju kurung */}
       <g transform="translate(200 16)">
-        {/* Suntiang base */}
         <path
           d="M22 56 Q 60 64 98 56 L 98 62 Q 60 70 22 62 Z"
           fill="url(#minangAccentGrad)"
         />
-        {/* Suntiang tiers (5 stacked layers, fanning outward) */}
         <g fill="url(#minangAccentGrad)" stroke={accent} strokeOpacity="0.5" strokeWidth="0.6">
           <path d="M28 50 Q 60 40 92 50 Q 60 56 28 50 Z" />
           <path d="M24 38 Q 60 26 96 38 Q 60 46 24 38 Z" />
           <path d="M22 26 Q 60 12 98 26 Q 60 34 22 26 Z" />
           <path d="M20 14 Q 60 -2 100 14 Q 60 22 20 14 Z" />
         </g>
-        {/* Decorative dots on suntiang */}
         {Array.from({ length: 9 }).map((_, i) => (
           <circle key={`s1-${i}`} cx={28 + i * 8} cy={48} r="1.4" fill={color} fillOpacity="0.55" />
         ))}
@@ -101,20 +106,17 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
         {Array.from({ length: 15 }).map((_, i) => (
           <circle key={`s4-${i}`} cx={18 + i * 6} cy={12} r="1.4" fill={color} fillOpacity="0.55" />
         ))}
-        {/* Veil */}
         <path
           d="M30 66 Q 60 84 90 66 L 92 96 Q 60 110 28 96 Z"
           fill="url(#minangAccentGrad)"
           fillOpacity="0.55"
         />
-        {/* Head */}
         <ellipse cx="60" cy="86" rx="20" ry="24" fill="url(#minangBodyGrad)" />
-        {/* Body / baju kurung */}
         <path
           d="M30 124 Q 60 114 90 124 L 100 220 Q 60 230 20 220 Z"
           fill="url(#minangBodyGrad)"
         />
-        {/* Sashing accent */}
+        <path d="M22 218 Q 60 208 98 218 L 96 228 Q 60 236 24 228 Z" fill="url(#minangBodyDeepGrad)" />
         <path
           d="M40 130 Q 60 124 80 130"
           stroke={accent}
@@ -136,9 +138,20 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
           strokeWidth="1.4"
           fill="none"
         />
+        <path d="M28 174 Q 60 166 92 174" stroke={color} strokeOpacity="0.2" strokeWidth="1.4" fill="none" />
+        <path d="M26 204 Q 60 196 94 204" stroke={color} strokeOpacity="0.2" strokeWidth="1.4" fill="none" />
+        <circle cx="60" cy="144" r="2" fill={accent} fillOpacity="0.8" />
+        <circle cx="60" cy="160" r="2" fill={accent} fillOpacity="0.8" />
+        <circle cx="60" cy="176" r="2" fill={accent} fillOpacity="0.8" />
       </g>
 
-      {/* Subtle ground shadow */}
+      <path d="M122 220 Q 180 206 238 220" stroke={accent} strokeOpacity="0.35" strokeWidth="1.1" fill="none" />
+      <path d="M106 236 Q 180 220 254 236" stroke={accent} strokeOpacity="0.25" strokeWidth="1.1" fill="none" />
+      <g fill={accent} fillOpacity="0.6">
+        <circle cx="180" cy="68" r="2" />
+        <circle cx="146" cy="80" r="1.5" />
+        <circle cx="214" cy="80" r="1.5" />
+      </g>
       <ellipse cx="180" cy="306" rx="120" ry="6" fill={color} fillOpacity="0.12" />
     </svg>
   );

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { formatDate } from "@/lib/utils";
+import { OpeningCoverDecorations } from "@/components/invitation/OpeningCoverDecorations";
 
 interface Props {
   groomNickname: string;
@@ -29,6 +30,7 @@ export function OpeningCover({ groomNickname, brideNickname, akadDate, coverPhot
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+      <OpeningCoverDecorations themeConfig={themeConfig} hasCoverPhoto={Boolean(coverPhotoUrl)} />
 
       {/* Content */}
       <motion.div

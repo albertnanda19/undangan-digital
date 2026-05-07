@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import {
   MinangCoupleSilhouette,
+  MinangCornerFlourish,
   MinangSaluakBadge,
   MinangSuntiangBadge,
 } from "./MinangOrnaments";
@@ -19,81 +20,75 @@ export function HeroCoupleAnimation({ tenant, themeConfig }: Props) {
 
   if (hasBothPhotos) {
     return (
-      <div className="relative mx-auto mb-6 flex items-end justify-center gap-3 md:gap-6">
-        {/* Groom photo with saluak badge */}
+      <div className="relative mx-auto mb-7 flex w-full max-w-[28rem] items-end justify-center gap-2 px-2 sm:gap-3 md:mb-8 md:max-w-[36rem] md:gap-8">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-8 bottom-4 -z-10 h-16 blur-2xl md:bottom-6 md:h-24"
+          style={{
+            background: `radial-gradient(ellipse at center, ${themeConfig.accentColor}55 0%, transparent 70%)`,
+          }}
+        />
         <motion.div
-          initial={{ opacity: 0, x: -40, scale: 0.85 }}
+          initial={{ opacity: 0, x: -34, scale: 0.88 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-          className="relative"
+          transition={{ duration: 1.1, delay: 0.3, ease: "easeOut" }}
+          className="relative flex-1 max-w-[10rem] md:max-w-[12.5rem]"
         >
           <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ y: [0, -6, 0], rotate: [0, -0.6, 0.4, 0] }}
+            transition={{ duration: 6.4, repeat: Infinity, ease: "easeInOut" }}
             className="relative"
           >
-            <div
-              className="absolute -top-8 left-1/2 -translate-x-1/2 w-20 md:w-24"
-              style={{ color: themeConfig.primaryColor }}
-            >
+            <div className="absolute -top-8 left-1/2 z-20 w-20 -translate-x-1/2 md:-top-10 md:w-24" style={{ color: themeConfig.primaryColor }}>
               <MinangSaluakBadge accent={themeConfig.accentColor} />
             </div>
-            <div
-              className="relative w-32 h-40 md:w-40 md:h-52 rounded-full overflow-hidden border-4 shadow-2xl"
-              style={{ borderColor: themeConfig.accentColor, backgroundColor: "rgba(255,255,255,0.08)" }}
-            >
-              <Image
-                src={tenant.groomPhotoUrl as string}
-                alt={tenant.groomName}
-                fill
-                priority
-                sizes="(max-width: 768px) 128px, 160px"
-                className="object-cover"
+            <div aria-hidden="true" className="absolute inset-2 rounded-[42%] border opacity-45" style={{ borderColor: `${themeConfig.accentColor}85` }} />
+            <div className="relative h-40 w-32 overflow-hidden rounded-[45%] border-4 shadow-2xl md:h-52 md:w-40" style={{ borderColor: themeConfig.accentColor, backgroundColor: "rgba(255,255,255,0.08)" }}>
+              <Image src={tenant.groomPhotoUrl as string} alt={tenant.groomName} fill priority sizes="(max-width: 768px) 128px, 160px" className="object-cover" />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 34%, rgba(0,0,0,0.12) 100%)" }} />
+              <motion.div
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-5 top-4 h-20 w-10 rotate-12 bg-white/15 blur-md"
+                animate={{ x: [-8, 22, -8], opacity: [0, 0.2, 0] }}
+                transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
               />
             </div>
           </motion.div>
         </motion.div>
-
-        {/* Center ampersand */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="font-script text-4xl md:text-5xl pb-6"
-          style={{ color: themeConfig.accentColor }}
-        >
-          &
+        <motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, delay: 0.8 }} className="relative -mb-2 pb-4 md:pb-5">
+          <motion.div
+            animate={{ rotate: [0, 4, -4, 0], y: [0, -2, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/35 bg-white/10 backdrop-blur-sm md:h-14 md:w-14"
+          >
+            <span className="font-script text-4xl md:text-5xl" style={{ color: themeConfig.accentColor }}>
+              &
+            </span>
+          </motion.div>
         </motion.div>
-
-        {/* Bride photo with suntiang badge */}
         <motion.div
-          initial={{ opacity: 0, x: 40, scale: 0.85 }}
+          initial={{ opacity: 0, x: 34, scale: 0.88 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          className="relative"
+          transition={{ duration: 1.1, delay: 0.5, ease: "easeOut" }}
+          className="relative flex-1 max-w-[10rem] md:max-w-[12.5rem]"
         >
           <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            animate={{ y: [0, -6, 0], rotate: [0, 0.6, -0.4, 0] }}
+            transition={{ duration: 6.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
             className="relative"
           >
-            <div
-              className="absolute -top-10 left-1/2 -translate-x-1/2 w-24 md:w-28"
-              style={{ color: themeConfig.primaryColor }}
-            >
+            <div className="absolute -top-10 left-1/2 z-20 w-24 -translate-x-1/2 md:-top-12 md:w-28" style={{ color: themeConfig.primaryColor }}>
               <MinangSuntiangBadge accent={themeConfig.accentColor} />
             </div>
-            <div
-              className="relative w-32 h-40 md:w-40 md:h-52 rounded-full overflow-hidden border-4 shadow-2xl"
-              style={{ borderColor: themeConfig.accentColor, backgroundColor: "rgba(255,255,255,0.08)" }}
-            >
-              <Image
-                src={tenant.bridePhotoUrl as string}
-                alt={tenant.brideName}
-                fill
-                priority
-                sizes="(max-width: 768px) 128px, 160px"
-                className="object-cover"
+            <div aria-hidden="true" className="absolute inset-2 rounded-[42%] border opacity-45" style={{ borderColor: `${themeConfig.accentColor}85` }} />
+            <div className="relative h-40 w-32 overflow-hidden rounded-[45%] border-4 shadow-2xl md:h-52 md:w-40" style={{ borderColor: themeConfig.accentColor, backgroundColor: "rgba(255,255,255,0.08)" }}>
+              <Image src={tenant.bridePhotoUrl as string} alt={tenant.brideName} fill priority sizes="(max-width: 768px) 128px, 160px" className="object-cover" />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 34%, rgba(0,0,0,0.14) 100%)" }} />
+              <motion.div
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-5 top-4 h-20 w-10 -rotate-12 bg-white/15 blur-md"
+                animate={{ x: [8, -22, 8], opacity: [0, 0.2, 0] }}
+                transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               />
             </div>
           </motion.div>
@@ -108,18 +103,43 @@ export function HeroCoupleAnimation({ tenant, themeConfig }: Props) {
       initial={{ opacity: 0, y: 20, scale: 0.92 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-      className="relative mx-auto mb-4 w-72 md:w-96"
+      className="relative mx-auto mb-4 w-72 max-w-full px-2 md:w-[26rem]"
       style={{ color: "#FFFFFF" }}
     >
-      <motion.div
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="drop-shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
-      >
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-6 top-8 -z-10 h-28 blur-3xl md:h-36"
+        style={{
+          background: `radial-gradient(ellipse at center, ${themeConfig.accentColor}60 0%, transparent 72%)`,
+        }}
+      />
+      <motion.div animate={{ y: [0, -8, 0], scale: [1, 1.01, 1] }} transition={{ duration: 6.4, repeat: Infinity, ease: "easeInOut" }} className="drop-shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
         <MinangCoupleSilhouette color="#FFFFFF" accent={themeConfig.accentColor} />
       </motion.div>
+      <motion.div
+        aria-hidden="true"
+        className="absolute left-0 top-10 w-16 text-white/70 md:w-20"
+        animate={{ y: [0, -5, 0], rotate: [0, -2, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <MinangCornerFlourish accent={themeConfig.accentColor} />
+      </motion.div>
+      <motion.div
+        aria-hidden="true"
+        className="absolute right-0 top-10 w-16 rotate-180 text-white/70 md:w-20"
+        animate={{ y: [0, 5, 0], rotate: [180, 182, 180] }}
+        transition={{ duration: 6.4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <MinangCornerFlourish accent={themeConfig.accentColor} />
+      </motion.div>
 
-      {/* Subtle radial glow behind silhouette */}
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-10 bottom-1 h-[1px]"
+        style={{ backgroundColor: `${themeConfig.accentColor}A8` }}
+        animate={{ opacity: [0.2, 0.55, 0.2], scaleX: [0.86, 1, 0.86] }}
+        transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+      />
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 blur-3xl opacity-30"
