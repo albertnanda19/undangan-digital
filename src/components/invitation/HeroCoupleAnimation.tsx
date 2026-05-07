@@ -96,7 +96,7 @@ export function HeroCoupleAnimation({ tenant, themeConfig }: Props) {
     );
   }
 
-  // Fallback: use downloaded Minang image as split portraits (left/right)
+  // Fallback: use dedicated local portraits for groom and bride
   return (
     <motion.div
       initial={{ opacity: 0, y: 20, scale: 0.92 }}
@@ -129,15 +129,7 @@ export function HeroCoupleAnimation({ tenant, themeConfig }: Props) {
           </div>
           <div aria-hidden="true" className="absolute inset-2 rounded-[42%] border opacity-45" style={{ borderColor: `${themeConfig.accentColor}85` }} />
           <div className="relative h-40 w-32 overflow-hidden rounded-[45%] border-4 shadow-2xl md:h-52 md:w-40" style={{ borderColor: themeConfig.accentColor, backgroundColor: "rgba(255,255,255,0.08)" }}>
-            <Image
-              src="/images/minang-couple-real.png"
-              alt="Ilustrasi mempelai pria adat Minang"
-              fill
-              priority
-              sizes="(max-width: 768px) 128px, 160px"
-              className="object-cover"
-              style={{ objectPosition: "28% center" }}
-            />
+            <Image src="/images/minang-groom-real.png" alt="Ilustrasi mempelai pria adat Minang" fill priority sizes="(max-width: 768px) 128px, 160px" className="object-cover" />
             <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 34%, rgba(0,0,0,0.12) 100%)" }} />
           </div>
         </motion.div>
@@ -171,15 +163,7 @@ export function HeroCoupleAnimation({ tenant, themeConfig }: Props) {
           </div>
           <div aria-hidden="true" className="absolute inset-2 rounded-[42%] border opacity-45" style={{ borderColor: `${themeConfig.accentColor}85` }} />
           <div className="relative h-40 w-32 overflow-hidden rounded-[45%] border-4 shadow-2xl md:h-52 md:w-40" style={{ borderColor: themeConfig.accentColor, backgroundColor: "rgba(255,255,255,0.08)" }}>
-            <Image
-              src="/images/minang-couple-real.png"
-              alt="Ilustrasi mempelai wanita adat Minang"
-              fill
-              priority
-              sizes="(max-width: 768px) 128px, 160px"
-              className="object-cover"
-              style={{ objectPosition: "72% center" }}
-            />
+            <Image src="/images/minang-bride-real.png" alt="Ilustrasi mempelai wanita adat Minang" fill priority sizes="(max-width: 768px) 128px, 160px" className="object-cover" />
             <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 34%, rgba(0,0,0,0.14) 100%)" }} />
           </div>
         </motion.div>
