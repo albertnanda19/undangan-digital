@@ -49,6 +49,7 @@ function CouplePhotoPlaceholder({
 export function CoupleSection({ tenant, themeConfig }: Props) {
   const useAutoLottie = tenant.lottieAutoSelect !== false;
   const useLottie = useAutoLottie || !!tenant.lottieAnimationUrl;
+  const isMinangTheme = themeConfig.ornamentStyle === "minang";
   const showLottieInSection =
     !tenant.lottieAnimationUrl ||
     tenant.lottieAnimationPosition === "couple_section" ||
@@ -75,6 +76,8 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
               <div className="w-52 h-52 md:w-60 md:h-60 rounded-full overflow-hidden border-4 shadow-2xl" style={{ borderColor: themeConfig.primaryColor }}>
                 {tenant.groomPhotoUrl ? (
                   <Image src={tenant.groomPhotoUrl} alt={tenant.groomName} fill className="object-cover" />
+                ) : isMinangTheme ? (
+                  <Image src="/images/minang-groom-real.png" alt="Ilustrasi mempelai pria Minang" fill className="object-cover" />
                 ) : (
                   <CouplePhotoPlaceholder
                     name={tenant.groomNickname || tenant.groomName}
@@ -126,6 +129,8 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
               <div className="w-52 h-52 md:w-60 md:h-60 rounded-full overflow-hidden border-4 shadow-2xl" style={{ borderColor: themeConfig.primaryColor }}>
                 {tenant.bridePhotoUrl ? (
                   <Image src={tenant.bridePhotoUrl} alt={tenant.brideName} fill className="object-cover" />
+                ) : isMinangTheme ? (
+                  <Image src="/images/minang-bride-real.png" alt="Ilustrasi mempelai wanita Minang" fill className="object-cover" />
                 ) : (
                   <CouplePhotoPlaceholder
                     name={tenant.brideNickname || tenant.brideName}
