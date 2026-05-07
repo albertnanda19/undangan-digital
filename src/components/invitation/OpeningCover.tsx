@@ -39,9 +39,26 @@ export function OpeningCover({ groomNickname, brideNickname, akadDate, coverPhot
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
+        <div
+          className="absolute inset-0 -z-10 rounded-[2rem] border backdrop-blur-md"
+          style={{
+            backgroundColor: "rgba(10, 10, 10, 0.18)",
+            borderColor: `${themeConfig.accentColor ?? "#D4AC0D"}66`,
+            boxShadow: `0 0 60px ${themeConfig.primaryColor ?? "#A93226"}33`,
+          }}
+        />
+        <div
+          className="absolute -top-4 h-px w-40"
+          style={{ backgroundColor: `${themeConfig.accentColor ?? "#D4AC0D"}99` }}
+        />
+        <div
+          className="absolute -bottom-4 h-px w-40"
+          style={{ backgroundColor: `${themeConfig.accentColor ?? "#D4AC0D"}99` }}
+        />
+
         {guestName && (
           <motion.div
-            className="mb-8"
+            className="mb-8 mt-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -80,8 +97,11 @@ export function OpeningCover({ groomNickname, brideNickname, akadDate, coverPhot
 
         <motion.button
           onClick={onOpen}
-          className="mt-10 flex items-center gap-3 rounded-full px-8 py-3 text-white font-medium transition-all"
-          style={{ backgroundColor: themeConfig.primaryColor }}
+          className="mt-10 mb-4 flex items-center gap-3 rounded-full px-8 py-3 text-white font-medium transition-all border"
+          style={{
+            backgroundColor: themeConfig.primaryColor,
+            borderColor: `${themeConfig.accentColor ?? "#D4AC0D"}AA`,
+          }}
           whileHover={{ scale: 1.05, boxShadow: `0 0 30px ${themeConfig.primaryColor}60` }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, y: 20 }}
