@@ -1,7 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Clock, MapPin, Navigation, CalendarPlus } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Navigation,
+  CalendarPlus,
+  Gem,
+  PartyPopper,
+} from "lucide-react";
+import type { ReactNode } from "react";
 import { getReligionContent } from "@/lib/religionContent";
 import { formatDate, formatTime, generateICSContent, downloadICS } from "@/lib/utils";
 import type { Tenant, ThemeConfig } from "@/types";
@@ -40,7 +49,7 @@ export function EventSection({ tenant, themeConfig }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <EventCard
             label={content.akadLabel}
-            icon="💍"
+            icon={<Gem size={34} strokeWidth={1.8} />}
             date={tenant.akadDate}
             timeStart={tenant.akadTimeStart}
             timeEnd={tenant.akadTimeEnd}
@@ -53,7 +62,7 @@ export function EventSection({ tenant, themeConfig }: Props) {
           />
           <EventCard
             label={content.receptionLabel}
-            icon="🎊"
+            icon={<PartyPopper size={34} strokeWidth={1.8} />}
             date={tenant.receptionDate}
             timeStart={tenant.receptionTimeStart}
             timeEnd={tenant.receptionTimeEnd}
@@ -79,7 +88,7 @@ export function EventSection({ tenant, themeConfig }: Props) {
 
 type EventCardProps = {
   label: string;
-  icon: string;
+  icon: ReactNode;
   date: string;
   timeStart: string;
   timeEnd: string;
@@ -104,7 +113,9 @@ function EventCard({
       className="rounded-3xl p-8 shadow-lg"
       style={{ backgroundColor: themeConfig.backgroundColor }}
     >
-      <div className="text-4xl mb-4">{icon}</div>
+      <div className="mb-4 inline-flex items-center justify-center rounded-full p-2.5" style={{ color: themeConfig.primaryColor, backgroundColor: `${themeConfig.primaryColor}14` }}>
+        {icon}
+      </div>
       <h3 className="font-display text-2xl font-semibold mb-5" style={{ color: themeConfig.textColor }}>{label}</h3>
       <div className="h-px mb-5" style={{ backgroundColor: themeConfig.primaryColor, opacity: 0.2 }} />
       <div className="space-y-4">
