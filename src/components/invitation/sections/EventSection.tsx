@@ -12,7 +12,13 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { getReligionContent } from "@/lib/religionContent";
-import { formatDate, formatTime, generateICSContent, downloadICS } from "@/lib/utils";
+import {
+  formatDate,
+  formatTime,
+  formatEventEndTime,
+  generateICSContent,
+  downloadICS,
+} from "@/lib/utils";
 import type { Tenant, ThemeConfig } from "@/types";
 
 type Props = { tenant: Tenant; themeConfig: ThemeConfig };
@@ -131,7 +137,7 @@ function EventCard({
           <div>
             <p className="text-xs uppercase tracking-wider mb-0.5" style={{ color: themeConfig.textColor, opacity: 0.5 }}>Waktu</p>
             <p className="font-semibold font-display text-base" style={{ color: themeConfig.textColor }}>
-              {formatTime(timeStart)} - {formatTime(timeEnd)} {timeZone}
+              {formatTime(timeStart)} - {formatEventEndTime(timeEnd)} {timeZone}
             </p>
           </div>
         </div>

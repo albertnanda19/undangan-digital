@@ -28,6 +28,13 @@ export function formatTime(time: string): string {
   return `${h}.${m}`;
 }
 
+export function formatEventEndTime(time: string): string {
+  const normalized = time?.trim();
+  if (!normalized) return "";
+  if (normalized.startsWith("23:59")) return "Selesai";
+  return formatTime(normalized);
+}
+
 export function formatCurrency(amount: number): string {
   return new Intl.NumberFormat("id-ID", {
     style: "currency",

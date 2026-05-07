@@ -5,7 +5,7 @@ import { Download, Upload, MessageCircle, QrCode } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { formatDate, formatTime } from "@/lib/utils";
+import { formatDate, formatTime, formatEventEndTime } from "@/lib/utils";
 import { GuestImport } from "@/components/admin/GuestImport";
 import { WhatsAppGenerator } from "@/components/admin/WhatsAppGenerator";
 import { QRCodeGenerator } from "@/components/admin/QRCodeGenerator";
@@ -75,7 +75,7 @@ export function ClientDetailTabs({ tenantId, tenant, stats, rsvpList, guests, in
               <h3 className="text-sm font-medium text-[#6C63FF] mb-3">Akad Nikah</h3>
               <div className="space-y-2 text-sm">
                 <p className="text-[#E2E8F0]">{formatDate(tenant.akad_date as string)}</p>
-                <p className="text-[#94A3B8]">{formatTime(tenant.akad_time_start as string)} - {formatTime(tenant.akad_time_end as string)}</p>
+                <p className="text-[#94A3B8]">{formatTime(tenant.akad_time_start as string)} - {formatEventEndTime(tenant.akad_time_end as string)}</p>
                 <p className="text-[#E2E8F0] font-medium">{tenant.akad_venue_name as string}</p>
                 <p className="text-[#94A3B8]">{tenant.akad_venue_address as string}</p>
               </div>
@@ -84,7 +84,7 @@ export function ClientDetailTabs({ tenantId, tenant, stats, rsvpList, guests, in
               <h3 className="text-sm font-medium text-[#6C63FF] mb-3">Resepsi</h3>
               <div className="space-y-2 text-sm">
                 <p className="text-[#E2E8F0]">{formatDate(tenant.reception_date as string)}</p>
-                <p className="text-[#94A3B8]">{formatTime(tenant.reception_time_start as string)} - {formatTime(tenant.reception_time_end as string)}</p>
+                <p className="text-[#94A3B8]">{formatTime(tenant.reception_time_start as string)} - {formatEventEndTime(tenant.reception_time_end as string)}</p>
                 <p className="text-[#E2E8F0] font-medium">{tenant.reception_venue_name as string}</p>
                 <p className="text-[#94A3B8]">{tenant.reception_venue_address as string}</p>
               </div>
