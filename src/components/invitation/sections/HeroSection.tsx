@@ -25,7 +25,7 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-10 pb-28 md:pt-14 md:pb-36">
       {tenant.coverPhotoUrl ? (
         <>
           <Image src={tenant.coverPhotoUrl} alt="Cover" fill priority className="object-cover" sizes="100vw" />
@@ -128,7 +128,12 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
           <h1 className="font-script text-6xl md:text-8xl lg:text-9xl leading-tight drop-shadow-2xl" style={{ color: "#fff" }}>{tenant.brideNickname}</h1>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 1.2 }} className="mt-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          className={isMinang ? "mt-8 mb-14 md:mb-20" : "mt-8"}
+        >
           <div
             className="inline-block px-8 py-3 rounded-full backdrop-blur-sm border"
             style={{
