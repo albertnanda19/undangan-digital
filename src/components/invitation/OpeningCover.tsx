@@ -34,7 +34,7 @@ export function OpeningCover({ groomNickname, brideNickname, akadDate, coverPhot
 
       {/* Content */}
       <motion.div
-        className="relative z-10 flex flex-col items-center text-center px-6"
+        className="relative z-10 flex flex-col items-center text-center px-6 py-8 md:py-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
