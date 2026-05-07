@@ -85,11 +85,11 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
             </div>
             <h3 className="font-script text-4xl md:text-5xl mb-2" style={{ color: themeConfig.primaryColor }}>{tenant.groomNickname}</h3>
             <p className="font-display text-xl font-semibold mb-3" style={{ color: themeConfig.textColor }}>{tenant.groomName}</p>
-            {tenant.groomBirthOrder && <p className="text-sm mb-2 italic" style={{ color: themeConfig.textColor, opacity: 0.7 }}>{tenant.groomBirthOrder}</p>}
-            <div className="text-sm space-y-0.5 mt-1" style={{ color: themeConfig.textColor, opacity: 0.75 }}>
-              <p>Putra dari</p>
-              <p className="font-semibold">Bapak {tenant.groomFather}</p>
-              <p>& Ibu {tenant.groomMother}</p>
+            <div className="text-sm mt-1 leading-relaxed" style={{ color: themeConfig.textColor, opacity: 0.78 }}>
+              <p>
+                {(tenant.groomBirthOrder ? `${tenant.groomBirthOrder} dari ` : "Putra dari ")}
+                Bapak {tenant.groomFather} dan Ibu {tenant.groomMother}
+              </p>
             </div>
           </motion.div>
 
@@ -136,11 +136,11 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
             </div>
             <h3 className="font-script text-4xl md:text-5xl mb-2" style={{ color: themeConfig.primaryColor }}>{tenant.brideNickname}</h3>
             <p className="font-display text-xl font-semibold mb-3" style={{ color: themeConfig.textColor }}>{tenant.brideName}</p>
-            {tenant.brideBirthOrder && <p className="text-sm mb-2 italic" style={{ color: themeConfig.textColor, opacity: 0.7 }}>{tenant.brideBirthOrder}</p>}
-            <div className="text-sm space-y-0.5 mt-1" style={{ color: themeConfig.textColor, opacity: 0.75 }}>
-              <p>Putri dari</p>
-              <p className="font-semibold">Bapak {tenant.brideFather}</p>
-              <p>& Ibu {tenant.brideMother}</p>
+            <div className="text-sm mt-1 leading-relaxed" style={{ color: themeConfig.textColor, opacity: 0.78 }}>
+              <p>
+                {(tenant.brideBirthOrder ? `${tenant.brideBirthOrder} dari ` : "Putri dari ")}
+                Bapak {tenant.brideFather} dan Ibu {tenant.brideMother}
+              </p>
             </div>
           </motion.div>
         </div>
