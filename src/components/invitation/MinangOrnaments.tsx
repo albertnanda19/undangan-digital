@@ -18,6 +18,10 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
           <stop offset="0%" stopColor={color} stopOpacity="0.94" />
           <stop offset="100%" stopColor={color} stopOpacity="0.68" />
         </linearGradient>
+        <linearGradient id="minangBodyGradSoft" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={color} stopOpacity="0.72" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.44" />
+        </linearGradient>
         <linearGradient id="minangAccentGrad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={accent} stopOpacity="1" />
           <stop offset="100%" stopColor={accent} stopOpacity="0.72" />
@@ -30,11 +34,15 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
           <stop offset="0%" stopColor="#F2E6DA" />
           <stop offset="100%" stopColor="#DFC8B3" />
         </linearGradient>
+        <linearGradient id="minangEmbroideryGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.88" />
+          <stop offset="100%" stopColor={accent} stopOpacity="0.2" />
+        </linearGradient>
       </defs>
 
       <ellipse cx="180" cy="172" rx="152" ry="122" fill="url(#minangAuraGrad)" />
 
-      {/* Groom silhouette with editorial facial structure */}
+      {/* Groom silhouette with royal saluak and fuller human anatomy */}
       <g transform="translate(58 30)">
         <path d="M22 30 C 30 8, 88 8, 100 30 C 94 44, 28 44, 22 30 Z" fill="url(#minangAccentGrad)" />
         <path d="M34 30 Q 61 18 88 30" stroke={color} strokeOpacity="0.32" strokeWidth="1.1" fill="none" />
@@ -58,10 +66,15 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
         <path d="M32 128 Q 62 116 92 128" stroke={accent} strokeOpacity="0.78" strokeWidth="1.5" fill="none" />
         <path d="M30 154 Q 62 142 94 154" stroke={accent} strokeOpacity="0.58" strokeWidth="1.15" fill="none" />
         <path d="M28 178 Q 62 166 96 178" stroke={accent} strokeOpacity="0.42" strokeWidth="1.1" fill="none" />
-        <path d="M18 202 Q 62 190 106 202 L102 214 Q 62 226 22 214 Z" fill={color} fillOpacity="0.46" />
+        <path d="M26 136 Q 62 122 98 136" stroke="url(#minangEmbroideryGrad)" strokeWidth="1.05" fill="none" />
+        <path d="M24 162 Q 62 148 100 162" stroke="url(#minangEmbroideryGrad)" strokeWidth="0.95" fill="none" />
+        <path d="M22 188 Q 62 174 102 188" stroke="url(#minangEmbroideryGrad)" strokeWidth="0.95" fill="none" />
+        <path d="M20 200 Q 62 188 104 200 L100 214 Q 62 228 24 214 Z" fill="url(#minangBodyGradSoft)" />
+        <path d="M20 152 Q 10 176 12 200" stroke={color} strokeOpacity="0.3" strokeWidth="7" strokeLinecap="round" fill="none" />
+        <path d="M104 152 Q 114 176 112 200" stroke={color} strokeOpacity="0.3" strokeWidth="7" strokeLinecap="round" fill="none" />
       </g>
 
-      {/* Bride silhouette with editorial facial structure */}
+      {/* Bride silhouette with ornate suntiang tiers and rich textile details */}
       <g transform="translate(188 14)">
         <g fill="url(#minangAccentGrad)" stroke={accent} strokeOpacity="0.42" strokeWidth="0.5">
           <path d="M16 54 Q 58 40 100 54 Q 58 60 16 54 Z" />
@@ -89,7 +102,12 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
         <path d="M28 142 Q 58 130 88 142" stroke={accent} strokeOpacity="0.8" strokeWidth="1.5" fill="none" />
         <path d="M26 170 Q 58 158 90 170" stroke={accent} strokeOpacity="0.58" strokeWidth="1.15" fill="none" />
         <path d="M24 198 Q 58 186 92 198" stroke={accent} strokeOpacity="0.42" strokeWidth="1.1" fill="none" />
-        <path d="M16 222 Q 58 210 100 222 L94 234 Q 58 246 22 234 Z" fill={color} fillOpacity="0.46" />
+        <path d="M22 150 Q 58 136 94 150" stroke="url(#minangEmbroideryGrad)" strokeWidth="1.05" fill="none" />
+        <path d="M20 178 Q 58 164 96 178" stroke="url(#minangEmbroideryGrad)" strokeWidth="0.95" fill="none" />
+        <path d="M18 206 Q 58 192 98 206" stroke="url(#minangEmbroideryGrad)" strokeWidth="0.95" fill="none" />
+        <path d="M16 220 Q 58 208 100 220 L94 234 Q 58 248 22 234 Z" fill="url(#minangBodyGradSoft)" />
+        <path d="M18 160 Q 10 184 12 208" stroke={color} strokeOpacity="0.27" strokeWidth="6.5" strokeLinecap="round" fill="none" />
+        <path d="M98 160 Q 106 184 104 208" stroke={color} strokeOpacity="0.27" strokeWidth="6.5" strokeLinecap="round" fill="none" />
       </g>
 
       <path d="M118 230 Q 180 214 242 230" stroke={accent} strokeOpacity="0.38" strokeWidth="1.15" fill="none" />
