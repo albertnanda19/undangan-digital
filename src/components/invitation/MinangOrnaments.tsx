@@ -15,69 +15,80 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
     >
       <defs>
         <linearGradient id="minangBodyGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity="0.95" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.7" />
+          <stop offset="0%" stopColor={color} stopOpacity="0.94" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.68" />
         </linearGradient>
         <linearGradient id="minangAccentGrad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={accent} stopOpacity="1" />
-          <stop offset="100%" stopColor={accent} stopOpacity="0.75" />
+          <stop offset="100%" stopColor={accent} stopOpacity="0.72" />
         </linearGradient>
-        <radialGradient id="minangAuraGrad" cx="50%" cy="45%" r="62%">
-          <stop offset="0%" stopColor={accent} stopOpacity="0.3" />
+        <radialGradient id="minangAuraGrad" cx="50%" cy="44%" r="64%">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.28" />
           <stop offset="100%" stopColor={accent} stopOpacity="0" />
         </radialGradient>
         <linearGradient id="minangSkinGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#F4E8DC" />
-          <stop offset="100%" stopColor="#E5D2C1" />
+          <stop offset="0%" stopColor="#F2E6DA" />
+          <stop offset="100%" stopColor="#DFC8B3" />
         </linearGradient>
       </defs>
 
-      <ellipse cx="180" cy="170" rx="156" ry="124" fill="url(#minangAuraGrad)" />
+      <ellipse cx="180" cy="172" rx="152" ry="122" fill="url(#minangAuraGrad)" />
 
-      {/* Groom with more human facial details */}
-      <g transform="translate(66 34)">
-        <path d="M20 28 C 24 8, 96 8, 100 28 C 96 44, 24 44, 20 28 Z" fill="url(#minangAccentGrad)" />
-        <path d="M30 28 Q 60 16 90 28" stroke={color} strokeOpacity="0.35" strokeWidth="1.2" fill="none" />
-        <ellipse cx="60" cy="58" rx="19" ry="23" fill="url(#minangSkinGrad)" />
-        <path d="M41 54 Q 60 44 79 54" fill={color} fillOpacity="0.22" />
-        <ellipse cx="54" cy="58" rx="1.6" ry="1.9" fill={color} fillOpacity="0.62" />
-        <ellipse cx="66" cy="58" rx="1.6" ry="1.9" fill={color} fillOpacity="0.62" />
-        <path d="M60 60 L58.8 65 L61.2 65 Z" fill={color} fillOpacity="0.28" />
-        <path d="M54 68 Q 60 71 66 68" stroke={color} strokeOpacity="0.4" strokeWidth="1.1" fill="none" strokeLinecap="round" />
-        <path d="M54 80 L66 80 L70 92 L50 92 Z" fill={color} fillOpacity="0.72" />
-        <path d="M22 108 Q 60 90 98 108 L104 200 Q 60 214 16 200 Z" fill="url(#minangBodyGrad)" />
-        <path d="M34 118 Q 60 108 86 118" stroke={accent} strokeOpacity="0.8" strokeWidth="1.6" fill="none" />
-        <path d="M34 146 Q 60 136 86 146" stroke={accent} strokeOpacity="0.6" strokeWidth="1.2" fill="none" />
-        <path d="M34 174 Q 60 164 86 174" stroke={accent} strokeOpacity="0.5" strokeWidth="1.2" fill="none" />
-        <path d="M20 198 Q 60 188 100 198 L96 210 Q 60 220 24 210 Z" fill={color} fillOpacity="0.5" />
+      {/* Groom silhouette with saluak detail and softer anatomy */}
+      <g transform="translate(58 30)">
+        <path d="M22 30 C 30 8, 88 8, 100 30 C 94 44, 28 44, 22 30 Z" fill="url(#minangAccentGrad)" />
+        <path d="M34 30 Q 61 18 88 30" stroke={color} strokeOpacity="0.32" strokeWidth="1.1" fill="none" />
+        <path d="M32 34 Q 48 14 66 12 Q 82 14 92 32 Q 78 30 66 36 Q 52 32 32 34 Z" fill={color} fillOpacity="0.18" />
+
+        <ellipse cx="62" cy="62" rx="19.5" ry="24.5" fill="url(#minangSkinGrad)" />
+        <path d="M43 58 Q 62 46 81 58" fill={color} fillOpacity="0.12" />
+        <path d="M50 58 Q 54 55 58 58" stroke={color} strokeOpacity="0.44" strokeWidth="1" fill="none" strokeLinecap="round" />
+        <path d="M66 58 Q 70 55 74 58" stroke={color} strokeOpacity="0.44" strokeWidth="1" fill="none" strokeLinecap="round" />
+        <ellipse cx="55" cy="60.5" rx="1.5" ry="1.8" fill={color} fillOpacity="0.6" />
+        <ellipse cx="69" cy="60.5" rx="1.5" ry="1.8" fill={color} fillOpacity="0.6" />
+        <path d="M62 63 L60.8 68.2 L63.2 68.2 Z" fill={color} fillOpacity="0.26" />
+        <path d="M56 72 Q 62 75 68 72" stroke={color} strokeOpacity="0.44" strokeWidth="1.1" fill="none" strokeLinecap="round" />
+        <path d="M52 78 Q 62 86 72 78 L72 92 L52 92 Z" fill={color} fillOpacity="0.7" />
+
+        <path d="M18 114 Q 40 92 62 94 Q 84 92 106 114 L112 202 Q 62 224 12 202 Z" fill="url(#minangBodyGrad)" />
+        <path d="M42 106 Q 62 116 82 106 L84 120 Q 62 132 40 120 Z" fill={accent} fillOpacity="0.22" />
+        <path d="M32 128 Q 62 116 92 128" stroke={accent} strokeOpacity="0.78" strokeWidth="1.5" fill="none" />
+        <path d="M30 154 Q 62 142 94 154" stroke={accent} strokeOpacity="0.58" strokeWidth="1.15" fill="none" />
+        <path d="M28 178 Q 62 166 96 178" stroke={accent} strokeOpacity="0.42" strokeWidth="1.1" fill="none" />
+        <path d="M18 202 Q 62 190 106 202 L102 214 Q 62 226 22 214 Z" fill={color} fillOpacity="0.46" />
       </g>
 
-      {/* Bride with more human facial details */}
-      <g transform="translate(194 20)">
-        <g fill="url(#minangAccentGrad)" stroke={accent} strokeOpacity="0.45" strokeWidth="0.5">
-          <path d="M18 52 Q 60 38 102 52 Q 60 58 18 52 Z" />
-          <path d="M14 40 Q 60 24 106 40 Q 60 48 14 40 Z" />
-          <path d="M10 28 Q 60 10 110 28 Q 60 38 10 28 Z" />
-          <path d="M6 16 Q 60 -4 114 16 Q 60 26 6 16 Z" />
+      {/* Bride silhouette with layered suntiang and graceful profile */}
+      <g transform="translate(188 14)">
+        <g fill="url(#minangAccentGrad)" stroke={accent} strokeOpacity="0.42" strokeWidth="0.5">
+          <path d="M16 54 Q 58 40 100 54 Q 58 60 16 54 Z" />
+          <path d="M12 42 Q 58 24 104 42 Q 58 50 12 42 Z" />
+          <path d="M8 30 Q 58 10 108 30 Q 58 38 8 30 Z" />
+          <path d="M4 18 Q 58 -4 112 18 Q 58 28 4 18 Z" />
         </g>
-        <path d="M24 64 Q 60 84 96 64 L94 88 Q 60 106 26 88 Z" fill={accent} fillOpacity="0.35" />
-        <ellipse cx="60" cy="78" rx="18" ry="22" fill="url(#minangSkinGrad)" />
-        <path d="M43 73 Q 60 63 77 73" fill={color} fillOpacity="0.18" />
-        <ellipse cx="54.5" cy="78" rx="1.5" ry="1.8" fill={color} fillOpacity="0.58" />
-        <ellipse cx="65.5" cy="78" rx="1.5" ry="1.8" fill={color} fillOpacity="0.58" />
-        <path d="M60 80 L59 84.8 L61 84.8 Z" fill={color} fillOpacity="0.25" />
-        <path d="M54 88 Q 60 91 66 88" stroke={color} strokeOpacity="0.38" strokeWidth="1" fill="none" strokeLinecap="round" />
-        <path d="M54 100 L66 100 L70 112 L50 112 Z" fill={color} fillOpacity="0.72" />
-        <path d="M22 126 Q 60 108 98 126 L106 220 Q 60 236 14 220 Z" fill="url(#minangBodyGrad)" />
-        <path d="M32 138 Q 60 126 88 138" stroke={accent} strokeOpacity="0.82" strokeWidth="1.6" fill="none" />
-        <path d="M30 168 Q 60 156 90 168" stroke={accent} strokeOpacity="0.62" strokeWidth="1.2" fill="none" />
-        <path d="M28 196 Q 60 184 92 196" stroke={accent} strokeOpacity="0.52" strokeWidth="1.2" fill="none" />
-        <path d="M20 218 Q 60 206 100 218 L94 230 Q 60 240 26 230 Z" fill={color} fillOpacity="0.5" />
+        <path d="M24 66 Q 58 86 92 66 L90 90 Q 58 108 26 90 Z" fill={accent} fillOpacity="0.3" />
+
+        <ellipse cx="58" cy="80" rx="19" ry="24" fill="url(#minangSkinGrad)" />
+        <path d="M40 74 Q 58 62 76 74" fill={color} fillOpacity="0.13" />
+        <path d="M46 77 Q 50 74 54 77" stroke={color} strokeOpacity="0.4" strokeWidth="0.95" fill="none" strokeLinecap="round" />
+        <path d="M62 77 Q 66 74 70 77" stroke={color} strokeOpacity="0.4" strokeWidth="0.95" fill="none" strokeLinecap="round" />
+        <ellipse cx="50.5" cy="79.5" rx="1.4" ry="1.7" fill={color} fillOpacity="0.58" />
+        <ellipse cx="65.5" cy="79.5" rx="1.4" ry="1.7" fill={color} fillOpacity="0.58" />
+        <path d="M58 82 L57 87 L59 87 Z" fill={color} fillOpacity="0.24" />
+        <path d="M52 91 Q 58 94 64 91" stroke={color} strokeOpacity="0.4" strokeWidth="1" fill="none" strokeLinecap="round" />
+        <path d="M48 98 Q 58 106 68 98 L68 112 L48 112 Z" fill={color} fillOpacity="0.7" />
+
+        <path d="M18 130 Q 38 112 58 114 Q 78 112 100 130 L108 222 Q 58 244 8 222 Z" fill="url(#minangBodyGrad)" />
+        <path d="M36 124 Q 58 136 80 124 L82 140 Q 58 152 34 140 Z" fill={accent} fillOpacity="0.2" />
+        <path d="M28 142 Q 58 130 88 142" stroke={accent} strokeOpacity="0.8" strokeWidth="1.5" fill="none" />
+        <path d="M26 170 Q 58 158 90 170" stroke={accent} strokeOpacity="0.58" strokeWidth="1.15" fill="none" />
+        <path d="M24 198 Q 58 186 92 198" stroke={accent} strokeOpacity="0.42" strokeWidth="1.1" fill="none" />
+        <path d="M16 222 Q 58 210 100 222 L94 234 Q 58 246 22 234 Z" fill={color} fillOpacity="0.46" />
       </g>
 
-      <path d="M120 228 Q 180 212 240 228" stroke={accent} strokeOpacity="0.4" strokeWidth="1.2" fill="none" />
-      <path d="M104 244 Q 180 226 256 244" stroke={accent} strokeOpacity="0.25" strokeWidth="1.1" fill="none" />
-      <ellipse cx="180" cy="306" rx="120" ry="6" fill={color} fillOpacity="0.12" />
+      <path d="M118 230 Q 180 214 242 230" stroke={accent} strokeOpacity="0.38" strokeWidth="1.15" fill="none" />
+      <path d="M104 246 Q 180 228 256 246" stroke={accent} strokeOpacity="0.24" strokeWidth="1.05" fill="none" />
+      <ellipse cx="180" cy="306" rx="118" ry="6" fill={color} fillOpacity="0.11" />
     </svg>
   );
 }
