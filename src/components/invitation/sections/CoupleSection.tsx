@@ -10,6 +10,42 @@ type Props = {
   themeConfig: ThemeConfig;
 };
 
+function CouplePhotoPlaceholder({
+  name,
+  themeConfig,
+}: {
+  name: string;
+  themeConfig: ThemeConfig;
+}) {
+  const initial = (name || "?").trim().charAt(0).toUpperCase();
+  return (
+    <div
+      className="relative w-full h-full flex items-center justify-center"
+      style={{
+        background: `radial-gradient(circle at 30% 30%, ${themeConfig.secondaryColor} 0%, ${themeConfig.backgroundColor} 70%)`,
+      }}
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `repeating-linear-gradient(45deg, transparent 0 10px, ${themeConfig.accentColor}22 10px 12px, transparent 12px 22px)`,
+        }}
+      />
+      <div
+        className="relative z-10 w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center border shadow-lg"
+        style={{
+          backgroundColor: `${themeConfig.primaryColor}18`,
+          borderColor: `${themeConfig.primaryColor}66`,
+          color: themeConfig.primaryColor,
+        }}
+      >
+        <span className="font-display text-4xl md:text-5xl">{initial}</span>
+      </div>
+    </div>
+  );
+}
+
 export function CoupleSection({ tenant, themeConfig }: Props) {
   const useAutoLottie = tenant.lottieAutoSelect !== false;
   const useLottie = useAutoLottie || !!tenant.lottieAnimationUrl;
@@ -40,7 +76,10 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                 {tenant.groomPhotoUrl ? (
                   <Image src={tenant.groomPhotoUrl} alt={tenant.groomName} fill className="object-cover" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-6xl" style={{ backgroundColor: themeConfig.secondaryColor }}>👤</div>
+                  <CouplePhotoPlaceholder
+                    name={tenant.groomNickname || tenant.groomName}
+                    themeConfig={themeConfig}
+                  />
                 )}
               </div>
             </div>
@@ -88,7 +127,10 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                 {tenant.bridePhotoUrl ? (
                   <Image src={tenant.bridePhotoUrl} alt={tenant.brideName} fill className="object-cover" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-6xl" style={{ backgroundColor: themeConfig.secondaryColor }}>👤</div>
+                  <CouplePhotoPlaceholder
+                    name={tenant.brideNickname || tenant.brideName}
+                    themeConfig={themeConfig}
+                  />
                 )}
               </div>
             </div>
