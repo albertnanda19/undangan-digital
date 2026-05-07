@@ -26,16 +26,25 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
           <stop offset="0%" stopColor={accent} stopOpacity="0.3" />
           <stop offset="100%" stopColor={accent} stopOpacity="0" />
         </radialGradient>
+        <linearGradient id="minangSkinGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#F4E8DC" />
+          <stop offset="100%" stopColor="#E5D2C1" />
+        </linearGradient>
       </defs>
 
       <ellipse cx="180" cy="170" rx="156" ry="124" fill="url(#minangAuraGrad)" />
 
-      {/* Groom silhouette with saluak */}
+      {/* Groom with more human facial details */}
       <g transform="translate(66 34)">
         <path d="M20 28 C 24 8, 96 8, 100 28 C 96 44, 24 44, 20 28 Z" fill="url(#minangAccentGrad)" />
         <path d="M30 28 Q 60 16 90 28" stroke={color} strokeOpacity="0.35" strokeWidth="1.2" fill="none" />
-        <ellipse cx="60" cy="58" rx="19" ry="23" fill={color} fillOpacity="0.9" />
-        <path d="M54 80 L66 80 L70 92 L50 92 Z" fill={color} fillOpacity="0.85" />
+        <ellipse cx="60" cy="58" rx="19" ry="23" fill="url(#minangSkinGrad)" />
+        <path d="M41 54 Q 60 44 79 54" fill={color} fillOpacity="0.22" />
+        <ellipse cx="54" cy="58" rx="1.6" ry="1.9" fill={color} fillOpacity="0.62" />
+        <ellipse cx="66" cy="58" rx="1.6" ry="1.9" fill={color} fillOpacity="0.62" />
+        <path d="M60 60 L58.8 65 L61.2 65 Z" fill={color} fillOpacity="0.28" />
+        <path d="M54 68 Q 60 71 66 68" stroke={color} strokeOpacity="0.4" strokeWidth="1.1" fill="none" strokeLinecap="round" />
+        <path d="M54 80 L66 80 L70 92 L50 92 Z" fill={color} fillOpacity="0.72" />
         <path d="M22 108 Q 60 90 98 108 L104 200 Q 60 214 16 200 Z" fill="url(#minangBodyGrad)" />
         <path d="M34 118 Q 60 108 86 118" stroke={accent} strokeOpacity="0.8" strokeWidth="1.6" fill="none" />
         <path d="M34 146 Q 60 136 86 146" stroke={accent} strokeOpacity="0.6" strokeWidth="1.2" fill="none" />
@@ -43,7 +52,7 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
         <path d="M20 198 Q 60 188 100 198 L96 210 Q 60 220 24 210 Z" fill={color} fillOpacity="0.5" />
       </g>
 
-      {/* Bride silhouette with suntiang */}
+      {/* Bride with more human facial details */}
       <g transform="translate(194 20)">
         <g fill="url(#minangAccentGrad)" stroke={accent} strokeOpacity="0.45" strokeWidth="0.5">
           <path d="M18 52 Q 60 38 102 52 Q 60 58 18 52 Z" />
@@ -52,8 +61,13 @@ export function MinangCoupleSilhouette({ color = "currentColor", accent = "#D4AC
           <path d="M6 16 Q 60 -4 114 16 Q 60 26 6 16 Z" />
         </g>
         <path d="M24 64 Q 60 84 96 64 L94 88 Q 60 106 26 88 Z" fill={accent} fillOpacity="0.35" />
-        <ellipse cx="60" cy="78" rx="18" ry="22" fill={color} fillOpacity="0.9" />
-        <path d="M54 100 L66 100 L70 112 L50 112 Z" fill={color} fillOpacity="0.85" />
+        <ellipse cx="60" cy="78" rx="18" ry="22" fill="url(#minangSkinGrad)" />
+        <path d="M43 73 Q 60 63 77 73" fill={color} fillOpacity="0.18" />
+        <ellipse cx="54.5" cy="78" rx="1.5" ry="1.8" fill={color} fillOpacity="0.58" />
+        <ellipse cx="65.5" cy="78" rx="1.5" ry="1.8" fill={color} fillOpacity="0.58" />
+        <path d="M60 80 L59 84.8 L61 84.8 Z" fill={color} fillOpacity="0.25" />
+        <path d="M54 88 Q 60 91 66 88" stroke={color} strokeOpacity="0.38" strokeWidth="1" fill="none" strokeLinecap="round" />
+        <path d="M54 100 L66 100 L70 112 L50 112 Z" fill={color} fillOpacity="0.72" />
         <path d="M22 126 Q 60 108 98 126 L106 220 Q 60 236 14 220 Z" fill="url(#minangBodyGrad)" />
         <path d="M32 138 Q 60 126 88 138" stroke={accent} strokeOpacity="0.82" strokeWidth="1.6" fill="none" />
         <path d="M30 168 Q 60 156 90 168" stroke={accent} strokeOpacity="0.62" strokeWidth="1.2" fill="none" />
