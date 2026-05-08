@@ -14,6 +14,7 @@ type Props = { tenant: Tenant; themeConfig: ThemeConfig; guestName?: string };
 export function HeroSection({ tenant, themeConfig, guestName }: Props) {
   const isMinang = themeConfig.ornamentStyle === "minang";
   const isIslam = tenant.religion === "islam";
+  const showIslamicDecor = !tenant.coverPhotoUrl && !isMinang && isIslam;
 
   const showLottieInHero =
     !isMinang &&
@@ -61,6 +62,83 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
         </>
       ) : (
         <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${themeConfig.backgroundColor} 0%, ${themeConfig.secondaryColor} 50%, ${themeConfig.backgroundColor} 100%)` }} />
+      )}
+
+      {/* Islamic hero decorations (non-minang, no cover image) */}
+      {showIslamicDecor && (
+        <>
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-[0.08] mix-blend-multiply"
+            style={{
+              backgroundImage:
+                `radial-gradient(circle at 1px 1px, ${themeConfig.primaryColor} 1px, transparent 0)`,
+              backgroundSize: "26px 26px",
+            }}
+          />
+          <motion.div
+            aria-hidden="true"
+            className="absolute -top-24 left-1/2 h-[22rem] w-[22rem] -translate-x-1/2 rounded-full blur-3xl opacity-30"
+            style={{ backgroundColor: themeConfig.accentColor }}
+            animate={{ scale: [1, 1.05, 1], opacity: [0.22, 0.34, 0.22] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            aria-hidden="true"
+            className="absolute -bottom-28 left-[-6rem] h-[22rem] w-[22rem] rounded-full blur-3xl opacity-25"
+            style={{ backgroundColor: themeConfig.primaryColor }}
+            animate={{ x: [0, 18, 0], y: [0, -10, 0] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            aria-hidden="true"
+            className="absolute -bottom-28 right-[-6rem] h-[22rem] w-[22rem] rounded-full blur-3xl opacity-20"
+            style={{ backgroundColor: themeConfig.secondaryColor }}
+            animate={{ x: [0, -18, 0], y: [0, -10, 0] }}
+            transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          {/* Crescent + star (top) */}
+          <motion.div
+            aria-hidden="true"
+            className="absolute top-10 left-1/2 z-0 -translate-x-1/2"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.2 }}
+          >
+            <svg width="160" height="70" viewBox="0 0 160 70" fill="none">
+              <path
+                d="M86 10c-14.4 0-26 11.6-26 26s11.6 26 26 26c5.5 0 10.6-1.7 14.8-4.7C95.7 61.2 88.7 65 81 65 61.7 65 46 49.3 46 30S61.7-5 81-5c7.7 0 14.7 3.8 19.8 9.7C96.6 11.7 91.5 10 86 10Z"
+                fill={`${themeConfig.primaryColor}66`}
+              />
+              <path
+                d="M118 22.5l3.2 6.6 7.3 1.1-5.3 5.1 1.2 7.2-6.4-3.4-6.4 3.4 1.2-7.2-5.3-5.1 7.3-1.1 3.2-6.6Z"
+                fill={`${themeConfig.accentColor}88`}
+              />
+            </svg>
+          </motion.div>
+
+          {/* Mosque silhouette (bottom) */}
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-28 md:h-36 opacity-30"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 0.32, y: 0 }}
+            transition={{ duration: 1.4, delay: 0.25 }}
+          >
+            <svg viewBox="0 0 1200 220" className="h-full w-full" preserveAspectRatio="none">
+              <path
+                d="M0 220V158h70v-26c0-16 10-30 24-35v-8h22v8c14 5 24 19 24 35v26h50v-36c0-34 22-63 52-73v-12h34v12c30 10 52 39 52 73v36h64v-22c0-24 16-45 38-52V70h24v14c22 7 38 28 38 52v22h78v-44c0-50 34-93 80-107V0h40v7c46 14 80 57 80 107v44h78v-22c0-24 16-45 38-52V70h24v14c22 7 38 28 38 52v22h64v-36c0-34 22-63 52-73v-12h34v12c30 10 52 39 52 73v36h50v-26c0-16 10-30 24-35v-8h22v8c14 5 24 19 24 35v26h70v62H0Z"
+                fill={themeConfig.primaryColor}
+              />
+              <path
+                d="M0 220V190h1200v30H0Z"
+                fill={themeConfig.accentColor}
+                opacity="0.35"
+              />
+            </svg>
+          </motion.div>
+        </>
       )}
 
       {/* Minang ornaments — only on minang theme */}
