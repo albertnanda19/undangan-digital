@@ -28,9 +28,9 @@ export const RELIGION_CONTENT: Record<Religion, ReligionContent> = {
     openingGreeting: "Bismillahirrahmanirrahim",
     closingGreeting: "Wassalamu'alaikum Warahmatullahi Wabarakatuh",
     akadLabel: "Akad Nikah",
-    receptionLabel: "Resepsi",
+    receptionLabel: "Walimah",
     invitationOpener:
-      "Nan jauh diimbau, nan dakek dipanggia. Atas izin Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menyaksikan momen sakral putra-putri kami:",
+      "Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri dan menyaksikan pernikahan putra-putri kami:",
     ornamentStyle: "islamic",
   },
   kristen: {

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { LottieAnimation } from "@/components/invitation/LottieAnimation";
 import type { Tenant, ThemeConfig } from "@/types";
+import { getReligionContent } from "@/lib/religionContent";
 
 type Props = {
   tenant: Tenant;
@@ -13,9 +14,11 @@ type Props = {
 function CouplePhotoPlaceholder({
   name,
   themeConfig,
+  isIslam,
 }: {
   name: string;
   themeConfig: ThemeConfig;
+  isIslam: boolean;
 }) {
   const initial = (name || "?").trim().charAt(0).toUpperCase();
   return (
@@ -42,6 +45,24 @@ function CouplePhotoPlaceholder({
       >
         <span className="font-display text-4xl md:text-5xl">{initial}</span>
       </div>
+
+      {isIslam && (
+        <svg
+          aria-hidden="true"
+          className="absolute right-5 top-5 h-10 w-10 opacity-40"
+          viewBox="0 0 64 64"
+          fill="none"
+        >
+          <path
+            d="M38.5 12.5c-9.4 0-17 7.6-17 17s7.6 17 17 17c3.2 0 6.2-.9 8.8-2.4C43.7 48.6 38.7 52 33 52 22 52 13 43 13 32S22 12 33 12c5.7 0 10.7 3.4 14.3 7.9-2.6-1.5-5.6-2.4-8.8-2.4Z"
+            fill={themeConfig.primaryColor}
+          />
+          <path
+            d="M48.5 24.2l2.1 4.3 4.8.7-3.4 3.3.8 4.7-4.3-2.3-4.3 2.3.8-4.7-3.4-3.3 4.8-.7 2.1-4.3Z"
+            fill={themeConfig.accentColor}
+          />
+        </svg>
+      )}
     </div>
   );
 }
@@ -50,6 +71,8 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
   const useAutoLottie = tenant.lottieAutoSelect !== false;
   const useLottie = useAutoLottie || !!tenant.lottieAnimationUrl;
   const isMinangTheme = themeConfig.ornamentStyle === "minang";
+  const isIslam = tenant.religion === "islam";
+  const content = getReligionContent(tenant.religion);
   const showLottieInSection =
     !tenant.lottieAnimationUrl ||
     tenant.lottieAnimationPosition === "couple_section" ||
@@ -61,7 +84,9 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
       <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-10 pointer-events-none" style={{ backgroundColor: themeConfig.accentColor, transform: "translate(50%, 50%)" }} />
       <div className="max-w-5xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center mb-16">
-          <p className="font-script text-2xl mb-2" style={{ color: themeConfig.primaryColor }}>In The Name of Love</p>
+          <p className="font-script text-2xl mb-2" style={{ color: themeConfig.primaryColor }}>
+            {isIslam ? content.openingGreeting : "In The Name of Love"}
+          </p>
           <h2 className="section-title font-display" style={{ color: themeConfig.textColor }}>Mempelai</h2>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center">
@@ -82,6 +107,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                   <CouplePhotoPlaceholder
                     name={tenant.groomNickname || tenant.groomName}
                     themeConfig={themeConfig}
+                    isIslam={isIslam}
                   />
                 )}
               </div>
@@ -135,6 +161,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                   <CouplePhotoPlaceholder
                     name={tenant.brideNickname || tenant.brideName}
                     themeConfig={themeConfig}
+                    isIslam={isIslam}
                   />
                 )}
               </div>

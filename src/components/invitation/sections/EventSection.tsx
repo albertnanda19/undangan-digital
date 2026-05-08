@@ -26,6 +26,7 @@ type Props = { tenant: Tenant; themeConfig: ThemeConfig };
 export function EventSection({ tenant, themeConfig }: Props) {
   const content = getReligionContent(tenant.religion);
   const timeZone = tenant.timeZone || "WIB";
+  const isIslam = tenant.religion === "islam";
 
   const handleSaveCalendar = (eventType: "akad" | "reception") => {
     const isAkad = eventType === "akad";
@@ -49,7 +50,9 @@ export function EventSection({ tenant, themeConfig }: Props) {
       <div className="absolute inset-0 opacity-5" style={{ backgroundImage: `radial-gradient(circle at 2px 2px, ${themeConfig.primaryColor} 1px, transparent 0)`, backgroundSize: "32px 32px" }} />
       <div className="max-w-4xl mx-auto relative z-10">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center mb-14">
-          <p className="font-script text-2xl mb-2" style={{ color: themeConfig.primaryColor }}>Save The Date</p>
+          <p className="font-script text-2xl mb-2" style={{ color: themeConfig.primaryColor }}>
+            {isIslam ? "Mohon Doa Restu" : "Save The Date"}
+          </p>
           <h2 className="section-title font-display" style={{ color: themeConfig.textColor }}>Jadwal Acara</h2>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -110,6 +113,13 @@ type EventCardProps = {
 function EventCard({
   label, icon, date, timeStart, timeEnd, timeZone, venueName, venueAddress, mapsUrl, themeConfig, onSaveCalendar, delay = 0,
 }: EventCardProps) {
+  const computedMapsUrl =
+    mapsUrl ||
+    `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      `${venueName} ${venueAddress}`.trim()
+    )}`;
+  const dateText = formatDate(date, "EEEE, d MMMM yyyy").replace(/^Minggu\b/, "Ahad");
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -129,7 +139,7 @@ function EventCard({
           <Calendar size={18} className="mt-0.5 shrink-0" style={{ color: themeConfig.primaryColor }} />
           <div>
             <p className="text-xs uppercase tracking-wider mb-0.5" style={{ color: themeConfig.textColor, opacity: 0.5 }}>Tanggal</p>
-            <p className="font-semibold font-display text-base" style={{ color: themeConfig.textColor }}>{formatDate(date, "EEEE, d MMMM yyyy")}</p>
+            <p className="font-semibold font-display text-base" style={{ color: themeConfig.textColor }}>{dateText}</p>
           </div>
         </div>
         <div className="flex items-start gap-3">
@@ -150,18 +160,16 @@ function EventCard({
         </div>
       </div>
       <div className="flex gap-3 mt-6">
-        {mapsUrl && (
-          <a
-            href={mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold"
-            style={{ backgroundColor: themeConfig.primaryColor, color: "#fff" }}
-          >
-            <Navigation size={15} />
-            Lihat Peta
-          </a>
-        )}
+        <a
+          href={computedMapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold"
+          style={{ backgroundColor: themeConfig.primaryColor, color: "#fff" }}
+        >
+          <Navigation size={15} />
+          Lihat Peta
+        </a>
         <button
           onClick={onSaveCalendar}
           className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold border"

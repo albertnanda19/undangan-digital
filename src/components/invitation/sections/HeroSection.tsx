@@ -13,6 +13,7 @@ type Props = { tenant: Tenant; themeConfig: ThemeConfig; guestName?: string };
 
 export function HeroSection({ tenant, themeConfig, guestName }: Props) {
   const isMinang = themeConfig.ornamentStyle === "minang";
+  const isIslam = tenant.religion === "islam";
 
   const showLottieInHero =
     !isMinang &&
@@ -114,7 +115,9 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
 
         <motion.div initial={{ opacity: 0, scaleX: 0 }} animate={{ opacity: 1, scaleX: 1 }} transition={{ duration: 1, delay: 0.6 }} className="flex items-center justify-center gap-4 mb-4">
           <div className="h-px w-16 bg-white/50" />
-          <span className="text-white/70 text-sm tracking-widest uppercase">{isMinang ? "Baralek Gadang" : "Wedding"}</span>
+          <span className="text-white/70 text-sm tracking-widest uppercase">
+            {isMinang ? "Baralek Gadang" : isIslam ? "Undangan Pernikahan" : "Wedding"}
+          </span>
           <div className="h-px w-16 bg-white/50" />
         </motion.div>
 
