@@ -67,6 +67,15 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
       {/* Islamic hero decorations (non-minang, no cover image) */}
       {showIslamicDecor && (
         <>
+          {/* Contrast overlay so text stays readable */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.62) 100%)",
+            }}
+          />
           <div
             aria-hidden="true"
             className="absolute inset-0 opacity-[0.08] mix-blend-multiply"
@@ -138,6 +147,22 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
               />
             </svg>
           </motion.div>
+
+          {/* Subtle arabesque corners */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.28]">
+            <div className="absolute left-6 top-10 h-16 w-16 md:left-10 md:top-12 md:h-20 md:w-20">
+              <svg viewBox="0 0 80 80" fill="none" className="h-full w-full">
+                <path d="M8 64c18-2 28-12 30-30 2 18 12 28 30 30-18 2-28 12-30 30-2-18-12-28-30-30Z" fill={`${themeConfig.accentColor}55`} />
+                <path d="M6 44c10-1 16-7 17-17 1 10 7 16 17 17-10 1-16 7-17 17-1-10-7-16-17-17Z" fill={`${themeConfig.primaryColor}4D`} />
+              </svg>
+            </div>
+            <div className="absolute right-6 top-10 h-16 w-16 md:right-10 md:top-12 md:h-20 md:w-20 rotate-90">
+              <svg viewBox="0 0 80 80" fill="none" className="h-full w-full">
+                <path d="M8 64c18-2 28-12 30-30 2 18 12 28 30 30-18 2-28 12-30 30-2-18-12-28-30-30Z" fill={`${themeConfig.accentColor}55`} />
+                <path d="M6 44c10-1 16-7 17-17 1 10 7 16 17 17-10 1-16 7-17 17-1-10-7-16-17-17Z" fill={`${themeConfig.primaryColor}4D`} />
+              </svg>
+            </div>
+          </div>
         </>
       )}
 
@@ -166,6 +191,18 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
       )}
 
       <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
+        {/* Glass panel behind text (Islamic, no cover) */}
+        {showIslamicDecor && (
+          <div
+            aria-hidden="true"
+            className="absolute left-1/2 top-14 -z-10 w-[min(34rem,92vw)] -translate-x-1/2 rounded-[2.25rem] border backdrop-blur-md"
+            style={{
+              background: "linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.18) 55%, rgba(0,0,0,0.28) 100%)",
+              borderColor: `${themeConfig.accentColor}55`,
+              boxShadow: "0 30px 80px rgba(0,0,0,0.35)",
+            }}
+          />
+        )}
         {guestName && (
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3 }} className="mb-6">
             <div className="inline-block px-6 py-2 rounded-full text-sm backdrop-blur-sm border" style={{ backgroundColor: "rgba(255,255,255,0.15)", borderColor: "rgba(255,255,255,0.3)", color: "#fff" }}>
@@ -192,21 +229,31 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
         )}
 
         <motion.div initial={{ opacity: 0, scaleX: 0 }} animate={{ opacity: 1, scaleX: 1 }} transition={{ duration: 1, delay: 0.6 }} className="flex items-center justify-center gap-4 mb-4">
-          <div className="h-px w-16 bg-white/50" />
+          <div className="h-px w-16 bg-white/60" />
           <span className="text-white/70 text-sm tracking-widest uppercase">
             {isMinang ? "Baralek Gadang" : isIslam ? "Undangan Pernikahan" : "Wedding"}
           </span>
-          <div className="h-px w-16 bg-white/50" />
+          <div className="h-px w-16 bg-white/60" />
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.8 }}>
-          <h1 className="font-script text-6xl md:text-8xl lg:text-9xl leading-tight drop-shadow-2xl" style={{ color: "#fff" }}>{tenant.groomNickname}</h1>
+          <h1
+            className="font-script text-6xl md:text-8xl lg:text-9xl leading-tight drop-shadow-2xl"
+            style={{ color: "#fff", textShadow: "0 10px 28px rgba(0,0,0,0.55)" }}
+          >
+            {tenant.groomNickname}
+          </h1>
           <div className="flex items-center justify-center gap-4 my-2">
-            <div className="h-px w-12 bg-white/40" />
-            <span className="font-display text-white/80 text-2xl md:text-3xl">&</span>
-            <div className="h-px w-12 bg-white/40" />
+            <div className="h-px w-12 bg-white/55" />
+            <span className="font-display text-white/90 text-2xl md:text-3xl" style={{ textShadow: "0 8px 18px rgba(0,0,0,0.45)" }}>&</span>
+            <div className="h-px w-12 bg-white/55" />
           </div>
-          <h1 className="font-script text-6xl md:text-8xl lg:text-9xl leading-tight drop-shadow-2xl" style={{ color: "#fff" }}>{tenant.brideNickname}</h1>
+          <h1
+            className="font-script text-6xl md:text-8xl lg:text-9xl leading-tight drop-shadow-2xl"
+            style={{ color: "#fff", textShadow: "0 10px 28px rgba(0,0,0,0.55)" }}
+          >
+            {tenant.brideNickname}
+          </h1>
         </motion.div>
 
         <motion.div
