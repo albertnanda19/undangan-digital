@@ -16,6 +16,8 @@ interface Props {
 }
 
 export function OpeningCover({ groomNickname, brideNickname, akadDate, coverPhotoUrl, guestName, themeConfig, onOpen }: Props) {
+  const dateText = formatDate(akadDate).replace(/^Minggu\b/, "Ahad");
+
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden">
       {/* Background */}
@@ -30,7 +32,11 @@ export function OpeningCover({ groomNickname, brideNickname, akadDate, coverPhot
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
-      <OpeningCoverDecorations themeConfig={themeConfig} hasCoverPhoto={Boolean(coverPhotoUrl)} />
+      <OpeningCoverDecorations
+        themeConfig={themeConfig}
+        hasCoverPhoto={Boolean(coverPhotoUrl)}
+        isIslamic
+      />
 
       {/* Content */}
       <motion.div
@@ -92,7 +98,7 @@ export function OpeningCover({ groomNickname, brideNickname, akadDate, coverPhot
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
         >
-          {formatDate(akadDate)}
+          {dateText}
         </motion.p>
 
         <motion.button
