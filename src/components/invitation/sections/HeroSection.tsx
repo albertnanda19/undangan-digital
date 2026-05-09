@@ -8,12 +8,16 @@ import { LottieAnimation } from "@/components/invitation/LottieAnimation";
 import { HeroCoupleAnimation } from "@/components/invitation/HeroCoupleAnimation";
 import { MarawaFlags, RumahGadangRoof } from "@/components/invitation/MinangOrnaments";
 import type { Tenant, ThemeConfig } from "@/types";
+import { isBrideFirst } from "@/config/tenant-display";
 
 type Props = { tenant: Tenant; themeConfig: ThemeConfig; guestName?: string };
 
 export function HeroSection({ tenant, themeConfig, guestName }: Props) {
   const isMinang = themeConfig.ornamentStyle === "minang";
   const isIslam = tenant.religion === "islam";
+  const brideFirst = isBrideFirst(tenant.slug);
+  const firstName = brideFirst ? tenant.brideNickname : tenant.groomNickname;
+  const secondName = brideFirst ? tenant.groomNickname : tenant.brideNickname;
   const showIslamicDecor = !tenant.coverPhotoUrl && !isMinang && isIslam;
 
   const showLottieInHero =
@@ -241,7 +245,7 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
             className="font-script text-6xl md:text-8xl lg:text-9xl leading-tight drop-shadow-2xl"
             style={{ color: "#fff", textShadow: "0 10px 28px rgba(0,0,0,0.55)" }}
           >
-            {tenant.groomNickname}
+            {firstName}
           </h1>
           <div className="flex items-center justify-center gap-4 my-2">
             <div className="h-px w-12 bg-white/55" />
@@ -252,7 +256,7 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
             className="font-script text-6xl md:text-8xl lg:text-9xl leading-tight drop-shadow-2xl"
             style={{ color: "#fff", textShadow: "0 10px 28px rgba(0,0,0,0.55)" }}
           >
-            {tenant.brideNickname}
+            {secondName}
           </h1>
         </motion.div>
 
