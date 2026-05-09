@@ -103,6 +103,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                 style={{
                   borderColor: themeConfig.primaryColor,
                   isolation: "isolate",
+                  background: `radial-gradient(circle at 50% 55%, ${themeConfig.secondaryColor} 0%, ${themeConfig.backgroundColor} 72%)`,
                 }}
               >
                 {tenant.groomPhotoUrl ? (
@@ -112,7 +113,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                     width={640}
                     height={640}
                     sizes="(max-width: 768px) 208px, 240px"
-                    className="block size-full rounded-full object-cover object-center"
+                    className="block size-full rounded-full object-contain object-center"
                   />
                 ) : isMinangTheme ? (
                   <Image
@@ -121,7 +122,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                     width={640}
                     height={640}
                     sizes="(max-width: 768px) 208px, 240px"
-                    className="block size-full rounded-full object-cover object-[42%_center]"
+                    className="block size-full rounded-full object-contain object-center"
                   />
                 ) : isIslam ? (
                   <Image
@@ -130,7 +131,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                     width={640}
                     height={640}
                     sizes="(max-width: 768px) 208px, 240px"
-                    className="block size-full rounded-full object-cover object-[42%_center]"
+                    className="block size-full rounded-full object-contain object-center"
                   />
                 ) : (
                   <CouplePhotoPlaceholder
@@ -186,6 +187,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                 style={{
                   borderColor: themeConfig.primaryColor,
                   isolation: "isolate",
+                  background: `radial-gradient(circle at 50% 55%, ${themeConfig.secondaryColor} 0%, ${themeConfig.backgroundColor} 72%)`,
                 }}
               >
                 {tenant.bridePhotoUrl ? (
@@ -195,7 +197,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                     width={640}
                     height={640}
                     sizes="(max-width: 768px) 208px, 240px"
-                    className="block size-full rounded-full object-cover object-center"
+                    className="block size-full rounded-full object-contain object-center"
                   />
                 ) : isMinangTheme ? (
                   <Image
@@ -204,7 +206,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                     width={640}
                     height={640}
                     sizes="(max-width: 768px) 208px, 240px"
-                    className="block size-full rounded-full object-cover object-[58%_center]"
+                    className="block size-full rounded-full object-contain object-center"
                   />
                 ) : isIslam ? (
                   <Image
@@ -213,7 +215,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                     width={640}
                     height={640}
                     sizes="(max-width: 768px) 208px, 240px"
-                    className="block size-full rounded-full object-cover object-[58%_center]"
+                    className="block size-full rounded-full object-contain object-center"
                   />
                 ) : (
                   <CouplePhotoPlaceholder
