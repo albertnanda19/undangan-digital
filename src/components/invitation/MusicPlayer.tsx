@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Music, Pause } from "lucide-react";
+import { Music, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -57,9 +57,9 @@ export function MusicPlayer({ musicUrl }: Props) {
         aria-label={isPlaying ? "Pause music" : "Play music"}
       >
         {isPlaying ? (
-          <Music className={cn("h-5 w-5 text-pink-500", isPlaying && "animate-spin")} style={{ animationDuration: "3s" }} />
+          <Music className="h-5 w-5 text-pink-500 animate-spin" style={{ animationDuration: "3s" }} />
         ) : (
-          <Pause className="h-5 w-5 text-gray-600" />
+          <Play className="h-5 w-5 text-gray-600" />
         )}
       </button>
       {showHint && (

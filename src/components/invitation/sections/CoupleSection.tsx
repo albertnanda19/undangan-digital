@@ -132,7 +132,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
               alt="Ilustrasi mempelai pria Minang"
               fill
               sizes={COUPLE_PORTRAIT_SIZES}
-              className="object-contain object-[50%_44%]"
+              className="object-contain object-center"
             />
           ) : isIslam ? (
             <Image
@@ -140,7 +140,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
               alt="Ilustrasi mempelai pria"
               fill
               sizes={COUPLE_PORTRAIT_SIZES}
-              className="object-contain object-[50%_44%]"
+              className="object-contain object-center"
             />
           ) : (
             <CouplePhotoPlaceholder
@@ -186,7 +186,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
               alt="Ilustrasi mempelai wanita Minang"
               fill
               sizes={COUPLE_PORTRAIT_SIZES}
-              className="object-contain object-[50%_44%]"
+              className="object-contain object-center"
             />
           ) : isIslam ? (
             <Image
@@ -194,7 +194,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
               alt="Ilustrasi mempelai wanita"
               fill
               sizes={COUPLE_PORTRAIT_SIZES}
-              className="object-contain object-[50%_44%]"
+              className="object-contain object-center"
             />
           ) : (
             <CouplePhotoPlaceholder
