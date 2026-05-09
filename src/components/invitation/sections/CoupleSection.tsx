@@ -30,7 +30,7 @@ function PortraitCircle({
         background: `radial-gradient(circle at 50% 55%, ${themeConfig.secondaryColor} 0%, ${themeConfig.backgroundColor} 72%)`,
       }}
     >
-      <div className="box-border flex size-full min-h-0 min-w-0 items-center justify-center p-[12%]">
+      <div className="box-border flex size-full min-h-0 min-w-0 items-center justify-center p-[6%]">
         <div className="relative aspect-square w-full min-h-0 min-w-0 overflow-hidden">
           {children}
         </div>
@@ -141,7 +141,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                     alt="Ilustrasi mempelai pria Minang"
                     fill
                     sizes={COUPLE_PORTRAIT_SIZES}
-                    className="object-contain object-[50%_52%]"
+                    className="object-contain object-[50%_44%]"
                   />
                 ) : isIslam ? (
                   <Image
@@ -149,7 +149,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                     alt="Ilustrasi mempelai pria"
                     fill
                     sizes={COUPLE_PORTRAIT_SIZES}
-                    className="object-contain object-[50%_52%]"
+                    className="object-contain object-[50%_44%]"
                   />
                 ) : (
                   <CouplePhotoPlaceholder
@@ -215,7 +215,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                     alt="Ilustrasi mempelai wanita Minang"
                     fill
                     sizes={COUPLE_PORTRAIT_SIZES}
-                    className="object-contain object-[50%_52%]"
+                    className="object-contain object-[50%_44%]"
                   />
                 ) : isIslam ? (
                   <Image
@@ -223,7 +223,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                     alt="Ilustrasi mempelai wanita"
                     fill
                     sizes={COUPLE_PORTRAIT_SIZES}
-                    className="object-contain object-[50%_52%]"
+                    className="object-contain object-[50%_44%]"
                   />
                 ) : (
                   <CouplePhotoPlaceholder
