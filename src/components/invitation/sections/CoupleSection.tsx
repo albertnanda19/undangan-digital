@@ -103,6 +103,8 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                   <Image src={tenant.groomPhotoUrl} alt={tenant.groomName} fill className="object-cover" />
                 ) : isMinangTheme ? (
                   <Image src="/images/minang-groom-real.png" alt="Ilustrasi mempelai pria Minang" fill className="object-cover object-top" />
+                ) : isIslam ? (
+                  <Image src="/images/muslim-groom-real.png" alt="Ilustrasi mempelai pria" fill className="object-cover object-top" />
                 ) : (
                   <CouplePhotoPlaceholder
                     name={tenant.groomNickname || tenant.groomName}
@@ -157,6 +159,8 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                   <Image src={tenant.bridePhotoUrl} alt={tenant.brideName} fill className="object-cover" />
                 ) : isMinangTheme ? (
                   <Image src="/images/minang-bride-real.png" alt="Ilustrasi mempelai wanita Minang" fill className="object-cover object-top" />
+                ) : isIslam ? (
+                  <Image src="/images/muslim-bride-real.png" alt="Ilustrasi mempelai wanita" fill className="object-cover object-top" />
                 ) : (
                   <CouplePhotoPlaceholder
                     name={tenant.brideNickname || tenant.brideName}
