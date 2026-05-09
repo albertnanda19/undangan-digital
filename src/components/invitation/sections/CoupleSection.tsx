@@ -31,10 +31,8 @@ function PortraitCircle({
         background: `radial-gradient(circle at 50% 55%, ${themeConfig.secondaryColor} 0%, ${themeConfig.backgroundColor} 72%)`,
       }}
     >
-      <div className="box-border flex size-full min-h-0 min-w-0 items-center justify-center p-[6%]">
-        <div className="relative aspect-square w-full min-h-0 min-w-0 overflow-hidden">
-          {children}
-        </div>
+      <div className="relative size-full">
+        {children}
       </div>
     </div>
   );

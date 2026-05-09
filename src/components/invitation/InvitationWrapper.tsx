@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { OpeningCover } from "./OpeningCover";
 import { MusicPlayer } from "./MusicPlayer";
 import { HeroSection } from "./sections/HeroSection";
@@ -26,12 +26,25 @@ interface Props {
 
 export function InvitationWrapper({ tenant, photos, wishes, theme, guestName }: Props) {
   const [isOpened, setIsOpened] = useState(false);
+  const autoPlayAudioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     if (isOpened) {
       window.scrollTo({ top: 0, behavior: "instant" });
     }
   }, [isOpened]);
+
+  const handleOpen = () => {
+    const musicUrl = tenant.music_url as string | undefined;
+    if (musicUrl) {
+      const audio = new Audio(musicUrl);
+      audio.loop = true;
+      audio.volume = 0.5;
+      audio.play().catch(() => {});
+      autoPlayAudioRef.current = audio;
+    }
+    setIsOpened(true);
+  };
 
   const themeConfig: ThemeConfig = ((theme as { config?: ThemeConfig })?.config || {
     primaryColor: "#E8748A",
@@ -54,14 +67,17 @@ export function InvitationWrapper({ tenant, photos, wishes, theme, guestName }: 
         coverPhotoUrl={tenant.cover_photo_url as string | undefined}
         guestName={guestName}
         themeConfig={themeConfig}
-        onOpen={() => setIsOpened(true)}
+        onOpen={handleOpen}
       />
     );
   }
 
   return (
     <div style={{ backgroundColor: themeConfig.backgroundColor, color: themeConfig.textColor }}>
-      <MusicPlayer musicUrl={tenant.music_url as string | undefined} />
+      <MusicPlayer
+        musicUrl={tenant.music_url as string | undefined}
+        autoPlayAudio={autoPlayAudioRef.current}
+      />
 
       {(() => {
         const tenantData: Tenant = {
