@@ -83,48 +83,54 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
       <div className="absolute top-0 left-0 w-64 h-64 rounded-full blur-3xl opacity-10 pointer-events-none" style={{ backgroundColor: themeConfig.primaryColor, transform: "translate(-50%, -50%)" }} />
       <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-10 pointer-events-none" style={{ backgroundColor: themeConfig.accentColor, transform: "translate(50%, 50%)" }} />
       <div className="max-w-5xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center mb-16">
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center mb-16 scroll-mt-6">
           <p className="font-script text-2xl mb-2" style={{ color: themeConfig.primaryColor }}>
             {isIslam ? content.openingGreeting : "In The Name of Love"}
           </p>
           <h2 className="section-title font-display" style={{ color: themeConfig.textColor }}>Mempelai</h2>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center">
+        <div className="grid min-w-0 grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center text-center"
+            className="flex min-w-0 flex-col items-center text-center"
           >
-            <div className="relative mb-6 flex justify-center">
+            <div className="mb-6 flex w-full justify-center">
               <div
-                className="relative aspect-square w-52 shrink-0 overflow-hidden rounded-full border-4 shadow-2xl md:w-60"
-                style={{ borderColor: themeConfig.primaryColor }}
+                className="relative size-[13rem] shrink-0 overflow-hidden rounded-full border-4 shadow-2xl md:size-[15rem]"
+                style={{
+                  borderColor: themeConfig.primaryColor,
+                  isolation: "isolate",
+                }}
               >
                 {tenant.groomPhotoUrl ? (
                   <Image
                     src={tenant.groomPhotoUrl}
                     alt={tenant.groomName}
-                    fill
+                    width={640}
+                    height={640}
                     sizes="(max-width: 768px) 208px, 240px"
-                    className="object-cover object-center"
+                    className="block size-full rounded-full object-cover object-center"
                   />
                 ) : isMinangTheme ? (
                   <Image
                     src="/images/minang-groom-real.png"
                     alt="Ilustrasi mempelai pria Minang"
-                    fill
+                    width={640}
+                    height={640}
                     sizes="(max-width: 768px) 208px, 240px"
-                    className="object-cover object-center"
+                    className="block size-full rounded-full object-cover object-[42%_center]"
                   />
                 ) : isIslam ? (
                   <Image
                     src="/images/muslim-groom-real.png"
                     alt="Ilustrasi mempelai pria"
-                    fill
+                    width={640}
+                    height={640}
                     sizes="(max-width: 768px) 208px, 240px"
-                    className="object-cover object-center"
+                    className="block size-full rounded-full object-cover object-[42%_center]"
                   />
                 ) : (
                   <CouplePhotoPlaceholder
@@ -172,36 +178,42 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center text-center"
+            className="flex min-w-0 flex-col items-center text-center"
           >
-            <div className="relative mb-6 flex justify-center">
+            <div className="mb-6 flex w-full justify-center">
               <div
-                className="relative aspect-square w-52 shrink-0 overflow-hidden rounded-full border-4 shadow-2xl md:w-60"
-                style={{ borderColor: themeConfig.primaryColor }}
+                className="relative size-[13rem] shrink-0 overflow-hidden rounded-full border-4 shadow-2xl md:size-[15rem]"
+                style={{
+                  borderColor: themeConfig.primaryColor,
+                  isolation: "isolate",
+                }}
               >
                 {tenant.bridePhotoUrl ? (
                   <Image
                     src={tenant.bridePhotoUrl}
                     alt={tenant.brideName}
-                    fill
+                    width={640}
+                    height={640}
                     sizes="(max-width: 768px) 208px, 240px"
-                    className="object-cover object-center"
+                    className="block size-full rounded-full object-cover object-center"
                   />
                 ) : isMinangTheme ? (
                   <Image
                     src="/images/minang-bride-real.png"
                     alt="Ilustrasi mempelai wanita Minang"
-                    fill
+                    width={640}
+                    height={640}
                     sizes="(max-width: 768px) 208px, 240px"
-                    className="object-cover object-center"
+                    className="block size-full rounded-full object-cover object-[58%_center]"
                   />
                 ) : isIslam ? (
                   <Image
                     src="/images/muslim-bride-real.png"
                     alt="Ilustrasi mempelai wanita"
-                    fill
+                    width={640}
+                    height={640}
                     sizes="(max-width: 768px) 208px, 240px"
-                    className="object-cover object-center"
+                    className="block size-full rounded-full object-cover object-[58%_center]"
                   />
                 ) : (
                   <CouplePhotoPlaceholder
