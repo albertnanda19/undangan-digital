@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { LottieAnimation } from "@/components/invitation/LottieAnimation";
@@ -10,6 +11,33 @@ type Props = {
   tenant: Tenant;
   themeConfig: ThemeConfig;
 };
+
+const COUPLE_PORTRAIT_SIZES = "(max-width: 768px) 140px, 162px";
+
+function PortraitCircle({
+  themeConfig,
+  children,
+}: {
+  themeConfig: ThemeConfig;
+  children: ReactNode;
+}) {
+  return (
+    <div
+      className="relative size-[13rem] shrink-0 overflow-hidden rounded-full border-4 shadow-2xl md:size-[15rem]"
+      style={{
+        borderColor: themeConfig.primaryColor,
+        isolation: "isolate",
+        background: `radial-gradient(circle at 50% 55%, ${themeConfig.secondaryColor} 0%, ${themeConfig.backgroundColor} 72%)`,
+      }}
+    >
+      <div className="box-border flex size-full min-h-0 min-w-0 items-center justify-center p-[16%]">
+        <div className="relative aspect-square w-full min-h-0 min-w-0 overflow-hidden">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function CouplePhotoPlaceholder({
   name,
@@ -23,7 +51,7 @@ function CouplePhotoPlaceholder({
   const initial = (name || "?").trim().charAt(0).toUpperCase();
   return (
     <div
-      className="relative w-full h-full flex items-center justify-center"
+      className="absolute inset-0 flex items-center justify-center"
       style={{
         background: `radial-gradient(circle at 30% 30%, ${themeConfig.secondaryColor} 0%, ${themeConfig.backgroundColor} 70%)`,
       }}
@@ -98,40 +126,30 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
             className="flex min-w-0 flex-col items-center text-center"
           >
             <div className="mb-6 flex w-full justify-center">
-              <div
-                className="relative size-[13rem] shrink-0 overflow-hidden rounded-full border-4 shadow-2xl md:size-[15rem]"
-                style={{
-                  borderColor: themeConfig.primaryColor,
-                  isolation: "isolate",
-                  background: `radial-gradient(circle at 50% 55%, ${themeConfig.secondaryColor} 0%, ${themeConfig.backgroundColor} 72%)`,
-                }}
-              >
+              <PortraitCircle themeConfig={themeConfig}>
                 {tenant.groomPhotoUrl ? (
                   <Image
                     src={tenant.groomPhotoUrl}
                     alt={tenant.groomName}
-                    width={640}
-                    height={640}
-                    sizes="(max-width: 768px) 208px, 240px"
-                    className="block size-full rounded-full object-contain object-center"
+                    fill
+                    sizes={COUPLE_PORTRAIT_SIZES}
+                    className="object-contain object-center"
                   />
                 ) : isMinangTheme ? (
                   <Image
                     src="/images/minang-groom-real.png"
                     alt="Ilustrasi mempelai pria Minang"
-                    width={640}
-                    height={640}
-                    sizes="(max-width: 768px) 208px, 240px"
-                    className="block size-full rounded-full object-contain object-center"
+                    fill
+                    sizes={COUPLE_PORTRAIT_SIZES}
+                    className="object-contain object-[53%_48%]"
                   />
                 ) : isIslam ? (
                   <Image
                     src="/images/muslim-groom-real.png"
                     alt="Ilustrasi mempelai pria"
-                    width={640}
-                    height={640}
-                    sizes="(max-width: 768px) 208px, 240px"
-                    className="block size-full rounded-full object-contain object-center"
+                    fill
+                    sizes={COUPLE_PORTRAIT_SIZES}
+                    className="object-contain object-[53%_48%]"
                   />
                 ) : (
                   <CouplePhotoPlaceholder
@@ -140,7 +158,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                     isIslam={isIslam}
                   />
                 )}
-              </div>
+              </PortraitCircle>
             </div>
             <h3 className="font-script text-4xl md:text-5xl mb-2" style={{ color: themeConfig.primaryColor }}>{tenant.groomNickname}</h3>
             <p className="font-display text-xl font-semibold mb-3" style={{ color: themeConfig.textColor }}>{tenant.groomName}</p>
@@ -182,40 +200,30 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
             className="flex min-w-0 flex-col items-center text-center"
           >
             <div className="mb-6 flex w-full justify-center">
-              <div
-                className="relative size-[13rem] shrink-0 overflow-hidden rounded-full border-4 shadow-2xl md:size-[15rem]"
-                style={{
-                  borderColor: themeConfig.primaryColor,
-                  isolation: "isolate",
-                  background: `radial-gradient(circle at 50% 55%, ${themeConfig.secondaryColor} 0%, ${themeConfig.backgroundColor} 72%)`,
-                }}
-              >
+              <PortraitCircle themeConfig={themeConfig}>
                 {tenant.bridePhotoUrl ? (
                   <Image
                     src={tenant.bridePhotoUrl}
                     alt={tenant.brideName}
-                    width={640}
-                    height={640}
-                    sizes="(max-width: 768px) 208px, 240px"
-                    className="block size-full rounded-full object-contain object-center"
+                    fill
+                    sizes={COUPLE_PORTRAIT_SIZES}
+                    className="object-contain object-center"
                   />
                 ) : isMinangTheme ? (
                   <Image
                     src="/images/minang-bride-real.png"
                     alt="Ilustrasi mempelai wanita Minang"
-                    width={640}
-                    height={640}
-                    sizes="(max-width: 768px) 208px, 240px"
-                    className="block size-full rounded-full object-contain object-center"
+                    fill
+                    sizes={COUPLE_PORTRAIT_SIZES}
+                    className="object-contain object-[47%_48%]"
                   />
                 ) : isIslam ? (
                   <Image
                     src="/images/muslim-bride-real.png"
                     alt="Ilustrasi mempelai wanita"
-                    width={640}
-                    height={640}
-                    sizes="(max-width: 768px) 208px, 240px"
-                    className="block size-full rounded-full object-contain object-center"
+                    fill
+                    sizes={COUPLE_PORTRAIT_SIZES}
+                    className="object-contain object-[47%_48%]"
                   />
                 ) : (
                   <CouplePhotoPlaceholder
@@ -224,7 +232,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
                     isIslam={isIslam}
                   />
                 )}
-              </div>
+              </PortraitCircle>
             </div>
             <h3 className="font-script text-4xl md:text-5xl mb-2" style={{ color: themeConfig.primaryColor }}>{tenant.brideNickname}</h3>
             <p className="font-display text-xl font-semibold mb-3" style={{ color: themeConfig.textColor }}>{tenant.brideName}</p>
