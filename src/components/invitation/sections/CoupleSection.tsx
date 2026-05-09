@@ -97,14 +97,35 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center text-center"
           >
-            <div className="relative mb-6">
-              <div className="w-52 h-52 md:w-60 md:h-60 rounded-full overflow-hidden border-4 shadow-2xl" style={{ borderColor: themeConfig.primaryColor }}>
+            <div className="relative mb-6 flex justify-center">
+              <div
+                className="relative aspect-square w-52 shrink-0 overflow-hidden rounded-full border-4 shadow-2xl md:w-60"
+                style={{ borderColor: themeConfig.primaryColor }}
+              >
                 {tenant.groomPhotoUrl ? (
-                  <Image src={tenant.groomPhotoUrl} alt={tenant.groomName} fill className="object-cover" />
+                  <Image
+                    src={tenant.groomPhotoUrl}
+                    alt={tenant.groomName}
+                    fill
+                    sizes="(max-width: 768px) 208px, 240px"
+                    className="object-cover object-center"
+                  />
                 ) : isMinangTheme ? (
-                  <Image src="/images/minang-groom-real.png" alt="Ilustrasi mempelai pria Minang" fill className="object-cover object-center" />
+                  <Image
+                    src="/images/minang-groom-real.png"
+                    alt="Ilustrasi mempelai pria Minang"
+                    fill
+                    sizes="(max-width: 768px) 208px, 240px"
+                    className="object-cover object-center"
+                  />
                 ) : isIslam ? (
-                  <Image src="/images/muslim-groom-real.png" alt="Ilustrasi mempelai pria" fill className="object-cover object-center" />
+                  <Image
+                    src="/images/muslim-groom-real.png"
+                    alt="Ilustrasi mempelai pria"
+                    fill
+                    sizes="(max-width: 768px) 208px, 240px"
+                    className="object-cover object-center"
+                  />
                 ) : (
                   <CouplePhotoPlaceholder
                     name={tenant.groomNickname || tenant.groomName}
@@ -153,14 +174,35 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center text-center"
           >
-            <div className="relative mb-6">
-              <div className="w-52 h-52 md:w-60 md:h-60 rounded-full overflow-hidden border-4 shadow-2xl" style={{ borderColor: themeConfig.primaryColor }}>
+            <div className="relative mb-6 flex justify-center">
+              <div
+                className="relative aspect-square w-52 shrink-0 overflow-hidden rounded-full border-4 shadow-2xl md:w-60"
+                style={{ borderColor: themeConfig.primaryColor }}
+              >
                 {tenant.bridePhotoUrl ? (
-                  <Image src={tenant.bridePhotoUrl} alt={tenant.brideName} fill className="object-cover" />
+                  <Image
+                    src={tenant.bridePhotoUrl}
+                    alt={tenant.brideName}
+                    fill
+                    sizes="(max-width: 768px) 208px, 240px"
+                    className="object-cover object-center"
+                  />
                 ) : isMinangTheme ? (
-                  <Image src="/images/minang-bride-real.png" alt="Ilustrasi mempelai wanita Minang" fill className="object-cover object-center" />
+                  <Image
+                    src="/images/minang-bride-real.png"
+                    alt="Ilustrasi mempelai wanita Minang"
+                    fill
+                    sizes="(max-width: 768px) 208px, 240px"
+                    className="object-cover object-center"
+                  />
                 ) : isIslam ? (
-                  <Image src="/images/muslim-bride-real.png" alt="Ilustrasi mempelai wanita" fill className="object-cover object-center" />
+                  <Image
+                    src="/images/muslim-bride-real.png"
+                    alt="Ilustrasi mempelai wanita"
+                    fill
+                    sizes="(max-width: 768px) 208px, 240px"
+                    className="object-cover object-center"
+                  />
                 ) : (
                   <CouplePhotoPlaceholder
                     name={tenant.brideNickname || tenant.brideName}
