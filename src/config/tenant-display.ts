@@ -1,5 +1,5 @@
 const BRIDE_FIRST_SLUGS: string[] = [
-  "baskara-rena",
+  "rena-baskara",
 ];
 
 export function isBrideFirst(slug: string): boolean {
