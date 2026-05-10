@@ -193,8 +193,8 @@ export function InvitationWrapper({ tenant, photos, wishes, theme, guestName }: 
       <AmplopSection tenant={tenantData} themeConfig={themeConfig} />
 
       <FooterSection
-        groomNickname={tenant.groom_nickname as string}
-        brideNickname={tenant.bride_nickname as string}
+        groomNickname={coverFirstNickname}
+        brideNickname={coverSecondNickname}
         akadDate={tenant.akad_date as string}
         closingMessage={tenant.closing_message as string | undefined}
         slug={tenant.slug as string}
