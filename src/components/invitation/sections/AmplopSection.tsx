@@ -100,13 +100,13 @@ function BankCard({
       className="rounded-2xl p-6 shadow-md flex items-center justify-between gap-4"
       style={{ backgroundColor: themeConfig.backgroundColor }}
     >
-      <div className="flex items-center gap-4">
-        <div className="w-14 h-14 rounded-xl flex items-center justify-center text-xs font-bold" style={{ backgroundColor: `${themeConfig.primaryColor}20`, color: themeConfig.primaryColor }}>
+      <div className="flex items-center gap-4 min-w-0 flex-1">
+        <div className="w-14 h-14 shrink-0 rounded-xl flex items-center justify-center text-xs font-bold" style={{ backgroundColor: `${themeConfig.primaryColor}20`, color: themeConfig.primaryColor }}>
           {account.bankName.substring(0, 3).toUpperCase()}
         </div>
-        <div>
+        <div className="min-w-0 flex-1">
           <p className="text-sm" style={{ color: themeConfig.textColor, opacity: 0.6 }}>{account.bankName}</p>
-          <p className="font-mono font-bold text-xl tracking-wider my-0.5" style={{ color: themeConfig.textColor }}>{account.accountNumber}</p>
+          <p className="font-mono font-bold text-base tracking-wide my-0.5 break-all" style={{ color: themeConfig.textColor }}>{account.accountNumber}</p>
           <p className="text-sm" style={{ color: themeConfig.textColor, opacity: 0.7 }}>a.n. {account.accountHolder}</p>
         </div>
       </div>

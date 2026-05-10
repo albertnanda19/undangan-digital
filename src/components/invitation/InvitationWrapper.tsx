@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { isBrideFirst } from "@/config/tenant-display";
 import { OpeningCover } from "./OpeningCover";
 import { MusicPlayer } from "./MusicPlayer";
 import { HeroSection } from "./sections/HeroSection";
@@ -58,11 +59,20 @@ export function InvitationWrapper({ tenant, photos, wishes, theme, guestName }: 
     ornamentStyle: "floral",
   }) as ThemeConfig;
 
+  const slug = tenant.slug as string;
+  const brideFirst = isBrideFirst(slug);
+  const coverFirstNickname = brideFirst
+    ? (tenant.bride_nickname as string)
+    : (tenant.groom_nickname as string);
+  const coverSecondNickname = brideFirst
+    ? (tenant.groom_nickname as string)
+    : (tenant.bride_nickname as string);
+
   if (!isOpened) {
     return (
       <OpeningCover
-        groomNickname={tenant.groom_nickname as string}
-        brideNickname={tenant.bride_nickname as string}
+        groomNickname={coverFirstNickname}
+        brideNickname={coverSecondNickname}
         akadDate={tenant.akad_date as string}
         coverPhotoUrl={tenant.cover_photo_url as string | undefined}
         guestName={guestName}
@@ -146,6 +156,7 @@ export function InvitationWrapper({ tenant, photos, wishes, theme, guestName }: 
         religion={tenantData.religion}
         groomName={tenantData.groomName}
         brideName={tenantData.brideName}
+        brideFirst={brideFirst}
         themeConfig={themeConfig}
       />
 

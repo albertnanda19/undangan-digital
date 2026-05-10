@@ -8,10 +8,13 @@ interface Props {
   religion: Religion;
   groomName: string;
   brideName: string;
+  brideFirst?: boolean;
   themeConfig: ThemeConfig;
 }
 
-export function OpeningSection({ religion, groomName, brideName, themeConfig }: Props) {
+export function OpeningSection({ religion, groomName, brideName, brideFirst, themeConfig }: Props) {
+  const firstName = brideFirst ? brideName : groomName;
+  const secondName = brideFirst ? groomName : brideName;
   const content = getReligionContent(religion);
   return (
     <section id="opening" className="invitation-section relative overflow-hidden" style={{ backgroundColor: themeConfig.backgroundColor }}>
@@ -97,7 +100,7 @@ export function OpeningSection({ religion, groomName, brideName, themeConfig }: 
             {content.invitationOpener}
           </p>
           <p className="font-script text-4xl md:text-5xl mt-6" style={{ color: themeConfig.primaryColor }}>
-            {groomName} & {brideName}
+            {firstName} & {secondName}
           </p>
         </motion.div>
       </div>
