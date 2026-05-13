@@ -9,6 +9,7 @@ import { formatDate, formatTime, formatEventEndTime } from "@/lib/utils";
 import { GuestImport } from "@/components/admin/GuestImport";
 import { WhatsAppGenerator } from "@/components/admin/WhatsAppGenerator";
 import { QRCodeGenerator } from "@/components/admin/QRCodeGenerator";
+import { GuestManager } from "@/components/admin/GuestManager";
 import { generateRSVPExport, generateGuestExport, downloadCSV } from "@/lib/export";
 
 interface Props {
@@ -23,6 +24,7 @@ interface Props {
 const tabs = [
   { key: "overview", label: "Overview" },
   { key: "guests", label: "Tamu & RSVP" },
+  { key: "manage-guests", label: "Kelola Tamu" },
   { key: "whatsapp", label: "WhatsApp" },
   { key: "qrcode", label: "QR Code" },
 ] as const;
@@ -201,6 +203,18 @@ export function ClientDetailTabs({ tenantId, tenant, stats, rsvpList, guests, in
             )}
           </div>
         </div>
+      )}
+
+      {activeTab === "manage-guests" && (
+        <GuestManager
+          tenantId={tenantId}
+          tenantSlug={tenant.slug as string}
+          groomName={tenant.groom_name as string}
+          brideName={tenant.bride_name as string}
+          receptionDate={tenant.reception_date as string}
+          receptionVenueName={tenant.reception_venue_name as string}
+          appUrl={typeof window !== "undefined" ? window.location.origin : ""}
+        />
       )}
 
       {activeTab === "whatsapp" && (

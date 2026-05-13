@@ -106,6 +106,20 @@ export type Guest = {
   createdAt: string;
 };
 
+export type GuestFormData = {
+  name: string;
+  phone?: string;
+  category: GuestCategory;
+  isVip: boolean;
+  seatNumber?: string;
+  notes?: string;
+};
+
+export type GuestWithLink = Guest & {
+  invitationUrl: string;
+  whatsappMessage: string;
+};
+
 export type AttendanceStatus = "hadir" | "tidak_hadir" | "mungkin";
 export type EventType = "akad" | "resepsi" | "keduanya";
 
