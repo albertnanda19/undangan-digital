@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { isBrideFirst } from "@/config/tenant-display";
+import { isBrideFirst, isGuestSalutationBelowDate } from "@/config/tenant-display";
 import { OpeningCover } from "./OpeningCover";
 import { MusicPlayer } from "./MusicPlayer";
 import { HeroSection } from "./sections/HeroSection";
@@ -76,6 +76,7 @@ export function InvitationWrapper({ tenant, photos, wishes, theme, guestName }: 
         akadDate={tenant.akad_date as string}
         coverPhotoUrl={tenant.cover_photo_url as string | undefined}
         guestName={guestName}
+        guestSalutationBelowDate={isGuestSalutationBelowDate(slug)}
         themeConfig={themeConfig}
         onOpen={handleOpen}
       />

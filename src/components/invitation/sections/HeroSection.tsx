@@ -8,7 +8,7 @@ import { LottieAnimation } from "@/components/invitation/LottieAnimation";
 import { HeroCoupleAnimation } from "@/components/invitation/HeroCoupleAnimation";
 import { MarawaFlags, RumahGadangRoof } from "@/components/invitation/MinangOrnaments";
 import type { Tenant, ThemeConfig } from "@/types";
-import { isBrideFirst } from "@/config/tenant-display";
+import { isBrideFirst, isGuestSalutationBelowDate } from "@/config/tenant-display";
 
 type Props = { tenant: Tenant; themeConfig: ThemeConfig; guestName?: string };
 
@@ -16,6 +16,7 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
   const isMinang = themeConfig.ornamentStyle === "minang";
   const isIslam = tenant.religion === "islam";
   const brideFirst = isBrideFirst(tenant.slug);
+  const guestSalutationBelowDate = isGuestSalutationBelowDate(tenant.slug);
   const firstName = brideFirst ? tenant.brideNickname : tenant.groomNickname;
   const secondName = brideFirst ? tenant.groomNickname : tenant.brideNickname;
   const showIslamicDecor = !tenant.coverPhotoUrl && !isMinang && isIslam;
@@ -207,7 +208,7 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
             }}
           />
         )}
-        {guestName && (
+        {guestName && !guestSalutationBelowDate && (
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3 }} className="mb-6">
             <div className="inline-block px-6 py-2 rounded-full text-sm backdrop-blur-sm border" style={{ backgroundColor: "rgba(255,255,255,0.15)", borderColor: "rgba(255,255,255,0.3)", color: "#fff" }}>
               Kepada Yth. <strong>{guestName}</strong>
@@ -273,9 +274,29 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
               borderColor: isMinang ? `${themeConfig.accentColor}99` : "rgba(255,255,255,0.3)",
             }}
           >
-            <p className="font-display text-white text-lg md:text-xl font-light tracking-wide">{formatDate(tenant.receptionDate, "d MMMM yyyy")}</p>
+            <p className="font-display text-white text-lg md:text-xl font-light tracking-wide">
+              {guestSalutationBelowDate
+                ? formatDate(tenant.receptionDate).replace(/^Minggu\b/, "Ahad")
+                : formatDate(tenant.receptionDate, "d MMMM yyyy")}
+            </p>
           </div>
         </motion.div>
+
+        {guestName && guestSalutationBelowDate && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.35 }}
+            className={isMinang ? "mt-4 mb-10 md:mb-14" : "mt-6"}
+          >
+            <div
+              className="inline-block px-6 py-2 rounded-full text-sm backdrop-blur-sm border"
+              style={{ backgroundColor: "rgba(255,255,255,0.15)", borderColor: "rgba(255,255,255,0.3)", color: "#fff" }}
+            >
+              Kepada Yth. <strong>{guestName}</strong>
+            </div>
+          </motion.div>
+        )}
       </div>
 
       {/* Rumah Gadang silhouette at the bottom of the hero */}

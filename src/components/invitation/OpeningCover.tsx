@@ -11,11 +11,21 @@ interface Props {
   akadDate: string;
   coverPhotoUrl?: string;
   guestName?: string;
+  guestSalutationBelowDate?: boolean;
   themeConfig: Record<string, string>;
   onOpen: () => void;
 }
 
-export function OpeningCover({ groomNickname, brideNickname, akadDate, coverPhotoUrl, guestName, themeConfig, onOpen }: Props) {
+export function OpeningCover({
+  groomNickname,
+  brideNickname,
+  akadDate,
+  coverPhotoUrl,
+  guestName,
+  guestSalutationBelowDate,
+  themeConfig,
+  onOpen,
+}: Props) {
   const dateText = formatDate(akadDate).replace(/^Minggu\b/, "Ahad");
 
   return (
@@ -62,7 +72,7 @@ export function OpeningCover({ groomNickname, brideNickname, akadDate, coverPhot
           style={{ backgroundColor: `${themeConfig.accentColor ?? "#D4AC0D"}99` }}
         />
 
-        {guestName && (
+        {guestName && !guestSalutationBelowDate && (
           <motion.div
             className="mb-8 mt-4"
             initial={{ opacity: 0 }}
@@ -100,6 +110,18 @@ export function OpeningCover({ groomNickname, brideNickname, akadDate, coverPhot
         >
           {dateText}
         </motion.p>
+
+        {guestName && guestSalutationBelowDate && (
+          <motion.div
+            className="mt-6 mb-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.95 }}
+          >
+            <p className="text-white/70 text-sm">Kepada Yth.</p>
+            <p className="text-white text-lg font-medium mt-1">{guestName}</p>
+          </motion.div>
+        )}
 
         <motion.button
           onClick={onOpen}
