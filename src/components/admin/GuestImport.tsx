@@ -7,6 +7,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { generateInvitationCode } from "@/lib/utils";
+import { downloadGuestImportTemplate } from "@/lib/export";
 
 interface ParsedGuest {
   name: string;
@@ -79,14 +80,7 @@ export function GuestImport({ tenantId, onComplete }: GuestImportProps) {
   };
 
   const downloadTemplate = () => {
-    const csv = "Nama,Nomor HP,Kategori (family/friend/colleague/other),VIP (ya/tidak),Nomor Meja,Catatan\nBudi Santoso,08123456789,family,tidak,,\nAni Wijaya,08987654321,friend,ya,A1,Teman SMA";
-    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "template-tamu.csv";
-    a.click();
-    URL.revokeObjectURL(url);
+    downloadGuestImportTemplate();
   };
 
   const handleImport = async () => {

@@ -10,7 +10,12 @@ import { GuestImport } from "@/components/admin/GuestImport";
 import { WhatsAppGenerator } from "@/components/admin/WhatsAppGenerator";
 import { QRCodeGenerator } from "@/components/admin/QRCodeGenerator";
 import { GuestManager } from "@/components/admin/GuestManager";
-import { generateRSVPExport, generateGuestExport, downloadCSV } from "@/lib/export";
+import {
+  generateRSVPExport,
+  generateGuestExport,
+  downloadCSV,
+  downloadGuestImportTemplate,
+} from "@/lib/export";
 
 interface Props {
   tenantId: string;
@@ -39,7 +44,7 @@ export function ClientDetailTabs({ tenantId, tenant, stats, rsvpList, guests, in
   };
 
   const handleExportGuests = () => {
-    const csv = generateGuestExport(guests);
+    const csv = generateGuestExport(guests, invitationUrl);
     downloadCSV(`tamu-${tenant.slug}.csv`, csv);
   };
 
@@ -115,6 +120,27 @@ export function ClientDetailTabs({ tenantId, tenant, stats, rsvpList, guests, in
                 style={{ width: `${stats.totalGuests > 0 ? (stats.totalHadir / stats.totalGuests) * 100 : 0}%` }}
               />
             </div>
+          </div>
+
+          <div className="rounded-xl border border-[#2A2D3E] bg-[#1A1D27] p-5 space-y-3">
+            <h3 className="text-sm font-medium text-[#E2E8F0]">Import tamu dari CSV</h3>
+            <p className="text-xs text-[#94A3B8] leading-relaxed">
+              Gunakan file UTF-8 dengan baris pertama sebagai judul kolom. Kolom{" "}
+              <span className="text-[#E2E8F0]">Nama</span> wajib diisi. Kolom{" "}
+              <span className="text-[#E2E8F0]">Kategori</span> isi salah satu: family, friend, colleague, atau other.
+              Kolom <span className="text-[#E2E8F0]">VIP</span> tulis ya atau tidak. Kolom lain boleh dikosongkan.
+            </p>
+            <ul className="text-xs text-[#94A3B8] list-disc list-inside space-y-1">
+              <li>Nama</li>
+              <li>Nomor HP</li>
+              <li>Kategori (family/friend/colleague/other)</li>
+              <li>VIP (ya/tidak)</li>
+              <li>Nomor Meja</li>
+              <li>Catatan</li>
+            </ul>
+            <Button variant="outline" size="sm" onClick={downloadGuestImportTemplate}>
+              <Download className="h-4 w-4 mr-1" /> Unduh template CSV
+            </Button>
           </div>
 
           {/* Guest List */}

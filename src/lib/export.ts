@@ -42,10 +42,35 @@ export function generateRSVPExport(
   ]);
 }
 
+function personalInvitationUrl(invitationPageUrl: string, guestName: string): string {
+  const base = invitationPageUrl.replace(/\/$/, "");
+  return `${base}?${new URLSearchParams({ to: guestName }).toString()}`;
+}
+
+export function guestImportTemplateCsvContent(): string {
+  return [
+    "Nama,Nomor HP,Kategori (family/friend/colleague/other),VIP (ya/tidak),Nomor Meja,Catatan",
+    "Budi Santoso,08123456789,family,tidak,,",
+    "Ani Wijaya,08987654321,friend,ya,A1,Teman SMA",
+  ].join("\n");
+}
+
+export function downloadGuestImportTemplate(): void {
+  downloadCSV("template-tamu.csv", guestImportTemplateCsvContent());
+}
+
 export function generateGuestExport(
-  guests: Record<string, unknown>[]
+  guests: Record<string, unknown>[],
+  invitationPageUrl: string
 ): string {
-  return generateCSV(guests, [
+  const rows = guests.map((g) => ({
+    ...g,
+    invitation_personal_url: personalInvitationUrl(
+      invitationPageUrl,
+      String(g.name ?? "")
+    ),
+  }));
+  return generateCSV(rows, [
     { key: "name", label: "Nama" },
     { key: "phone", label: "Nomor HP" },
     { key: "invitation_code", label: "Kode Undangan" },
@@ -53,5 +78,6 @@ export function generateGuestExport(
     { key: "is_vip", label: "VIP" },
     { key: "seat_number", label: "Nomor Meja" },
     { key: "notes", label: "Catatan" },
+    { key: "invitation_personal_url", label: "Link Undangan Personal" },
   ]);
 }
