@@ -13,7 +13,8 @@ interface Props {
 export function CountdownSection({ akadDate, receptionDate, themeConfig }: Props) {
   const targetDate = new Date(akadDate) > new Date() ? akadDate : receptionDate;
   const { days, hours, minutes, seconds, isExpired } = useCountdown(targetDate);
-  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu";
+  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu" || themeConfig.ornamentStyle === "jawa-hijau";
+  const isJawaHijau = themeConfig.ornamentStyle === "jawa-hijau";
 
   const TimeBox = ({ value, label }: { value: number; label: string }) => (
     <div className="flex flex-col items-center">
@@ -36,17 +37,17 @@ export function CountdownSection({ akadDate, receptionDate, themeConfig }: Props
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <h2 className="font-display text-3xl sm:text-4xl text-white mb-2">{isJawa ? "Dinten Mulya" : "Menuju Hari Bahagia"}</h2>
-        <p className="font-script text-xl text-white/70 mb-10">{isJawa ? "Pethitigan" : "Countdown"}</p>
+        <h2 className="font-display text-3xl sm:text-4xl text-white mb-2">{isJawaHijau ? "Menuju Hari Bahagia" : isJawa ? "Dinten Mulya" : "Menuju Hari Bahagia"}</h2>
+        <p className="font-script text-xl text-white/70 mb-10">{isJawaHijau ? "Countdown" : isJawa ? "Pethitigan" : "Countdown"}</p>
 
         {isExpired ? (
           <div className="flex flex-col items-center gap-3">
             <Heart className="h-10 w-10 text-white fill-white" />
-            <p className="font-display text-xl text-white">{isJawa ? "Sampun kalampahan, Matur nuwun" : "Alhamdulillah, Acara telah berlangsung"}</p>
+            <p className="font-display text-xl text-white">{isJawaHijau ? "Alhamdulillah, Acara telah berlangsung" : isJawa ? "Sampun kalampahan, Matur nuwun" : "Alhamdulillah, Acara telah berlangsung"}</p>
           </div>
         ) : (
           <div className="flex items-center justify-center gap-3 sm:gap-6">
-            <TimeBox value={days} label={isJawa ? "Dinten" : "Hari"} />
+            <TimeBox value={days} label={isJawaHijau ? "Hari" : isJawa ? "Dinten" : "Hari"} />
             <span className="text-white text-2xl font-bold mb-6">:</span>
             <TimeBox value={hours} label="Jam" />
             <span className="text-white text-2xl font-bold mb-6">:</span>

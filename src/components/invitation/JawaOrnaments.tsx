@@ -290,3 +290,53 @@ export function JawaBrideSilhouette({ accent = "#C9A96E", className }: ColorProp
     </svg>
   );
 }
+
+// ================================================================
+// SIDE GUNUNGAN — Tall vertical Gunungan for asymmetric hero layout
+// ================================================================
+export function SideGunungan({ color = "#1B5E20", accent = "#D4A843", className }: ColorProps) {
+  return (
+    <svg viewBox="0 0 120 400" fill="none" className={className} aria-hidden="true">
+      <path d="M60 8c-12 0-22 4-28 12-8 10-12 24-12 40 0 20 4 38 10 52-6 8-10 20-10 34 0 18 6 34 16 46-4 8-6 18-6 28 0 24 10 46 24 62 14 16 34 26 56 30 22-4 42-14 56-30 14-16 24-38 24-62 0-10-2-20-6-28 10-12 16-28 16-46 0-14-4-26-10-34 6-14 10-32 10-52 0-16-4-30-12-40-6-8-16-12-28-12Z" fill={color} opacity="0.12" />
+      <path d="M60 30c-8 0-14 3-18 8-5 6-8 16-8 26 0 14 3 26 7 36-4 6-6 14-6 24 0 12 4 24 10 32-2 6-4 12-4 20 0 16 6 32 16 44 10 12 22 20 38 24" stroke={accent} strokeWidth="1.2" opacity="0.2" fill="none" />
+      <path d="M60 30c8 0 14 3 18 8 5 6 8 16 8 26 0 14-3 26-7 36 4 6 6 14 6 24 0 12-4 24-10 32 2 6 4 12 4 20 0 16-6 32-16 44-10 12-22 20-38 24" stroke={accent} strokeWidth="0.6" opacity="0.12" fill="none" />
+      <circle cx="60" cy="20" r="6" fill={accent} opacity="0.15" />
+      <path d="M60 36c-6 0-10 3-10 6s4 6 10 6 10-3 10-6-4-6-10-6Z" fill={accent} opacity="0.1" />
+    </svg>
+  );
+}
+
+// ================================================================
+// DOVE ICON — Peace dove for Islamic-themed sections
+// ================================================================
+export function DoveIcon({ accent = "#D4A843", className }: ColorProps) {
+  return (
+    <svg viewBox="0 0 80 80" fill="none" className={className} aria-hidden="true">
+      <path d="M40 12c-4 0-8 2-12 6-4 4-6 10-6 18 0 6 2 12 4 16-6 4-12 8-18 14-2 2-4 6-4 10 0 4 2 6 4 6 2 0 6-2 10-6 6-6 10-12 14-20 4 0 8-2 12-4 10-6 16-16 16-28 0-8-2-14-6-18-4-4-10-6-16-6 0 0 0 0 0 0 2 2 4 4 4 8 0 6-4 12-10 14" stroke={accent} strokeWidth="1.5" opacity="0.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M44 30c2-2 4-4 4-8 0-4-2-6-4-8" stroke={accent} strokeWidth="1.5" opacity="0.3" fill="none" strokeLinecap="round" />
+      <ellipse cx="48" cy="26" rx="2" ry="1.5" fill={accent} opacity="0.3" />
+    </svg>
+  );
+}
+
+// ================================================================
+// BOUQUET ICON — Floral bouquet for wedding sections
+// ================================================================
+export function BouquetIcon({ accent = "#D4A843", className }: ColorProps) {
+  return (
+    <svg viewBox="0 0 60 80" fill="none" className={className} aria-hidden="true">
+      <path d="M30 72c-4 0-8-2-10-6-2-4-2-8 0-12 2-4 6-6 10-6s8 2 10 6c2 4 2 8 0 12-2 4-6 6-10 6Z" stroke={accent} strokeWidth="1" opacity="0.3" fill="none" />
+      <path d="M30 54c-6 0-12 4-16 10" stroke={accent} strokeWidth="1" opacity="0.25" fill="none" strokeLinecap="round" />
+      <path d="M30 54c6 0 12 4 16 10" stroke={accent} strokeWidth="0.6" opacity="0.18" fill="none" strokeLinecap="round" />
+      <circle cx="24" cy="38" r="8" stroke={accent} strokeWidth="0.8" opacity="0.2" fill="none" />
+      <circle cx="36" cy="38" r="8" stroke={accent} strokeWidth="0.8" opacity="0.2" fill="none" />
+      <circle cx="30" cy="32" r="7" stroke={accent} strokeWidth="0.8" opacity="0.2" fill="none" />
+      <circle cx="24" cy="38" r="3" fill={accent} opacity="0.15" />
+      <circle cx="36" cy="38" r="3" fill={accent} opacity="0.15" />
+      <circle cx="30" cy="32" r="2.5" fill={accent} opacity="0.15" />
+      <path d="M30 40v14" stroke={accent} strokeWidth="1" opacity="0.25" fill="none" />
+      <path d="M26 44c2 2 4 4 6 6" stroke={accent} strokeWidth="0.6" opacity="0.15" fill="none" strokeLinecap="round" />
+      <path d="M34 44c-2 2-4 4-6 6" stroke={accent} strokeWidth="0.6" opacity="0.15" fill="none" strokeLinecap="round" />
+    </svg>
+  );
+}

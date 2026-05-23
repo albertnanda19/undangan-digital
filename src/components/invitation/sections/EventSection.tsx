@@ -27,7 +27,8 @@ export function EventSection({ tenant, themeConfig }: Props) {
   const content = getReligionContent(tenant.religion);
   const timeZone = tenant.timeZone || "WIB";
   const isIslam = tenant.religion === "islam";
-  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu";
+  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu" || themeConfig.ornamentStyle === "jawa-hijau";
+  const isJawaHijau = themeConfig.ornamentStyle === "jawa-hijau";
 
   const handleSaveCalendar = (eventType: "akad" | "reception") => {
     const isAkad = eventType === "akad";
@@ -52,7 +53,7 @@ export function EventSection({ tenant, themeConfig }: Props) {
       <div className="max-w-4xl mx-auto relative z-10">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center mb-14">
           <p className="font-script text-2xl mb-2" style={{ color: themeConfig.primaryColor }}>
-            {isJawa ? "Panggih" : isIslam ? "Mohon Doa Restu" : "Save The Date"}
+            {isJawaHijau ? "Mohon Doa Restu" : isJawa ? "Panggih" : isIslam ? "Mohon Doa Restu" : "Save The Date"}
           </p>
           <h2 className="section-title font-display" style={{ color: themeConfig.textColor }}>Jadwal Acara</h2>
         </motion.div>

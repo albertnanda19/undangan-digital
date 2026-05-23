@@ -16,15 +16,20 @@ interface Props {
 
 export function FooterSection({ groomNickname, brideNickname, akadDate, closingMessage, slug, themeConfig }: Props) {
   const invitationUrl = typeof window !== "undefined" ? `${window.location.origin}/${slug}` : "";
-  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu";
+  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu" || themeConfig.ornamentStyle === "jawa-hijau";
+  const isJawaHijau = themeConfig.ornamentStyle === "jawa-hijau";
 
   const handleShare = async () => {
-    const shareTitle = isJawa
-      ? `Undangan Panggih ${groomNickname} & ${brideNickname}`
-      : `Undangan Pernikahan ${groomNickname} & ${brideNickname}`;
-    const shareText = isJawa
-      ? `Kawula ngaturi uninga bilih putra-putri kula badhe ngelampahi panggih. Mugi kersa rawuh.`
-      : `Kami mengundang Anda ke pernikahan ${groomNickname} & ${brideNickname}`;
+    const shareTitle = isJawaHijau
+      ? `Undangan Pernikahan ${groomNickname} & ${brideNickname}`
+      : isJawa
+        ? `Undangan Panggih ${groomNickname} & ${brideNickname}`
+        : `Undangan Pernikahan ${groomNickname} & ${brideNickname}`;
+    const shareText = isJawaHijau
+      ? `Kami mengundang Anda ke pernikahan ${groomNickname} & ${brideNickname}`
+      : isJawa
+        ? `Kawula ngaturi uninga bilih putra-putri kula badhe ngelampahi panggih. Mugi kersa rawuh.`
+        : `Kami mengundang Anda ke pernikahan ${groomNickname} & ${brideNickname}`;
     const shareData = {
       title: shareTitle,
       text: shareText,
@@ -54,7 +59,9 @@ export function FooterSection({ groomNickname, brideNickname, akadDate, closingM
           </p>
         )}
 
-        {isJawa ? (
+        {isJawaHijau ? (
+          <p className="text-sm opacity-60 mb-2" style={{ color: themeConfig.textColor }}>Wassalamu&apos;alaikum Wr. Wb.</p>
+        ) : isJawa ? (
           <>
             <div className="mb-4 flex justify-center">
               <AksaraJawaOrnament accent={themeConfig.accentColor} />
@@ -84,11 +91,11 @@ export function FooterSection({ groomNickname, brideNickname, akadDate, closingM
           className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
           style={{ backgroundColor: themeConfig.primaryColor }}
         >
-          <Share2 className="h-4 w-4" /> {isJawa ? "Tebar Undangan" : "Bagikan Undangan"}
+          <Share2 className="h-4 w-4" /> {isJawaHijau ? "Bagikan Undangan" : isJawa ? "Tebar Undangan" : "Bagikan Undangan"}
         </button>
 
         <p className="mt-12 text-xs opacity-40" style={{ color: themeConfig.textColor }}>
-          {isJawa ? "Dipundamel — Undangan Digital" : "Dibuat dengan ❤️ Undangan Digital"}
+          {isJawaHijau ? "Dibuat dengan ❤️ Undangan Digital" : isJawa ? "Dipundamel — Undangan Digital" : "Dibuat dengan ❤️ Undangan Digital"}
         </p>
       </motion.div>
     </section>

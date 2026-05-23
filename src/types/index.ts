@@ -11,7 +11,7 @@ export type ThemeConfig = {
   fontHeading: string;
   fontBody: string;
   fontScript: string;
-  ornamentStyle: "floral" | "geometric" | "minimal" | "batik" | "celestial" | "minang" | "jawa" | "jawa-madu";
+  ornamentStyle: "floral" | "geometric" | "minimal" | "batik" | "celestial" | "minang" | "jawa" | "jawa-madu" | "jawa-hijau";
 };
 
 export type BankAccount = {
@@ -44,6 +44,8 @@ export type Tenant = {
   brideBirthOrder?: string;
   groomPhotoUrl?: string;
   bridePhotoUrl?: string;
+  groomInstagram?: string;
+  brideInstagram?: string;
   akadDate: string;
   akadTimeStart: string;
   akadTimeEnd: string;
@@ -199,6 +201,8 @@ export type ClientFormData = {
   religion: Religion;
   groomBirthOrder?: string;
   brideBirthOrder?: string;
+  groomInstagram?: string;
+  brideInstagram?: string;
   slug: string;
   akadDate: string;
   akadTimeStart: string;

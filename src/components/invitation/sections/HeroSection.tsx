@@ -17,6 +17,8 @@ import {
   BatikSidomukti,
   BatikKawung,
   SoganBorder,
+  SideGunungan,
+  DoveIcon,
   WayangSilhouette,
   JawaCornerFlourish,
 } from "@/components/invitation/JawaOrnaments";
@@ -27,8 +29,9 @@ type Props = { tenant: Tenant; themeConfig: ThemeConfig; guestName?: string };
 
 export function HeroSection({ tenant, themeConfig, guestName }: Props) {
   const isMinang = themeConfig.ornamentStyle === "minang";
-  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu";
+  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu" || themeConfig.ornamentStyle === "jawa-hijau";
   const isJawaMadu = themeConfig.ornamentStyle === "jawa-madu";
+  const isJawaHijau = themeConfig.ornamentStyle === "jawa-hijau";
   const isIslam = tenant.religion === "islam";
   const brideFirst = isBrideFirst(tenant.slug);
   const guestSalutationBelowDate = isGuestSalutationBelowDate(tenant.slug);
@@ -77,6 +80,28 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
             style={{
               backgroundImage:
                 "repeating-linear-gradient(45deg, #fff 0 2px, transparent 2px 14px), repeating-linear-gradient(-45deg, #fff 0 2px, transparent 2px 14px)",
+            }}
+          />
+        </>
+      ) : isJawaHijau ? (
+        <>
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(170deg, #1B5E20 0%, #2E7D32 35%, #388E3C 65%, #1B5E20 100%)`,
+            }}
+          />
+          <div
+            className="absolute inset-0 opacity-30"
+            style={{
+              background: `radial-gradient(ellipse at 50% 20%, ${themeConfig.accentColor}44 0%, transparent 50%)`,
+            }}
+          />
+          <div
+            className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 6l24 24-24 24L6 30 30 6Z' stroke='%23${themeConfig.accentColor.replace("#", "")}' stroke-width='0.4' opacity='0.1' fill='none'/%3E%3C/svg%3E")`,
+              backgroundSize: "60px 60px",
             }}
           />
         </>
@@ -250,6 +275,69 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
             style={{ color: "#FFFFFF" }}
           >
             <MarawaFlags side="right" accent={themeConfig.accentColor} />
+          </motion.div>
+        </>
+      )}
+
+      {/* Jawa Hijau ornaments — green fresh style */}
+      {isJawaHijau && (
+        <>
+          {/* SideGunungan di kiri */}
+          <motion.div
+            className="absolute top-0 left-0 h-full w-20 md:w-28 z-10 opacity-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.2 }}
+            transition={{ duration: 1.4, ease: "easeOut" }}
+          >
+            <SideGunungan color="#1B5E20" accent={themeConfig.accentColor} className="h-full w-full" />
+          </motion.div>
+
+          {/* Aksara Jawa Ornament */}
+          <motion.div
+            className="absolute top-10 left-1/2 -translate-x-1/2 w-20 md:w-24 z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.3 }}
+            transition={{ duration: 1.6, delay: 0.2 }}
+          >
+            <AksaraJawaOrnament accent={themeConfig.accentColor} />
+          </motion.div>
+
+          {/* LungLungan divider */}
+          <motion.div
+            className="absolute top-16 left-1/2 -translate-x-1/2 w-[60%] max-w-xs z-10"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 0.25, scaleX: 1 }}
+            transition={{ duration: 1.4, delay: 0.3 }}
+          >
+            <LungLungan accent={themeConfig.accentColor} />
+          </motion.div>
+
+          {/* Corner Flourishes */}
+          <motion.div
+            className="absolute top-4 left-4 w-6 md:w-8 z-10"
+            initial={{ opacity: 0, x: -8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <JawaCornerFlourish accent={themeConfig.accentColor} />
+          </motion.div>
+          <motion.div
+            className="absolute top-4 right-4 w-6 md:w-8 -scale-x-100 z-10"
+            initial={{ opacity: 0, x: 8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <JawaCornerFlourish accent={themeConfig.accentColor} />
+          </motion.div>
+
+          {/* Dove */}
+          <motion.div
+            className="absolute bottom-16 right-6 w-8 md:w-10 z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.25 }}
+            transition={{ duration: 2, delay: 0.8 }}
+          >
+            <DoveIcon accent={themeConfig.accentColor} />
           </motion.div>
         </>
       )}
@@ -445,7 +533,7 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
         <motion.div initial={{ opacity: 0, scaleX: 0 }} animate={{ opacity: 1, scaleX: 1 }} transition={{ duration: 1, delay: 0.6 }} className="flex items-center justify-center gap-4 mb-4">
           <div className="h-px w-16 bg-white/60" />
           <span className="text-white/70 text-sm tracking-widest uppercase">
-            {isMinang ? "Baralek Gadang" : isJawa ? "Undangan Ngunduh Mantu" : isIslam ? "Undangan Pernikahan" : "Wedding"}
+            {isMinang ? "Baralek Gadang" : isJawaHijau ? "Pernikahan" : isJawa ? "Undangan Ngunduh Mantu" : isIslam ? "Undangan Pernikahan" : "Wedding"}
           </span>
           <div className="h-px w-16 bg-white/60" />
         </motion.div>
@@ -488,7 +576,7 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
                 ? formatDate(tenant.receptionDate).replace(/^Minggu\b/, "Ahad")
                 : formatDate(tenant.receptionDate, "d MMMM yyyy")}
             </p>
-            {isJawa && (
+            {isJawa && !isJawaHijau && (
               <p className="font-script text-xs text-white/50 mt-1 tracking-widest uppercase">Langgenging Rohmah</p>
             )}
           </div>

@@ -45,7 +45,7 @@ export function OpeningCover({
       <OpeningCoverDecorations
         themeConfig={themeConfig}
         hasCoverPhoto={Boolean(coverPhotoUrl)}
-        isIslamic={themeConfig.ornamentStyle !== "jawa" && themeConfig.ornamentStyle !== "jawa-madu" && themeConfig.ornamentStyle !== "minang"}
+        isIslamic={themeConfig.ornamentStyle !== "jawa" && themeConfig.ornamentStyle !== "jawa-madu" && themeConfig.ornamentStyle !== "jawa-hijau" && themeConfig.ornamentStyle !== "minang"}
       />
 
       {/* Content */}

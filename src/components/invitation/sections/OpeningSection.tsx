@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { getReligionContent } from "@/lib/religionContent";
+import { DoveIcon } from "@/components/invitation/JawaOrnaments";
 import type { Religion, ThemeConfig } from "@/types";
 
 interface Props {
@@ -16,6 +17,7 @@ export function OpeningSection({ religion, groomName, brideName, brideFirst, the
   const firstName = brideFirst ? brideName : groomName;
   const secondName = brideFirst ? groomName : brideName;
   const content = getReligionContent(religion);
+  const isJawaHijau = themeConfig.ornamentStyle === "jawa-hijau";
   return (
     <section id="opening" className="invitation-section relative overflow-hidden" style={{ backgroundColor: themeConfig.backgroundColor }}>
       <div className="absolute top-8 left-1/2 -translate-x-1/2 opacity-10 text-8xl pointer-events-none select-none">
@@ -44,6 +46,20 @@ export function OpeningSection({ religion, groomName, brideName, brideFirst, the
           >
             {content.openingVerse.arabicText}
           </motion.p>
+        )}
+
+        {isJawaHijau && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="flex justify-center mb-4"
+          >
+            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center" style={{ backgroundColor: `${themeConfig.primaryColor}12` }}>
+              <DoveIcon accent={themeConfig.accentColor} />
+            </div>
+          </motion.div>
         )}
 
         {content.openingVerse.verseText && (

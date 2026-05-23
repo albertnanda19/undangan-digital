@@ -17,6 +17,8 @@ import {
   BatikTruntum,
   BatikKawung,
   SoganBorder,
+  SideGunungan,
+  DoveIcon,
   JawaCornerFlourish,
   WayangSilhouette,
 } from "@/components/invitation/JawaOrnaments";
@@ -320,6 +322,87 @@ export function OpeningCoverDecorations({ themeConfig, hasCoverPhoto, isIslamic 
           style={{ color: "#2B1407" }}
         >
           <RumahGadangRoof color="#2B1407" accent={accent} className="h-full w-full" />
+        </motion.div>
+      </div>
+    );
+  }
+
+  if (ornamentStyle === "jawa-hijau") {
+    return (
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ opacity: layerOpacity }}>
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle at 50% 20%, ${accent}18 0%, transparent 40%),
+              radial-gradient(circle at 50% 80%, ${primary}22 0%, transparent 50%),
+              linear-gradient(180deg, ${primary}30 0%, ${primary}10 50%, ${primary}30 100%)
+            `,
+          }}
+        />
+
+        <div
+          className="absolute inset-0 opacity-[0.06] mix-blend-overlay"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 6l24 24-24 24L6 30 30 6Z' stroke='%23${accent.replace("#", "")}' stroke-width='0.4' opacity='0.1' fill='none'/%3E%3C/svg%3E")`,
+            backgroundSize: "60px 60px",
+          }}
+        />
+
+        {/* SideGunungan di kiri */}
+        <motion.div
+          className="absolute top-0 left-0 h-full w-20 md:w-28 opacity-25"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.25 }}
+          transition={{ duration: 1.4, ease: "easeOut" }}
+        >
+          <SideGunungan color={primary} accent={accent} className="h-full w-full" />
+        </motion.div>
+
+        {/* Aksara Jawa Ornament */}
+        <motion.div
+          className="absolute top-8 left-1/2 -translate-x-1/2 w-20 md:w-24"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.35 }}
+          transition={{ duration: 1.6, delay: 0.2 }}
+        >
+          <AksaraJawaOrnament accent={accent} />
+        </motion.div>
+
+        {/* LungLungan divider */}
+        <motion.div
+          className="absolute top-14 left-1/2 -translate-x-1/2 w-[60%] max-w-xs"
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 0.3, scaleX: 1 }}
+          transition={{ duration: 1.4, delay: 0.3 }}
+        >
+          <LungLungan accent={accent} />
+        </motion.div>
+
+        {/* Corner Flourishes */}
+        <motion.div
+          className="absolute top-4 left-4 w-8 md:w-10"
+          animate={{ y: [0, -2, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <JawaCornerFlourish accent={accent} />
+        </motion.div>
+        <motion.div
+          className="absolute top-4 right-4 w-8 md:w-10 -scale-x-100"
+          animate={{ y: [0, -2, 0] }}
+          transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+        >
+          <JawaCornerFlourish accent={accent} />
+        </motion.div>
+
+        {/* Dove icon */}
+        <motion.div
+          className="absolute bottom-20 left-1/2 -translate-x-1/2 w-10 md:w-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.3 }}
+          transition={{ duration: 2, delay: 0.6 }}
+        >
+          <DoveIcon accent={accent} />
         </motion.div>
       </div>
     );

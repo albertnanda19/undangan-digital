@@ -13,7 +13,8 @@ export function AmplopSection({ tenant, themeConfig }: Props) {
   const showAmplop = tenant.showAmplopDigital && tenant.bankAccounts?.length > 0;
   const showQris = tenant.showQris && tenant.qrisImageUrl;
   const showGift = tenant.showGiftAddress && tenant.giftAddress;
-  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu";
+  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu" || themeConfig.ornamentStyle === "jawa-hijau";
+  const isJawaHijau = themeConfig.ornamentStyle === "jawa-hijau";
   if (!showAmplop && !showQris && !showGift) return null;
 
   return (
@@ -21,10 +22,10 @@ export function AmplopSection({ tenant, themeConfig }: Props) {
       <div className="max-w-3xl mx-auto relative z-10">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center mb-12">
           <p className="font-script text-2xl mb-2" style={{ color: themeConfig.primaryColor }}>
-            {isJawa ? "Sakderengipun" : "dengan segala kerendahan hati"}
+            {isJawaHijau ? "dengan segala kerendahan hati" : isJawa ? "Sakderengipun" : "dengan segala kerendahan hati"}
           </p>
           <h2 className="section-title font-display" style={{ color: themeConfig.textColor }}>
-            {isJawa ? "Seserahan" : "Hadiah & Doa"}
+            {isJawaHijau ? "Hadiah & Doa" : isJawa ? "Seserahan" : "Hadiah & Doa"}
           </h2>
         </motion.div>
 

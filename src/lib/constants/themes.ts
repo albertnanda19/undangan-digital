@@ -127,4 +127,22 @@ export const DEFAULT_THEMES: Theme[] = [
       ornamentStyle: "jawa-madu",
     },
   },
+  {
+    id: "jawa-hijau",
+    name: "Jawa Hijau",
+    thumbnailUrl: "/images/themes/jawa-hijau-thumb.jpg",
+    isPremium: true,
+    isActive: true,
+    config: {
+      primaryColor: "#1B5E20",
+      secondaryColor: "#F5F0E8",
+      accentColor: "#D4A843",
+      backgroundColor: "#FFFAF5",
+      textColor: "#1A1A1A",
+      fontHeading: "Cormorant Garamond",
+      fontBody: "Lato",
+      fontScript: "Great Vibes",
+      ornamentStyle: "jawa-hijau",
+    },
+  },
 ];
