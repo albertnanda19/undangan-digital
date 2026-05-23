@@ -15,6 +15,8 @@ import {
   LungLungan,
   PendopoArch,
   BatikSidomukti,
+  BatikKawung,
+  SoganBorder,
   WayangSilhouette,
   JawaCornerFlourish,
 } from "@/components/invitation/JawaOrnaments";
@@ -25,7 +27,8 @@ type Props = { tenant: Tenant; themeConfig: ThemeConfig; guestName?: string };
 
 export function HeroSection({ tenant, themeConfig, guestName }: Props) {
   const isMinang = themeConfig.ornamentStyle === "minang";
-  const isJawa = themeConfig.ornamentStyle === "jawa";
+  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu";
+  const isJawaMadu = themeConfig.ornamentStyle === "jawa-madu";
   const isIslam = tenant.religion === "islam";
   const brideFirst = isBrideFirst(tenant.slug);
   const guestSalutationBelowDate = isGuestSalutationBelowDate(tenant.slug);
@@ -74,6 +77,28 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
             style={{
               backgroundImage:
                 "repeating-linear-gradient(45deg, #fff 0 2px, transparent 2px 14px), repeating-linear-gradient(-45deg, #fff 0 2px, transparent 2px 14px)",
+            }}
+          />
+        </>
+      ) : isJawaMadu ? (
+        <>
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(170deg, #A67C52 0%, #C49A6C 30%, #D4B896 60%, #E8D5BC 100%)`,
+            }}
+          />
+          <div
+            className="absolute inset-0 opacity-25"
+            style={{
+              background: `radial-gradient(ellipse at 50% 20%, ${themeConfig.accentColor}44 0%, transparent 50%)`,
+            }}
+          />
+          <div
+            className="absolute inset-0 opacity-[0.06] mix-blend-overlay"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='18' stroke='%23${themeConfig.accentColor.replace("#", "")}' stroke-width='0.5' opacity='0.12' fill='none'/%3E%3Ccircle cx='70' cy='30' r='18' stroke='%23${themeConfig.accentColor.replace("#", "")}' stroke-width='0.5' opacity='0.12' fill='none'/%3E%3Ccircle cx='50' cy='55' r='18' stroke='%23${themeConfig.accentColor.replace("#", "")}' stroke-width='0.5' opacity='0.12' fill='none'/%3E%3Ccircle cx='30' cy='80' r='18' stroke='%23${themeConfig.accentColor.replace("#", "")}' stroke-width='0.5' opacity='0.12' fill='none'/%3E%3Ccircle cx='70' cy='80' r='18' stroke='%23${themeConfig.accentColor.replace("#", "")}' stroke-width='0.5' opacity='0.12' fill='none'/%3E%3C/svg%3E")`,
+              backgroundSize: "100px 100px",
             }}
           />
         </>
@@ -229,10 +254,71 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
         </>
       )}
 
-      {/* Jawa ornaments — only on jawa theme */}
-      {isJawa && (
+      {/* Jawa Madu ornaments — warm framed style */}
+      {isJawaMadu && (
         <>
-          {/* Pendopo Arch di hero */}
+          {/* SoganBorder frame */}
+          <motion.div
+            className="absolute inset-4 md:inset-6 z-10 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.4, ease: "easeOut" }}
+          >
+            <SoganBorder color="#A67C52" accent={themeConfig.accentColor} className="w-full h-full" />
+          </motion.div>
+
+          {/* LungLungan divider top */}
+          <motion.div
+            className="absolute top-12 left-1/2 -translate-x-1/2 w-[60%] max-w-xs z-10"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 0.3, scaleX: 1 }}
+            transition={{ duration: 1.4, delay: 0.2 }}
+          >
+            <LungLungan accent={themeConfig.accentColor} />
+          </motion.div>
+
+          {/* Aksara Jawa Ornament */}
+          <motion.div
+            className="absolute top-20 left-1/2 -translate-x-1/2 w-20 md:w-24 z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.3 }}
+            transition={{ duration: 1.6, delay: 0.3 }}
+          >
+            <AksaraJawaOrnament accent={themeConfig.accentColor} />
+          </motion.div>
+
+          {/* Corner Flourishes */}
+          <motion.div
+            className="absolute top-6 left-6 w-6 md:w-8 z-10"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <JawaCornerFlourish accent={themeConfig.accentColor} />
+          </motion.div>
+          <motion.div
+            className="absolute top-6 right-6 w-6 md:w-8 -scale-x-100 z-10"
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <JawaCornerFlourish accent={themeConfig.accentColor} />
+          </motion.div>
+
+          {/* Kembar Mayang smaller */}
+          <div className="absolute top-6 left-10 md:left-14 h-[60%] w-6 md:w-8 z-10 flex items-start">
+            <KembarMayang side="left" accent={themeConfig.accentColor} />
+          </div>
+          <div className="absolute top-6 right-10 md:right-14 h-[60%] w-6 md:w-8 z-10 flex items-start">
+            <KembarMayang side="right" accent={themeConfig.accentColor} />
+          </div>
+        </>
+      )}
+
+      {/* Jawa v1 ornaments — dark dramatic style */}
+      {isJawa && !isJawaMadu && (
+        <>
+          {/* Pendopo Arch */}
           <motion.div
             className="absolute top-0 left-0 right-0 h-32 md:h-40 z-10 opacity-30"
             initial={{ opacity: 0 }}
@@ -443,8 +529,8 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
         </motion.div>
       )}
 
-      {/* Candi silhouette at the bottom of the hero for Jawa theme */}
-      {isJawa && (
+      {/* Candi silhouette at the bottom of the hero for Jawa v1 theme */}
+      {isJawa && !isJawaMadu && (
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

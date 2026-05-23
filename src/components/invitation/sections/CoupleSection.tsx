@@ -98,7 +98,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
   const useAutoLottie = tenant.lottieAutoSelect !== false;
   const useLottie = useAutoLottie || !!tenant.lottieAnimationUrl;
   const isMinangTheme = themeConfig.ornamentStyle === "minang";
-  const isJawa = themeConfig.ornamentStyle === "jawa";
+  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu";
   const isIslam = tenant.religion === "islam";
   const content = getReligionContent(tenant.religion);
   const brideFirst = isBrideFirst(tenant.slug);

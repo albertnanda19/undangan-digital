@@ -16,7 +16,7 @@ interface Props {
 
 export function FooterSection({ groomNickname, brideNickname, akadDate, closingMessage, slug, themeConfig }: Props) {
   const invitationUrl = typeof window !== "undefined" ? `${window.location.origin}/${slug}` : "";
-  const isJawa = themeConfig.ornamentStyle === "jawa";
+  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu";
 
   const handleShare = async () => {
     const shareTitle = isJawa

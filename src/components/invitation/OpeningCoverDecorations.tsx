@@ -15,6 +15,8 @@ import {
   PendopoArch,
   BatikSidomukti,
   BatikTruntum,
+  BatikKawung,
+  SoganBorder,
   JawaCornerFlourish,
   WayangSilhouette,
 } from "@/components/invitation/JawaOrnaments";
@@ -319,6 +321,94 @@ export function OpeningCoverDecorations({ themeConfig, hasCoverPhoto, isIslamic 
         >
           <RumahGadangRoof color="#2B1407" accent={accent} className="h-full w-full" />
         </motion.div>
+      </div>
+    );
+  }
+
+  if (ornamentStyle === "jawa-madu") {
+    return (
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ opacity: layerOpacity }}>
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle at 50% 20%, ${accent}18 0%, transparent 45%),
+              radial-gradient(circle at 50% 80%, ${primary}18 0%, transparent 50%),
+              linear-gradient(180deg, ${primary}15 0%, transparent 50%, ${primary}15 100%)
+            `,
+          }}
+        />
+
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='18' stroke='%23${accent.replace("#", "")}' stroke-width='0.6' opacity='0.1' fill='none'/%3E%3Ccircle cx='30' cy='30' r='10' stroke='%23${accent.replace("#", "")}' stroke-width='0.4' opacity='0.08' fill='none'/%3E%3Ccircle cx='70' cy='30' r='18' stroke='%23${accent.replace("#", "")}' stroke-width='0.6' opacity='0.1' fill='none'/%3E%3Ccircle cx='70' cy='30' r='10' stroke='%23${accent.replace("#", "")}' stroke-width='0.4' opacity='0.08' fill='none'/%3E%3Ccircle cx='50' cy='55' r='18' stroke='%23${accent.replace("#", "")}' stroke-width='0.6' opacity='0.1' fill='none'/%3E%3Ccircle cx='50' cy='55' r='10' stroke='%23${accent.replace("#", "")}' stroke-width='0.4' opacity='0.08' fill='none'/%3E%3C/svg%3E")`,
+            backgroundSize: "100px 100px",
+          }}
+        />
+
+        {/* SoganBorder frame */}
+        <motion.div
+          className="absolute inset-3 md:inset-5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.4, ease: "easeOut" }}
+        >
+          <SoganBorder color={primary} accent={accent} className="w-full h-full" />
+        </motion.div>
+
+        {/* Aksara Jawa Ornament */}
+        <motion.div
+          className="absolute top-10 left-1/2 -translate-x-1/2 w-20 md:w-24"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.4 }}
+          transition={{ duration: 1.6, delay: 0.2 }}
+        >
+          <AksaraJawaOrnament accent={accent} />
+        </motion.div>
+
+        {/* Lung Lungan dividers */}
+        <motion.div
+          className="absolute top-16 left-1/2 -translate-x-1/2 w-[70%] max-w-xs"
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 0.35, scaleX: 1 }}
+          transition={{ duration: 1.4, delay: 0.3 }}
+        >
+          <LungLungan accent={accent} />
+        </motion.div>
+
+        {/* Corner Flourishes */}
+        <motion.div
+          className="absolute top-4 left-4 w-8 md:w-10"
+          animate={{ y: [0, -2, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <JawaCornerFlourish accent={accent} />
+        </motion.div>
+        <motion.div
+          className="absolute top-4 right-4 w-8 md:w-10 -scale-x-100"
+          animate={{ y: [0, -2, 0] }}
+          transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+        >
+          <JawaCornerFlourish accent={accent} />
+        </motion.div>
+
+        {/* Kembar Mayang smaller */}
+        <div className="absolute top-8 left-8 md:left-10 h-3/5 w-6 md:w-8 flex items-start">
+          <KembarMayang side="left" accent={accent} />
+        </div>
+        <div className="absolute top-8 right-8 md:right-10 h-3/5 w-6 md:w-8 flex items-start">
+          <KembarMayang side="right" accent={accent} />
+        </div>
+
+        {/* Batik Kawung subtle bottom overlay */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-24 opacity-[0.05]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='18' stroke='%23${accent.replace("#", "")}' stroke-width='0.6' opacity='0.12' fill='none'/%3E%3Ccircle cx='30' cy='30' r='10' stroke='%23${accent.replace("#", "")}' stroke-width='0.4' opacity='0.08' fill='none'/%3E%3Ccircle cx='70' cy='30' r='18' stroke='%23${accent.replace("#", "")}' stroke-width='0.6' opacity='0.12' fill='none'/%3E%3Ccircle cx='70' cy='30' r='10' stroke='%23${accent.replace("#", "")}' stroke-width='0.4' opacity='0.08' fill='none'/%3E%3C/svg%3E")`,
+            backgroundSize: "100px 100px",
+          }}
+        />
       </div>
     );
   }

@@ -27,7 +27,7 @@ export function EventSection({ tenant, themeConfig }: Props) {
   const content = getReligionContent(tenant.religion);
   const timeZone = tenant.timeZone || "WIB";
   const isIslam = tenant.religion === "islam";
-  const isJawa = themeConfig.ornamentStyle === "jawa";
+  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu";
 
   const handleSaveCalendar = (eventType: "akad" | "reception") => {
     const isAkad = eventType === "akad";

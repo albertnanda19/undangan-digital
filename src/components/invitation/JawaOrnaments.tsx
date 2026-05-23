@@ -190,6 +190,31 @@ export function BatikTruntum({ color = "#C9A96E", className }: ColorProps) {
 }
 
 // ================================================================
+// BATIK KAWUNG — Javanese Kawung motif (unity circles)
+// ================================================================
+export function BatikKawung({ color = "#A67C52", className }: ColorProps) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" className={className} aria-hidden="true">
+      <circle cx="30" cy="30" r="18" stroke={color} strokeWidth="0.8" opacity="0.25" fill="none" />
+      <circle cx="30" cy="30" r="10" stroke={color} strokeWidth="0.6" opacity="0.18" fill="none" />
+      <circle cx="30" cy="30" r="4" fill={color} opacity="0.15" />
+      <circle cx="70" cy="30" r="18" stroke={color} strokeWidth="0.8" opacity="0.25" fill="none" />
+      <circle cx="70" cy="30" r="10" stroke={color} strokeWidth="0.6" opacity="0.18" fill="none" />
+      <circle cx="70" cy="30" r="4" fill={color} opacity="0.15" />
+      <circle cx="50" cy="55" r="18" stroke={color} strokeWidth="0.8" opacity="0.25" fill="none" />
+      <circle cx="50" cy="55" r="10" stroke={color} strokeWidth="0.6" opacity="0.18" fill="none" />
+      <circle cx="50" cy="55" r="4" fill={color} opacity="0.15" />
+      <circle cx="30" cy="80" r="18" stroke={color} strokeWidth="0.8" opacity="0.25" fill="none" />
+      <circle cx="30" cy="80" r="10" stroke={color} strokeWidth="0.6" opacity="0.18" fill="none" />
+      <circle cx="30" cy="80" r="4" fill={color} opacity="0.15" />
+      <circle cx="70" cy="80" r="18" stroke={color} strokeWidth="0.8" opacity="0.25" fill="none" />
+      <circle cx="70" cy="80" r="10" stroke={color} strokeWidth="0.6" opacity="0.18" fill="none" />
+      <circle cx="70" cy="80" r="4" fill={color} opacity="0.15" />
+    </svg>
+  );
+}
+
+// ================================================================
 // SOGAN BORDER — Classic Javanese sogan batik border frame
 // ================================================================
 export function SoganBorder({ color = "#5C3A21", accent = "#C9A96E", className }: ColorProps) {

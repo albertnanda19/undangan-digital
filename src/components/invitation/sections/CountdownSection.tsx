@@ -13,7 +13,7 @@ interface Props {
 export function CountdownSection({ akadDate, receptionDate, themeConfig }: Props) {
   const targetDate = new Date(akadDate) > new Date() ? akadDate : receptionDate;
   const { days, hours, minutes, seconds, isExpired } = useCountdown(targetDate);
-  const isJawa = themeConfig.ornamentStyle === "jawa";
+  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu";
 
   const TimeBox = ({ value, label }: { value: number; label: string }) => (
     <div className="flex flex-col items-center">

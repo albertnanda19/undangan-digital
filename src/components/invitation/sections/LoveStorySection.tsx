@@ -8,7 +8,7 @@ interface Props {
 }
 
 export function LoveStorySection({ loveStory, themeConfig }: Props) {
-  const isJawa = themeConfig.ornamentStyle === "jawa";
+  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu";
   return (
     <section id="love-story" className="invitation-section" style={{ backgroundColor: themeConfig.secondaryColor }}>
       <motion.div

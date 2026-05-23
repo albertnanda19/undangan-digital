@@ -109,4 +109,22 @@ export const DEFAULT_THEMES: Theme[] = [
       ornamentStyle: "jawa",
     },
   },
+  {
+    id: "jawa-madu",
+    name: "Jawa Madu",
+    thumbnailUrl: "/images/themes/jawa-madu-thumb.jpg",
+    isPremium: true,
+    isActive: true,
+    config: {
+      primaryColor: "#A67C52",
+      secondaryColor: "#F5E6D3",
+      accentColor: "#D4A843",
+      backgroundColor: "#FFFAF0",
+      textColor: "#3D2B1F",
+      fontHeading: "Cormorant Garamond",
+      fontBody: "Lato",
+      fontScript: "Great Vibes",
+      ornamentStyle: "jawa-madu",
+    },
+  },
 ];

@@ -13,7 +13,7 @@ export function AmplopSection({ tenant, themeConfig }: Props) {
   const showAmplop = tenant.showAmplopDigital && tenant.bankAccounts?.length > 0;
   const showQris = tenant.showQris && tenant.qrisImageUrl;
   const showGift = tenant.showGiftAddress && tenant.giftAddress;
-  const isJawa = themeConfig.ornamentStyle === "jawa";
+  const isJawa = themeConfig.ornamentStyle === "jawa" || themeConfig.ornamentStyle === "jawa-madu";
   if (!showAmplop && !showQris && !showGift) return null;
 
   return (
