@@ -6,6 +6,13 @@ import {
   MinangCornerFlourish,
   RumahGadangRoof,
 } from "@/components/invitation/MinangOrnaments";
+import {
+  Gunungan,
+  CandiSilhouette,
+  BatikKawungPattern,
+  JawaCornerFlourish,
+  WayangSilhouette,
+} from "@/components/invitation/JawaOrnaments";
 
 type OpeningThemeConfig = {
   primaryColor?: string;
@@ -306,6 +313,115 @@ export function OpeningCoverDecorations({ themeConfig, hasCoverPhoto, isIslamic 
           style={{ color: "#2B1407" }}
         >
           <RumahGadangRoof color="#2B1407" accent={accent} className="h-full w-full" />
+        </motion.div>
+      </div>
+    );
+  }
+
+  if (ornamentStyle === "jawa") {
+    return (
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ opacity: layerOpacity }}>
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle at 50% 15%, ${accent}22 0%, transparent 45%),
+              radial-gradient(circle at 50% 85%, ${primary}1A 0%, transparent 50%),
+              linear-gradient(180deg, transparent 0%, ${primary}15 100%)
+            `,
+          }}
+        />
+
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='18' stroke='%23${accent.replace("#", "")}' stroke-width='0.8' opacity='0.25' fill='none'/%3E%3C/svg%3E")`,
+            backgroundSize: "60px 60px",
+          }}
+        />
+
+        <motion.div
+          className="absolute top-8 left-1/2 -translate-x-1/2 w-28 md:w-36 opacity-55"
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 0.55, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
+          <Gunungan color={primary} accent={accent} />
+        </motion.div>
+
+        <motion.div
+          className="absolute top-3 left-3 w-12 md:w-16"
+          animate={{ y: [0, -3, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <JawaCornerFlourish accent={accent} />
+        </motion.div>
+        <motion.div
+          className="absolute top-3 right-3 w-12 md:w-16 -scale-x-100"
+          animate={{ y: [0, -3, 0] }}
+          transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+        >
+          <JawaCornerFlourish accent={accent} />
+        </motion.div>
+        <motion.div
+          className="absolute bottom-16 left-3 w-12 md:w-16 rotate-180"
+          animate={{ y: [0, 3, 0] }}
+          transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
+        >
+          <JawaCornerFlourish accent={accent} />
+        </motion.div>
+        <motion.div
+          className="absolute bottom-16 right-3 w-12 md:w-16 -scale-x-100 rotate-180"
+          animate={{ y: [0, 3, 0] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <JawaCornerFlourish accent={accent} />
+        </motion.div>
+
+        <motion.div
+          className="absolute top-2 left-10 w-12 md:w-16 opacity-45"
+          animate={{ x: [0, 4, 0], opacity: [0.3, 0.55, 0.3] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <WayangSilhouette side="left" color={primary} />
+        </motion.div>
+        <motion.div
+          className="absolute top-2 right-10 w-12 md:w-16 opacity-45"
+          animate={{ x: [0, -4, 0], opacity: [0.3, 0.55, 0.3] }}
+          transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+        >
+          <WayangSilhouette side="right" color={primary} />
+        </motion.div>
+
+        {shimmerDots.map((dot, idx) => (
+          <motion.div
+            key={`jawa-dot-${idx}`}
+            className="absolute rounded-full"
+            style={{
+              left: dot.left,
+              top: dot.top,
+              width: dot.size,
+              height: dot.size,
+              backgroundColor: `${accent}B3`,
+              boxShadow: `0 0 12px ${accent}99`,
+            }}
+            animate={{ opacity: [0.1, 0.75, 0.1], scale: [0.8, 1.3, 0.8] }}
+            transition={{
+              duration: 3.5,
+              delay: dot.delay,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-16 md:h-24 opacity-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ duration: 1.4, ease: "easeOut" }}
+        >
+          <CandiSilhouette color={primary} accent={accent} className="h-full w-full" />
         </motion.div>
       </div>
     );

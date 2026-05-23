@@ -7,6 +7,7 @@ import { formatDate } from "@/lib/utils";
 import { LottieAnimation } from "@/components/invitation/LottieAnimation";
 import { HeroCoupleAnimation } from "@/components/invitation/HeroCoupleAnimation";
 import { MarawaFlags, RumahGadangRoof } from "@/components/invitation/MinangOrnaments";
+import { Gunungan, CandiSilhouette, WayangSilhouette, JawaCornerFlourish } from "@/components/invitation/JawaOrnaments";
 import type { Tenant, ThemeConfig } from "@/types";
 import { isBrideFirst, isGuestSalutationBelowDate } from "@/config/tenant-display";
 
@@ -14,12 +15,13 @@ type Props = { tenant: Tenant; themeConfig: ThemeConfig; guestName?: string };
 
 export function HeroSection({ tenant, themeConfig, guestName }: Props) {
   const isMinang = themeConfig.ornamentStyle === "minang";
+  const isJawa = themeConfig.ornamentStyle === "jawa";
   const isIslam = tenant.religion === "islam";
   const brideFirst = isBrideFirst(tenant.slug);
   const guestSalutationBelowDate = isGuestSalutationBelowDate(tenant.slug);
   const firstName = brideFirst ? tenant.brideNickname : tenant.groomNickname;
   const secondName = brideFirst ? tenant.groomNickname : tenant.brideNickname;
-  const showIslamicDecor = !tenant.coverPhotoUrl && !isMinang && isIslam;
+  const showIslamicDecor = !tenant.coverPhotoUrl && !isMinang && !isJawa && isIslam;
 
   const showLottieInHero =
     !isMinang &&
@@ -62,6 +64,29 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
             style={{
               backgroundImage:
                 "repeating-linear-gradient(45deg, #fff 0 2px, transparent 2px 14px), repeating-linear-gradient(-45deg, #fff 0 2px, transparent 2px 14px)",
+            }}
+          />
+        </>
+      ) : isJawa ? (
+        <>
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(160deg, ${themeConfig.primaryColor} 0%, #3D1C02 45%, ${themeConfig.primaryColor} 100%)`,
+            }}
+          />
+          <div
+            className="absolute inset-0 opacity-30"
+            style={{
+              background: `radial-gradient(ellipse at 50% 25%, ${themeConfig.accentColor}44 0%, transparent 50%)`,
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-[0.06] mix-blend-overlay"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(45deg, #fff 0 2px, transparent 2px 12px), repeating-linear-gradient(-45deg, #fff 0 2px, transparent 2px 12px)",
             }}
           />
         </>
@@ -195,6 +220,54 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
         </>
       )}
 
+      {/* Jawa ornaments — only on jawa theme */}
+      {isJawa && (
+        <>
+          <motion.div
+            className="absolute top-8 left-1/2 -translate-x-1/2 w-20 md:w-28 z-10 opacity-50"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 0.5, y: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+          >
+            <Gunungan color="#2B1407" accent={themeConfig.accentColor} />
+          </motion.div>
+
+          <motion.div
+            className="absolute top-4 left-3 w-10 md:w-14 z-10"
+            initial={{ opacity: 0, x: -16 }}
+            animate={{ opacity: 1, x: 0, y: [0, -3, 0] }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <JawaCornerFlourish accent={themeConfig.accentColor} />
+          </motion.div>
+          <motion.div
+            className="absolute top-4 right-3 w-10 md:w-14 -scale-x-100 z-10"
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0, y: [0, -3, 0] }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <JawaCornerFlourish accent={themeConfig.accentColor} />
+          </motion.div>
+
+          <motion.div
+            className="absolute top-14 left-6 w-8 md:w-10 z-10 opacity-35"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.35, x: [0, 3, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <WayangSilhouette side="left" color="#2B1407" />
+          </motion.div>
+          <motion.div
+            className="absolute top-14 right-6 w-8 md:w-10 z-10 opacity-35"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.35, x: [0, -3, 0] }}
+            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+          >
+            <WayangSilhouette side="right" color="#2B1407" />
+          </motion.div>
+        </>
+      )}
+
       <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
         {/* Glass panel behind text (Islamic, no cover) */}
         {showIslamicDecor && (
@@ -236,7 +309,7 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
         <motion.div initial={{ opacity: 0, scaleX: 0 }} animate={{ opacity: 1, scaleX: 1 }} transition={{ duration: 1, delay: 0.6 }} className="flex items-center justify-center gap-4 mb-4">
           <div className="h-px w-16 bg-white/60" />
           <span className="text-white/70 text-sm tracking-widest uppercase">
-            {isMinang ? "Baralek Gadang" : isIslam ? "Undangan Pernikahan" : "Wedding"}
+            {isMinang ? "Baralek Gadang" : isJawa ? "Undangan Ngunduh Mantu" : isIslam ? "Undangan Pernikahan" : "Wedding"}
           </span>
           <div className="h-px w-16 bg-white/60" />
         </motion.div>
@@ -279,6 +352,9 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
                 ? formatDate(tenant.receptionDate).replace(/^Minggu\b/, "Ahad")
                 : formatDate(tenant.receptionDate, "d MMMM yyyy")}
             </p>
+            {isJawa && (
+              <p className="font-script text-xs text-white/50 mt-1 tracking-widest uppercase">Langgenging Rohmah</p>
+            )}
           </div>
         </motion.div>
 
@@ -311,6 +387,23 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
         >
           <RumahGadangRoof
             color="#3B1F0E"
+            accent={themeConfig.accentColor}
+            className="h-full w-full"
+          />
+        </motion.div>
+      )}
+
+      {/* Candi silhouette at the bottom of the hero for Jawa theme */}
+      {isJawa && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.4, delay: 0.6 }}
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-20 md:h-28"
+        >
+          <CandiSilhouette
+            color="#2B1407"
             accent={themeConfig.accentColor}
             className="h-full w-full"
           />

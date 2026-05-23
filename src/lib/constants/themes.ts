@@ -91,4 +91,22 @@ export const DEFAULT_THEMES: Theme[] = [
       ornamentStyle: "batik",
     },
   },
+  {
+    id: "jawa",
+    name: "Jawa",
+    thumbnailUrl: "/images/themes/jawa-thumb.jpg",
+    isPremium: true,
+    isActive: true,
+    config: {
+      primaryColor: "#5C3A21",
+      secondaryColor: "#F5E6D3",
+      accentColor: "#C9A96E",
+      backgroundColor: "#FDF5EC",
+      textColor: "#1A1A1A",
+      fontHeading: "Cormorant Garamond",
+      fontBody: "Lato",
+      fontScript: "Great Vibes",
+      ornamentStyle: "jawa",
+    },
+  },
 ];
