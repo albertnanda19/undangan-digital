@@ -8,6 +8,7 @@ interface Props {
 }
 
 export function LoveStorySection({ loveStory, themeConfig }: Props) {
+  const isJawa = themeConfig.ornamentStyle === "jawa";
   return (
     <section id="love-story" className="invitation-section" style={{ backgroundColor: themeConfig.secondaryColor }}>
       <motion.div
@@ -17,8 +18,8 @@ export function LoveStorySection({ loveStory, themeConfig }: Props) {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <h2 className="section-title" style={{ color: themeConfig.textColor }}>Kisah Cinta Kami</h2>
-        <p className="section-subtitle" style={{ color: themeConfig.primaryColor }}>Love Story</p>
+        <h2 className="section-title" style={{ color: themeConfig.textColor }}>{isJawa ? "Lelakon" : "Kisah Cinta Kami"}</h2>
+        <p className="section-subtitle" style={{ color: themeConfig.primaryColor }}>{isJawa ? "Pasahan" : "Love Story"}</p>
 
         <div
           className="font-body text-sm sm:text-base leading-relaxed whitespace-pre-line opacity-80"

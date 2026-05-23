@@ -7,7 +7,17 @@ import { formatDate } from "@/lib/utils";
 import { LottieAnimation } from "@/components/invitation/LottieAnimation";
 import { HeroCoupleAnimation } from "@/components/invitation/HeroCoupleAnimation";
 import { MarawaFlags, RumahGadangRoof } from "@/components/invitation/MinangOrnaments";
-import { Gunungan, CandiSilhouette, WayangSilhouette, JawaCornerFlourish } from "@/components/invitation/JawaOrnaments";
+import {
+  Gunungan,
+  CandiSilhouette,
+  KembarMayang,
+  AksaraJawaOrnament,
+  LungLungan,
+  PendopoArch,
+  BatikSidomukti,
+  WayangSilhouette,
+  JawaCornerFlourish,
+} from "@/components/invitation/JawaOrnaments";
 import type { Tenant, ThemeConfig } from "@/types";
 import { isBrideFirst, isGuestSalutationBelowDate } from "@/config/tenant-display";
 
@@ -72,21 +82,20 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
           <div
             className="absolute inset-0"
             style={{
-              background: `linear-gradient(160deg, ${themeConfig.primaryColor} 0%, #3D1C02 45%, ${themeConfig.primaryColor} 100%)`,
+              background: `linear-gradient(170deg, ${themeConfig.primaryColor} 0%, #3D1C02 40%, #2B1407 70%, ${themeConfig.primaryColor} 100%)`,
             }}
           />
           <div
-            className="absolute inset-0 opacity-30"
+            className="absolute inset-0 opacity-35"
             style={{
-              background: `radial-gradient(ellipse at 50% 25%, ${themeConfig.accentColor}44 0%, transparent 50%)`,
+              background: `radial-gradient(ellipse at 50% 20%, ${themeConfig.accentColor}55 0%, transparent 50%)`,
             }}
           />
           <div
-            aria-hidden="true"
-            className="absolute inset-0 opacity-[0.06] mix-blend-overlay"
+            className="absolute inset-0 opacity-[0.08] mix-blend-overlay"
             style={{
-              backgroundImage:
-                "repeating-linear-gradient(45deg, #fff 0 2px, transparent 2px 12px), repeating-linear-gradient(-45deg, #fff 0 2px, transparent 2px 12px)",
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 4l36 36-36 36L4 40 40 4Z' stroke='%23${themeConfig.accentColor.replace("#", "")}' stroke-width='0.6' opacity='0.12' fill='none'/%3E%3Ccircle cx='40' cy='40' r='3' fill='%23${themeConfig.accentColor.replace("#", "")}' opacity='0.15'/%3E%3C/svg%3E")`,
+              backgroundSize: "80px 80px",
             }}
           />
         </>
@@ -223,47 +232,88 @@ export function HeroSection({ tenant, themeConfig, guestName }: Props) {
       {/* Jawa ornaments — only on jawa theme */}
       {isJawa && (
         <>
+          {/* Pendopo Arch di hero */}
           <motion.div
-            className="absolute top-8 left-1/2 -translate-x-1/2 w-20 md:w-28 z-10 opacity-50"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 0.5, y: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="absolute top-0 left-0 right-0 h-32 md:h-40 z-10 opacity-30"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.3 }}
+            transition={{ duration: 1.4, ease: "easeOut" }}
           >
-            <Gunungan color="#2B1407" accent={themeConfig.accentColor} />
+            <PendopoArch color="#1A0D06" accent={themeConfig.accentColor} className="h-full w-full" />
           </motion.div>
 
+          {/* Gunungan */}
           <motion.div
-            className="absolute top-4 left-3 w-10 md:w-14 z-10"
-            initial={{ opacity: 0, x: -16 }}
-            animate={{ opacity: 1, x: 0, y: [0, -3, 0] }}
+            className="absolute top-10 md:top-8 left-1/2 -translate-x-1/2 w-20 md:w-28 z-10 opacity-45"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 0.45, y: [0, -4, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Gunungan color="#1A0D06" accent={themeConfig.accentColor} />
+          </motion.div>
+
+          {/* Kembar Mayang */}
+          <div className="absolute top-4 left-2 md:left-6 h-full w-10 md:w-14 z-10 flex items-start">
+            <KembarMayang side="left" accent={themeConfig.accentColor} />
+          </div>
+          <div className="absolute top-4 right-2 md:right-6 h-full w-10 md:w-14 z-10 flex items-start">
+            <KembarMayang side="right" accent={themeConfig.accentColor} />
+          </div>
+
+          {/* Aksara Jawa Ornament */}
+          <motion.div
+            className="absolute top-32 left-1/2 -translate-x-1/2 w-24 md:w-32 z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.4 }}
+            transition={{ duration: 1.6, delay: 0.3 }}
+          >
+            <AksaraJawaOrnament accent={themeConfig.accentColor} />
+          </motion.div>
+
+          {/* Corner Flourishes */}
+          <motion.div
+            className="absolute top-4 left-3 w-8 md:w-12 z-10"
+            initial={{ opacity: 0, x: -12 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
             <JawaCornerFlourish accent={themeConfig.accentColor} />
           </motion.div>
           <motion.div
-            className="absolute top-4 right-3 w-10 md:w-14 -scale-x-100 z-10"
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0, y: [0, -3, 0] }}
+            className="absolute top-4 right-3 w-8 md:w-12 -scale-x-100 z-10"
+            initial={{ opacity: 0, x: 12 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
             <JawaCornerFlourish accent={themeConfig.accentColor} />
           </motion.div>
 
+          {/* Wayang silhouettes */}
           <motion.div
-            className="absolute top-14 left-6 w-8 md:w-10 z-10 opacity-35"
+            className="absolute top-16 left-8 md:left-14 w-7 md:w-9 z-10 opacity-30"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.35, x: [0, 3, 0] }}
+            animate={{ opacity: 0.3, x: [0, 3, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           >
-            <WayangSilhouette side="left" color="#2B1407" />
+            <WayangSilhouette side="left" color="#1A0D06" />
           </motion.div>
           <motion.div
-            className="absolute top-14 right-6 w-8 md:w-10 z-10 opacity-35"
+            className="absolute top-16 right-8 md:right-14 w-7 md:w-9 z-10 opacity-30"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.35, x: [0, -3, 0] }}
+            animate={{ opacity: 0.3, x: [0, -3, 0] }}
             transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
           >
-            <WayangSilhouette side="right" color="#2B1407" />
+            <WayangSilhouette side="right" color="#1A0D06" />
+          </motion.div>
+
+          {/* Lung Lungan divider */}
+          <motion.div
+            className="absolute top-40 left-1/2 -translate-x-1/2 w-[70%] max-w-xs z-10"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 0.35, scaleX: 1 }}
+            transition={{ duration: 1.4, delay: 0.4 }}
+          >
+            <LungLungan accent={themeConfig.accentColor} />
           </motion.div>
         </>
       )}

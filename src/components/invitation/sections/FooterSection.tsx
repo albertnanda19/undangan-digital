@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Share2 } from "lucide-react";
 import { formatDate } from "@/lib/utils";
+import { AksaraJawaOrnament, LungLungan } from "@/components/invitation/JawaOrnaments";
 
 interface Props {
   groomNickname: string;
@@ -15,11 +16,18 @@ interface Props {
 
 export function FooterSection({ groomNickname, brideNickname, akadDate, closingMessage, slug, themeConfig }: Props) {
   const invitationUrl = typeof window !== "undefined" ? `${window.location.origin}/${slug}` : "";
+  const isJawa = themeConfig.ornamentStyle === "jawa";
 
   const handleShare = async () => {
+    const shareTitle = isJawa
+      ? `Undangan Panggih ${groomNickname} & ${brideNickname}`
+      : `Undangan Pernikahan ${groomNickname} & ${brideNickname}`;
+    const shareText = isJawa
+      ? `Kawula ngaturi uninga bilih putra-putri kula badhe ngelampahi panggih. Mugi kersa rawuh.`
+      : `Kami mengundang Anda ke pernikahan ${groomNickname} & ${brideNickname}`;
     const shareData = {
-      title: `Undangan Pernikahan ${groomNickname} & ${brideNickname}`,
-      text: `Kami mengundang Anda ke pernikahan ${groomNickname} & ${brideNickname}`,
+      title: shareTitle,
+      text: shareText,
       url: invitationUrl,
     };
 
@@ -46,7 +54,22 @@ export function FooterSection({ groomNickname, brideNickname, akadDate, closingM
           </p>
         )}
 
-        <p className="text-sm opacity-60 mb-2" style={{ color: themeConfig.textColor }}>Wassalamu&apos;alaikum Wr. Wb.</p>
+        {isJawa ? (
+          <>
+            <div className="mb-4 flex justify-center">
+              <AksaraJawaOrnament accent={themeConfig.accentColor} />
+            </div>
+            <p className="font-body text-sm leading-relaxed mb-4 opacity-80 italic" style={{ color: themeConfig.textColor }}>
+              "Sakderengipun, kawula ngaturaken agunging panuwun dhumateng para rawuh ingkang sampun kersa rawuh lan ndoakaken"
+            </p>
+            <div className="my-6">
+              <LungLungan accent={themeConfig.accentColor} />
+            </div>
+            <p className="text-sm opacity-60 mb-1" style={{ color: themeConfig.textColor }}>Matur nuwun</p>
+          </>
+        ) : (
+          <p className="text-sm opacity-60 mb-2" style={{ color: themeConfig.textColor }}>Wassalamu&apos;alaikum Wr. Wb.</p>
+        )}
 
         <h2 className="font-script text-4xl sm:text-5xl my-6" style={{ color: themeConfig.primaryColor }}>
           {groomNickname} & {brideNickname}
@@ -61,11 +84,11 @@ export function FooterSection({ groomNickname, brideNickname, akadDate, closingM
           className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
           style={{ backgroundColor: themeConfig.primaryColor }}
         >
-          <Share2 className="h-4 w-4" /> Bagikan Undangan
+          <Share2 className="h-4 w-4" /> {isJawa ? "Tebar Undangan" : "Bagikan Undangan"}
         </button>
 
         <p className="mt-12 text-xs opacity-40" style={{ color: themeConfig.textColor }}>
-          Dibuat dengan ❤️ Undangan Digital
+          {isJawa ? "Dipundamel — Undangan Digital" : "Dibuat dengan ❤️ Undangan Digital"}
         </p>
       </motion.div>
     </section>

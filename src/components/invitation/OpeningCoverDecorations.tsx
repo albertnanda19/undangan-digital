@@ -9,7 +9,12 @@ import {
 import {
   Gunungan,
   CandiSilhouette,
-  BatikKawungPattern,
+  KembarMayang,
+  AksaraJawaOrnament,
+  LungLungan,
+  PendopoArch,
+  BatikSidomukti,
+  BatikTruntum,
   JawaCornerFlourish,
   WayangSilhouette,
 } from "@/components/invitation/JawaOrnaments";
@@ -325,74 +330,102 @@ export function OpeningCoverDecorations({ themeConfig, hasCoverPhoto, isIslamic 
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(circle at 50% 15%, ${accent}22 0%, transparent 45%),
-              radial-gradient(circle at 50% 85%, ${primary}1A 0%, transparent 50%),
-              linear-gradient(180deg, transparent 0%, ${primary}15 100%)
+              radial-gradient(circle at 50% 20%, ${accent}1A 0%, transparent 45%),
+              radial-gradient(circle at 50% 80%, ${primary}1A 0%, transparent 50%),
+              linear-gradient(180deg, ${primary}22 0%, ${primary}08 50%, ${primary}22 100%)
             `,
           }}
         />
 
         <div
-          className="absolute inset-0 opacity-[0.08]"
+          className="absolute inset-0 opacity-[0.12]"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='18' stroke='%23${accent.replace("#", "")}' stroke-width='0.8' opacity='0.25' fill='none'/%3E%3C/svg%3E")`,
-            backgroundSize: "60px 60px",
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 4l36 36-36 36L4 40 40 4Z' stroke='%23${accent.replace("#", "")}' stroke-width='0.6' opacity='0.12' fill='none'/%3E%3Ccircle cx='40' cy='40' r='3' fill='%23${accent.replace("#", "")}' opacity='0.15'/%3E%3C/svg%3E")`,
+            backgroundSize: "80px 80px",
           }}
         />
 
+        {/* Pendopo Arch at top */}
         <motion.div
-          className="absolute top-8 left-1/2 -translate-x-1/2 w-28 md:w-36 opacity-55"
+          className="absolute top-0 left-0 right-0 h-28 md:h-32 opacity-35"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.35 }}
+          transition={{ duration: 1.4, ease: "easeOut" }}
+        >
+          <PendopoArch color={primary} accent={accent} className="h-full w-full" />
+        </motion.div>
+
+        {/* Gunungan */}
+        <motion.div
+          className="absolute top-10 md:top-8 left-1/2 -translate-x-1/2 w-24 md:w-32 opacity-50"
           initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 0.55, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+          animate={{ opacity: 0.5, y: [0, -4, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         >
           <Gunungan color={primary} accent={accent} />
         </motion.div>
 
+        {/* Kembar Mayang kiri & kanan */}
+        <div className="absolute top-0 left-2 md:left-6 h-full w-10 md:w-14 flex items-start pt-16">
+          <KembarMayang side="left" accent={accent} />
+        </div>
+        <div className="absolute top-0 right-2 md:right-6 h-full w-10 md:w-14 flex items-start pt-16">
+          <KembarMayang side="right" accent={accent} />
+        </div>
+
+        {/* Aksara Jawa Ornament */}
         <motion.div
-          className="absolute top-3 left-3 w-12 md:w-16"
+          className="absolute top-28 left-1/2 -translate-x-1/2 w-28 md:w-36"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ duration: 1.6, delay: 0.3 }}
+        >
+          <AksaraJawaOrnament accent={accent} />
+        </motion.div>
+
+        {/* Corner Flourishes */}
+        <motion.div
+          className="absolute top-4 left-3 w-10 md:w-14"
           animate={{ y: [0, -3, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         >
           <JawaCornerFlourish accent={accent} />
         </motion.div>
         <motion.div
-          className="absolute top-3 right-3 w-12 md:w-16 -scale-x-100"
+          className="absolute top-4 right-3 w-10 md:w-14 -scale-x-100"
           animate={{ y: [0, -3, 0] }}
           transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
         >
           <JawaCornerFlourish accent={accent} />
         </motion.div>
+
+        {/* Lung Lungan dividers */}
         <motion.div
-          className="absolute bottom-16 left-3 w-12 md:w-16 rotate-180"
-          animate={{ y: [0, 3, 0] }}
-          transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
+          className="absolute top-36 left-1/2 -translate-x-1/2 w-[80%] max-w-xs"
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 0.4, scaleX: 1 }}
+          transition={{ duration: 1.4, delay: 0.4 }}
         >
-          <JawaCornerFlourish accent={accent} />
-        </motion.div>
-        <motion.div
-          className="absolute bottom-16 right-3 w-12 md:w-16 -scale-x-100 rotate-180"
-          animate={{ y: [0, 3, 0] }}
-          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <JawaCornerFlourish accent={accent} />
+          <LungLungan accent={accent} />
         </motion.div>
 
+        {/* Wayang silhouettes */}
         <motion.div
-          className="absolute top-2 left-10 w-12 md:w-16 opacity-45"
-          animate={{ x: [0, 4, 0], opacity: [0.3, 0.55, 0.3] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-14 left-8 md:left-14 w-8 md:w-10 opacity-35"
+          animate={{ x: [0, 3, 0], opacity: [0.25, 0.45, 0.25] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         >
           <WayangSilhouette side="left" color={primary} />
         </motion.div>
         <motion.div
-          className="absolute top-2 right-10 w-12 md:w-16 opacity-45"
-          animate={{ x: [0, -4, 0], opacity: [0.3, 0.55, 0.3] }}
-          transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+          className="absolute top-14 right-8 md:right-14 w-8 md:w-10 opacity-35"
+          animate={{ x: [0, -3, 0], opacity: [0.25, 0.45, 0.25] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
         >
           <WayangSilhouette side="right" color={primary} />
         </motion.div>
 
+        {/* Enhanced shimmer dots */}
         {shimmerDots.map((dot, idx) => (
           <motion.div
             key={`jawa-dot-${idx}`}
@@ -405,7 +438,7 @@ export function OpeningCoverDecorations({ themeConfig, hasCoverPhoto, isIslamic 
               backgroundColor: `${accent}B3`,
               boxShadow: `0 0 12px ${accent}99`,
             }}
-            animate={{ opacity: [0.1, 0.75, 0.1], scale: [0.8, 1.3, 0.8] }}
+            animate={{ opacity: [0.08, 0.8, 0.08], scale: [0.8, 1.4, 0.8] }}
             transition={{
               duration: 3.5,
               delay: dot.delay,
@@ -415,14 +448,24 @@ export function OpeningCoverDecorations({ themeConfig, hasCoverPhoto, isIslamic 
           />
         ))}
 
+        {/* Candi Silhouette bottom */}
         <motion.div
-          className="absolute bottom-0 left-0 right-0 h-16 md:h-24 opacity-50"
+          className="absolute bottom-0 left-0 right-0 h-20 md:h-28 opacity-45"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
+          animate={{ opacity: 0.45 }}
           transition={{ duration: 1.4, ease: "easeOut" }}
         >
           <CandiSilhouette color={primary} accent={accent} className="h-full w-full" />
         </motion.div>
+
+        {/* Batik Truntum subtle overlay bottom */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-16 opacity-[0.06]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='12' stroke='%23${accent.replace("#", "")}' stroke-width='0.5' opacity='0.12' fill='none'/%3E%3Ccircle cx='30' cy='30' r='2' fill='%23${accent.replace("#", "")}' opacity='0.15'/%3E%3C/svg%3E")`,
+            backgroundSize: "60px 60px",
+          }}
+        />
       </div>
     );
   }

@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { LottieAnimation } from "@/components/invitation/LottieAnimation";
+import { SoganBorder, LungLungan, AksaraJawaOrnament, JawaGroomSilhouette, JawaBrideSilhouette } from "@/components/invitation/JawaOrnaments";
 import type { Tenant, ThemeConfig } from "@/types";
 import { getReligionContent } from "@/lib/religionContent";
 import { isBrideFirst } from "@/config/tenant-display";
@@ -98,6 +99,7 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
   const useAutoLottie = tenant.lottieAutoSelect !== false;
   const useLottie = useAutoLottie || !!tenant.lottieAnimationUrl;
   const isMinangTheme = themeConfig.ornamentStyle === "minang";
+  const isJawa = themeConfig.ornamentStyle === "jawa";
   const isIslam = tenant.religion === "islam";
   const content = getReligionContent(tenant.religion);
   const brideFirst = isBrideFirst(tenant.slug);
@@ -132,6 +134,10 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
               sizes={COUPLE_PORTRAIT_SIZES}
               className="object-contain object-center"
             />
+          ) : isJawa ? (
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <JawaGroomSilhouette accent={themeConfig.accentColor} className="w-full h-full" />
+            </div>
           ) : isIslam ? (
             <Image
               src="/images/muslim-groom-real.png"
@@ -186,6 +192,10 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
               sizes={COUPLE_PORTRAIT_SIZES}
               className="object-contain object-center"
             />
+          ) : isJawa ? (
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <JawaBrideSilhouette accent={themeConfig.accentColor} className="w-full h-full" />
+            </div>
           ) : isIslam ? (
             <Image
               src="/images/muslim-bride-real.png"
@@ -221,9 +231,11 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
       <div className="max-w-5xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center mb-16 scroll-mt-6">
           <p className="font-script text-2xl mb-2" style={{ color: themeConfig.primaryColor }}>
-            {isIslam ? content.openingGreeting : "In The Name of Love"}
+            {isJawa ? "Pandhan Arum" : isIslam ? content.openingGreeting : "In The Name of Love"}
           </p>
-          <h2 className="section-title font-display" style={{ color: themeConfig.textColor }}>Mempelai</h2>
+          <h2 className="section-title font-display" style={{ color: themeConfig.textColor }}>
+            {isJawa ? "Kekalih Panganten" : "Mempelai"}
+          </h2>
         </motion.div>
         <div className="grid min-w-0 grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center">
           {brideFirst ? brideCard : groomCard}
