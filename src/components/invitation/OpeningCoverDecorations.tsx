@@ -73,7 +73,7 @@ export function OpeningCoverDecorations({ themeConfig, hasCoverPhoto, isIslamic 
     );
   }
 
-  if (isIslamic) {
+  if (isIslamic && ornamentStyle !== "jawa" && ornamentStyle !== "minang") {
     return (
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ opacity: layerOpacity }}>
         {/* Soft aura layers */}
