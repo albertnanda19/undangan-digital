@@ -134,21 +134,13 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
               className="object-contain object-center"
             />
           ) : isJawa ? (
-            <motion.div
-              className="absolute inset-0 flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.6 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            >
-              <svg viewBox="0 0 100 180" className="w-[85%] h-[85%]" fill="none" aria-hidden="true">
-                <path d="M50 4C38 4 28 12 28 24c0 10 8 18 22 18s22-8 22-18c0-12-10-20-22-20Z" fill={themeConfig.primaryColor} opacity="0.85" />
-                <path d="M50 42c-16 0-28 6-34 16s-8 26-4 40c4 14 8 26 12 32-2 8-4 18-4 28 0 16 4 30 12 40 8 10 18 14 30 14s22-4 30-14c8-10 12-24 12-40 0-10-2-20-4-28 4-6 8-18 12-32 4-14 2-28-4-40-6-10-18-16-34-16Z" fill={themeConfig.primaryColor} opacity="0.8" />
-                <rect x="46" y="76" width="8" height="28" rx="4" fill={themeConfig.accentColor} opacity="0.5" />
-                <circle cx="50" cy="140" r="4" fill={themeConfig.accentColor} opacity="0.4" />
-                <path d="M34 72c4-6 8-14 12-20" stroke={themeConfig.accentColor} strokeWidth="1.5" opacity="0.3" />
-                <path d="M66 72c-4-6-8-14-12-20" stroke={themeConfig.accentColor} strokeWidth="1.5" opacity="0.3" />
-              </svg>
-            </motion.div>
+            <Image
+              src="/images/muslim-groom-real.png"
+              alt="Ilustrasi mempelai pria"
+              fill
+              sizes={COUPLE_PORTRAIT_SIZES}
+              className="object-contain object-center"
+            />
           ) : isIslam ? (
             <Image
               src="/images/muslim-groom-real.png"
@@ -204,23 +196,13 @@ export function CoupleSection({ tenant, themeConfig }: Props) {
               className="object-contain object-center"
             />
           ) : isJawa ? (
-            <motion.div
-              className="absolute inset-0 flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.6 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
-            >
-              <svg viewBox="0 0 100 180" className="w-[85%] h-[85%]" fill="none" aria-hidden="true">
-                <path d="M50 4c-8 0-12 6-12 12s4 12 12 12 12-6 12-12-4-12-12-12Z" fill={themeConfig.primaryColor} opacity="0.85" />
-                <path d="M50 28c-16 0-28 6-34 16s-8 26-4 40c4 14 8 26 12 32-2 8-4 18-4 28 0 16 4 30 12 40 8 10 18 14 30 14s22-4 30-14c8-10 12-24 12-40 0-10-2-20-4-28 4-6 8-18 12-32 4-14 2-28-4-40-6-10-18-16-34-16Z" fill={themeConfig.primaryColor} opacity="0.8" />
-                <rect x="46" y="76" width="8" height="28" rx="4" fill={themeConfig.accentColor} opacity="0.5" />
-                <circle cx="50" cy="140" r="4" fill={themeConfig.accentColor} opacity="0.4" />
-                <path d="M34 72c4-6 8-14 12-20" stroke={themeConfig.accentColor} strokeWidth="1.5" opacity="0.3" />
-                <path d="M66 72c-4-6-8-14-12-20" stroke={themeConfig.accentColor} strokeWidth="1.5" opacity="0.3" />
-                <path d="M38 14c4-2 8-2 12 0" stroke={themeConfig.accentColor} strokeWidth="1" opacity="0.4" />
-                <circle cx="50" cy="10" r="2" fill={themeConfig.accentColor} opacity="0.4" />
-              </svg>
-            </motion.div>
+            <Image
+              src="/images/muslim-bride-real.png"
+              alt="Ilustrasi mempelai wanita"
+              fill
+              sizes={COUPLE_PORTRAIT_SIZES}
+              className="object-contain object-center"
+            />
           ) : isIslam ? (
             <Image
               src="/images/muslim-bride-real.png"
